@@ -1,8 +1,20 @@
 <template>
-    <main id="home-page">
-        <h1>
-            Home
-        </h1>
-        <p>Home page</p>
-    </main>
+  <div id="container">
+    <HeaderComponent class="header">{{}}</HeaderComponent>
+  </div>
 </template>
+
+<script>
+import HeaderComponent from "../components/Header.vue";
+
+export default {
+  name: "App",
+
+  components: {
+    HeaderComponent,
+  },
+};
+</script>
+
+<style lang="scss">
+</style>

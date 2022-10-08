@@ -1,0 +1,98 @@
+// flexbox 
+@mixin flex-header-homepage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-header-line-Icon {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-before-connexion-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-footer-and-headerPost {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-connexion-creation-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin flex-connexion-fields {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+@mixin flex-create-account {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-post-mainUser-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-profil-mainUser {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-publication-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@mixin flex-list-post-container {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-usersInfo{
+    display: flex;
+}
+
+@mixin flex-post-reactions{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+@mixin flex-post-mainUserOnly-reaction-modification{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// ----------------------Media queries----------------------//
+
+
+
+
+
+
+
+
