@@ -1,9 +1,8 @@
 <template>
   <header class="header-container">
-    <img src="../assets/color-modes.svg" alt="mini-logo" />
-
+    <ThemeColor class="theme-switch"/>
     <div class="header-logo-container">
-      <img src="../assets/Logo-sphere.svg" alt="Groupomania" />
+      <img class="logo-sphere" src="../assets/Logo-sphere.svg" alt="Groupomania" />
       <img class="logo-name" src="../assets/Logo-Name.svg" alt="Groupomania" />
     </div>
 
@@ -17,7 +16,14 @@
 
 
 <script>
+import ThemeColor from "./ThemeColor.vue";
+
 export default {
   name: "HeaderElements",
+
+  components: {
+    ThemeColor,
+  },
 };
 </script>
+

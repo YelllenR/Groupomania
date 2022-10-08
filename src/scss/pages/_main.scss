@@ -1,0 +1,24 @@
+@import '../abstracts/mixins';
+@import '../abstracts/variable';
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: map-get($dark-mode-colors, $key: "background-color")
+}
+
+// Header in homepage
+.header-container {
+    @include flex-header-homepage;
+    border: 1px solid red ;
+}
+
+.header-logo-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-sphere{
+  color: map-get($dark-mode-colors, $key: "logo-sphere")
+}

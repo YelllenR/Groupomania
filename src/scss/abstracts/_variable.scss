@@ -57,7 +57,7 @@ $light-mode-colors: (
     "social-icons": $tertiary-color,
     "background-color": $tertiary-color,
     "background-color-login-signup": $box-login-signup,
-    "footer-background-color": $background-color-footer,
+    "footer-background-color": $background-color-footer-light,
     "text-color": $tertiary-color,
     "button-color": $tertiary-color,
     "text-button": $secondary-color,
@@ -100,13 +100,9 @@ $icon-size-mobile: (
     "like-dislike-width": 11px,
     "like-dislike-height": 11px,
     "facebook": 14px,
-    17px,
     "linkedin": 14px,
-    17px,
     "tweeter": 14px,
-    17px,
     "email-icon": 15px,
-    16px
 );
 
 
@@ -117,14 +113,13 @@ $font: 'Lato', sans-serif;
 
 
 $font-sizes: (
-    "title-mobile-home":  18px, 
+    "title-mobile-home": 18px,
     "fields-input-mobile": 14px,
-    "text-button-mobile": 15px, 
-    "username-mobile": 10px, 
-    "text-post-mobile": 10px, 
+    "text-button-mobile": 15px,
+    "username-mobile": 10px,
+    "text-post-mobile": 10px,
     "publication-button-mobile": 10px
 );
 
 $paddings-form-homepage: (
-    
 );
