@@ -6,69 +6,60 @@ $tertiary-color: #4E5166;
 $background-color-light: rgba(255, 215, 215, 0.27);
 $box-login-signup: rgba(217, 217, 217, 0.16);
 $background-color-footer-light: rgba(255, 215, 215, 0.27);
-$homepage-inputs-fields-color: rgba(78, 81, 102, 0.35);
-
-$background-color-footer-dark: rgba(217, 217, 217, 0.11);
-$dark-icons-footer: #F2EFEF;
-$box-login-signup-dark: rgba(217, 217, 217, 0.12);
-$text-color-dark-mode: #F2E0E0;
-$homepage-inputs-fields-color-dark: rgba(242, 224, 224, 0.8);
-$button-color-dark: rgba(255, 215, 215, 0.88);
 
 
 // On post page
 $text-in-post-light: #F2EFEF;
 $box-posts-light: rgba(255, 215, 215, 0.19);
-$box-posts-dark: rgba(217, 217, 217, 0.42);
 $post-field-dark: #F2E0E0;
-$username-dark: #F2E0E0;
+$homepage-inputs-fields-color-light: rgba(78, 81, 102, 0.35);
 
 
-$dark-mode-colors: (
-    "header-end-line": $secondary-color,
-    "header-logo-line": $secondary-color,
-    "logo-sphere": $secondary-color,
-    "logo-name": $primary-color,
-    "color-mode-logo": $secondary-color,
-    "social-icons": $dark-icons-footer,
-    "background-color": $tertiary-color,
-    "background-color-login-signup": $box-login-signup-dark,
-    "footer-background-color": $background-color-footer-dark,
-    "text-color": $text-color-dark-mode,
-    "button-color": $button-color-dark,
-    "text-button": $tertiary-color,
-    "input-fields-color-home": $homepage-inputs-fields-color-dark,
-    "text-post-dark": $tertiary-color,
-    "post-field-dark": $post-field-dark,
-    "reaction-icons": $secondary-color,
-    "username-color": $username-dark,
-    "box-posts": $box-posts-dark,
-    "nav-icon-color-dark": $secondary-color
-);
+// Dark theme
+    $header-end-line: $secondary-color;
+    $header-logo-line: $secondary-color;
+    $logo-sphere: $secondary-color;
+    $logo-name: $primary-color;
+    $color-mode-logo: $secondary-color;
+    $dark-icons-footer: #F2EFEF;
+    $background-color-dark: $tertiary-color;
+    $box-login-signup-dark: rgba(217, 217, 217, 0.12);
+    $background-color-footer-dark: rgba(217, 217, 217, 0.11);
+    $text-color-dark-mode: #F2E0E0;
+    $button-color-dark: rgba(255, 215, 215, 0.88);
+    $text-button: $tertiary-color;
+    $homepage-inputs-fields-color-dark: rgba(242, 224, 224, 0.8);
+    $text-post-dark: $tertiary-color;
+    $post-field-dark: #F2E0E0;
+    $reaction-icons: $secondary-color;
+    $username-dark: #F2E0E0;
+    $box-posts-dark: rgba(217, 217, 217, 0.42);
+    $nav-icon-color-dark: $secondary-color;
 
 
 
-$light-mode-colors: (
-    "header-end-line": $tertiary-color,
-    "header-logo-line": $tertiary-color,
-    "logo-sphere": $tertiary-color,
-    "logo-name": $primary-color,
-    "color-mode-logo": $tertiary-color,
-    "social-icons": $tertiary-color,
-    "background-color": $tertiary-color,
-    "background-color-login-signup": $box-login-signup,
-    "footer-background-color": $background-color-footer-light,
-    "text-color": $tertiary-color,
-    "button-color": $tertiary-color,
-    "text-button": $secondary-color,
-    "input-fields-color-home": $background-color-light,
-    "text-post-light": $text-in-post-light,
-    "post-field-light": $tertiary-color,
-    "reaction-icons": $tertiary-color,
-    "username-color": $tertiary-color,
-    "box-posts": $box-posts-light,
-    "nav-icon-color-dark": $tertiary-color
-);
+
+// $light-mode-colors: (
+//     "header-end-line": $tertiary-color,
+//     "header-logo-line": $tertiary-color,
+//     "logo-sphere": $tertiary-color,
+//     "logo-name": $primary-color,
+//     "color-mode-logo": $tertiary-color,
+//     "social-icons": $tertiary-color,
+//     "background-color": $tertiary-color,
+//     "background-color-login-signup": $box-login-signup,
+//     "footer-background-color": $background-color-footer-light,
+//     "text-color": $tertiary-color,
+//     "button-color": $tertiary-color,
+//     "text-button": $secondary-color,
+//     "input-fields-color-home": $background-color-light,
+//     "text-post-light": $text-in-post-light,
+//     "post-field-light": $tertiary-color,
+//     "reaction-icons": $tertiary-color,
+//     "username-color": $tertiary-color,
+//     "box-posts": $box-posts-light,
+//     "nav-icon-color-dark": $tertiary-color
+// );
 
 
 $radius: (

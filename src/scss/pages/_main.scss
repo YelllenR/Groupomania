@@ -1,24 +1,33 @@
-@import '../abstracts/mixins';
-@import '../abstracts/variable';
 
 * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    background-color: map-get($dark-mode-colors, $key: "background-color")
+    background-color: $background-color-dark;
+    font-family: $font;
 }
 
 // Header in homepage
-.header-container {
+#header-container {
     @include flex-header-homepage;
-    border: 1px solid red ;
+    margin: 8px;
 }
 
-.header-logo-container{
+.header-logo-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.logo-sphere{
-  color: map-get($dark-mode-colors, $key: "logo-sphere")
+
+#main-container{
+    @include flex-connexion-creation-box;
+    height: 60%;
+    width: 100%;
+    background-color: $box-login-signup;
+    position: absolute;
+    left: 0;
+    top: 150px;
+    box-shadow: map-get($shadows, "login-signup-shadow");
 }
