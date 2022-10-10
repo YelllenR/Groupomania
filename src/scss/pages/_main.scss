@@ -1,0 +1,27 @@
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background-color: $background-color-dark;
+    font-family: $font;
+}
+
+
+#main-container{
+    @include flex-connexion-creation-box;
+    height: 60%;
+    width: 100%;
+    background-color: $box-login-signup;
+    position: absolute;
+    left: 0;
+    top: 150px;
+    box-shadow: map-get($shadows, "login-signup-shadow");
+}
+
+.create-account{
+    background-color: transparent;
+    color: #F2E0E0;
+    padding-top: 20px;
+    font-size: 14px;
+}

@@ -1,0 +1,20 @@
+// Importing abstracts files
+@import 'abstracts/mixins';
+@import 'abstracts/function';
+@import 'abstracts/variable';
+
+// Importing components files
+@import 'components/button';
+@import 'components/font';
+@import 'components/icon';
+@import 'components/image';
+@import 'components/post-fields';
+@import 'components/form';
+
+// Importing layout files
+@import 'layout/footer';
+@import 'layout/header';
+
+// Importing pages files
+@import 'pages/main';
+@import 'pages/post';

@@ -1,0 +1,116 @@
+$primary-color: #FD2D01;
+$secondary-color: #FFD7D7;
+$tertiary-color: #4E5166;
+
+// on home page
+$background-color-light: rgba(255, 215, 215, 0.27);
+$box-login-signup: rgba(217, 217, 217, 0.16);
+$background-color-footer-light: rgba(255, 215, 215, 0.27);
+
+
+// On post page
+$text-in-post-light: #F2EFEF;
+$box-posts-light: rgba(255, 215, 215, 0.19);
+$post-field-dark: #F2E0E0;
+$homepage-inputs-fields-color-light: rgba(78, 81, 102, 0.35);
+
+
+// Dark theme
+    $header-end-line: $secondary-color;
+    $header-logo-line: $secondary-color;
+    $logo-sphere: $secondary-color;
+    $logo-name: $primary-color;
+    $color-mode-logo: $secondary-color;
+    $dark-icons-footer: #F2EFEF;
+    $background-color-dark: $tertiary-color;
+    $box-login-signup-dark: rgba(217, 217, 217, 0.12);
+    $background-color-footer-dark: rgba(217, 217, 217, 0.11);
+    $text-color-dark-mode: #F2E0E0;
+    $button-color-dark: rgba(255, 215, 215, 0.88);
+    $text-button: $tertiary-color;
+    $homepage-inputs-fields-color-dark: rgba(242, 224, 224, 0.8);
+    $text-post-dark: $tertiary-color;
+    $post-field-dark: #F2E0E0;
+    $reaction-icons: $secondary-color;
+    $username-dark: #F2E0E0;
+    $box-posts-dark: rgba(217, 217, 217, 0.42);
+    $nav-icon-color-dark: $secondary-color;
+
+
+
+
+// $light-mode-colors: (
+//     "header-end-line": $tertiary-color,
+//     "header-logo-line": $tertiary-color,
+//     "logo-sphere": $tertiary-color,
+//     "logo-name": $primary-color,
+//     "color-mode-logo": $tertiary-color,
+//     "social-icons": $tertiary-color,
+//     "background-color": $tertiary-color,
+//     "background-color-login-signup": $box-login-signup,
+//     "footer-background-color": $background-color-footer-light,
+//     "text-color": $tertiary-color,
+//     "button-color": $tertiary-color,
+//     "text-button": $secondary-color,
+//     "input-fields-color-home": $background-color-light,
+//     "text-post-light": $text-in-post-light,
+//     "post-field-light": $tertiary-color,
+//     "reaction-icons": $tertiary-color,
+//     "username-color": $tertiary-color,
+//     "box-posts": $box-posts-light,
+//     "nav-icon-color-dark": $tertiary-color
+// );
+
+
+$radius: (
+    "buttons-radius": 6px,
+    "home-fields-radius": 3px,
+    "profil-radius-mobile": 17px
+);
+
+$shadows: (
+    "home-button-shadow": 0px 4px 4px rgba(0, 0, 0, 0.25),
+    "home-fields-shadow": 0px 3px 4px rgba(0, 0, 0, 0.25),
+    "login-signup-shadow": 0px 2px 4px rgba(0, 0, 0, 0.25),
+    "footer-post-shadow": -3px -3px 4px rgba(0, 0, 0, 0.09)
+);
+
+$borders: (
+    "border-dark": 1px solid $tertiary-color,
+    "border-light": 1px solid $secondary-color
+);
+
+$profil-picture-mobile: (
+    "height-image": 34px,
+    "width-image": 32px
+);
+
+$icon-size-mobile: (
+    "reply-width": 15px,
+    "reply-height": 14px,
+    "like-dislike-width": 11px,
+    "like-dislike-height": 11px,
+    "facebook": 14px,
+    "linkedin": 14px,
+    "tweeter": 14px,
+    "email-icon": 15px,
+);
+
+
+// ----------------------- Font --------------------------//
+
+$font: 'Lato', sans-serif;
+
+
+
+$font-sizes: (
+    "title-mobile-home": 18px,
+    "fields-input-mobile": 14px,
+    "text-button-mobile": 15px,
+    "username-mobile": 10px,
+    "text-post-mobile": 10px,
+    "publication-button-mobile": 10px
+);
+
+$paddings-form-homepage: (
+);

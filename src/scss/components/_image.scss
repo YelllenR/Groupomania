@@ -1,0 +1,22 @@
+.logo-sphere {
+    color: $logo-sphere;
+    height: 64px;
+    width: 66px;
+}
+
+.header-end-line {
+    @include flex-header-line-Icon;
+    margin-top: 24px;
+    width: 100%;
+}
+
+.line {
+    border: 3px solid $header-end-line;
+    width: 85%;
+}
+
+.logo-end-line {
+    fill: $secondary-color;
+    height: 17px;
+    width: 15px;
+}
