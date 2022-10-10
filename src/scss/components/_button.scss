@@ -1,3 +1,4 @@
+
 .button{
     border-style: none;
     cursor: pointer;
@@ -6,8 +7,18 @@
     background-color: transparent;
 }
 
-.loginButton{
-    font-family: $font;
-    font-size: 20px;
+.formButton{
+    font-size: map-get($font-sizes, "title-mobile-home");
     color: #F2E0E0
+}
+
+.button-login, .button-signup{
+    background-color: $button-color-dark;
+    color: $text-button;
+    margin-top: 8px;
+    border-radius: map-get($radius , "buttons-radius");
+    font-size: map-get($font-sizes, "text-button-mobile");
+    height: auto;
+    width: auto;
+    padding: 5px;
 }

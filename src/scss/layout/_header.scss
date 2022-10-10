@@ -1,0 +1,13 @@
+// Header in homepage
+#header-container {
+    @include flex-header-homepage;
+    margin: 8px;
+}
+
+.header-logo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

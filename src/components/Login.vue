@@ -1,14 +1,13 @@
 <template>
-  <Button @login-form="$emit('toggle-show-form')"
+  <ButtonLogin @show-form="$emit('toggle-show-login')"
   :text="showLoginForm ? 'Connexion' : 'Connectez-vous'"
 >
-  
-  </Button>
+  </ButtonLogin>
 </template>
 
 
 <script>
-import Button from "./Button.vue";
+import ButtonLogin from "./Button.vue";
 
 export default {
   name: "Login",
@@ -16,7 +15,7 @@ export default {
     showLoginForm: Boolean,
   },
   components: {
-    Button,
+    ButtonLogin,
   },
 };
 </script>

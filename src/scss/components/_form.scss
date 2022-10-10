@@ -1,6 +1,50 @@
-
-.login-form{
-    border: 1px solid green;
+.form-control-login {
+    @include flex-connexion-creation-box;
+    width: 310px;
     height: 200px;
+    background-color: $box-login-signup;
 }
 
+label {
+    color: $text-color-dark-mode;
+    padding: 8px;
+    background-color: transparent;
+    align-self: flex-start;
+    font-size: map-get($font-sizes, "fields-input-mobile")
+}
+
+
+.email-input,
+input,
+.password-input {
+    @include flex-connexion-fields;
+    width: 90%;
+    background-color: transparent;
+    border-style: none;
+    margin-bottom: 5px;
+}
+
+input {
+    background-color: $homepage-inputs-fields-color-dark;
+    width: 92%;
+    height: 30px;
+    border-radius: map-get($radius, "home-fields-radius");
+    padding: 8px;
+    box-shadow: map-get($shadows, "login-signup-shadow");
+}
+
+.form-control-signup {
+    @include flex-connexion-creation-box;
+    background-color: $box-login-signup;
+    width: 310px
+}
+
+.lastname-field,
+.firstname-field,
+.email-field,
+.password-field,
+.image-field {
+    @include flex-connexion-fields;
+    background-color: transparent;
+    width: 90%;
+}

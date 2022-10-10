@@ -7,19 +7,6 @@
     font-family: $font;
 }
 
-// Header in homepage
-#header-container {
-    @include flex-header-homepage;
-    margin: 8px;
-}
-
-.header-logo-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 
 #main-container{
     @include flex-connexion-creation-box;
@@ -30,4 +17,11 @@
     left: 0;
     top: 150px;
     box-shadow: map-get($shadows, "login-signup-shadow");
+}
+
+.create-account{
+    background-color: transparent;
+    color: #F2E0E0;
+    padding-top: 20px;
+    font-size: 14px;
 }

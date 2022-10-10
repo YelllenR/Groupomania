@@ -1,7 +1,8 @@
 <template>
-  <button @click="onClick()" class="button loginButton">
+  <button @click="onClick()" class="button formButton">
     {{ text }}
   </button>
+
 </template>
 
 <script>
@@ -13,7 +14,7 @@ export default {
 
   methods: {
     onClick() {
-      this.$emit('login-form')
+      this.$emit('show-form')
     },
   },
 };

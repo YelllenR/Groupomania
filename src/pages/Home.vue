@@ -5,21 +5,27 @@
 
   <main id="main-container">
     <Login
-      @toggle-show-form="toggleLogForm"
+      @toggle-show-login="toggleLogForm"
       title="Connexion"
       :showLoginForm="showLoginForm"
     ></Login>
 
     <div v-if="showLoginForm">
-      <LoginForm @login-form="LoginForm"> </LoginForm>
+      <LoginForm/>
     </div>
 
     <p class="create-account">Pas encore de compte ?</p>
 
-    <h2 class="signup">
-      Créez-en un!
-      <Signup></Signup>
-    </h2>
+    <Signup
+      @toggle-show-signup="toggleSignupForm"
+      title="Créez-en un!"
+      :showSignupForm="showSignupForm"
+    >
+    </Signup>
+
+    <div v-if="showSignupForm">
+      <SignupForm></SignupForm>
+    </div>
   </main>
 </template>
 
@@ -28,6 +34,7 @@ import HeaderComponent from "../components/Header.vue";
 import Login from "../components/Login.vue";
 import Signup from "../components/Signup.vue";
 import LoginForm from "../components/LoginForm.vue";
+import SignupForm from "../components/SignupForm.vue";
 
 export default {
   name: "Home",
@@ -37,17 +44,23 @@ export default {
     Login,
     Signup,
     LoginForm,
+    SignupForm,
   },
 
   data() {
     return {
       showLoginForm: false,
+      showSignupForm: false,
     };
   },
 
   methods: {
     toggleLogForm() {
       this.showLoginForm = !this.showLoginForm;
+    },
+
+    toggleSignupForm() {
+      this.showSignupForm = !this.showSignupForm;
     },
   },
 };

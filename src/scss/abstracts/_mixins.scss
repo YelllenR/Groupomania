@@ -12,12 +12,6 @@
     align-items: center;
 }
 
-@mixin flex-before-connexion-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
 
 @mixin flex-footer-and-headerPost {
     display: flex;
