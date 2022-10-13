@@ -1,5 +1,5 @@
 
-.button{
+.button, .showForm{
     border-style: none;
     cursor: pointer;
     width: auto;
@@ -15,10 +15,14 @@
 .button-login, .button-signup{
     background-color: $button-color-dark;
     color: $text-button;
-    margin-top: 8px;
+    margin: 8px 0 8px 0;
     border-radius: map-get($radius , "buttons-radius");
     font-size: map-get($font-sizes, "text-button-mobile");
     height: auto;
     width: auto;
     padding: 5px;
+}
+
+.SignupButton{
+    padding-bottom: 16px;
 }

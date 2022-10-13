@@ -1,7 +1,9 @@
 // Header in homepage
 #header-container {
-    @include flex-header-homepage;
-    margin: 8px;
+    @include flex-header-homepage-footer;
+    min-width: map-get($breakpoints, "mobile-min"); 
+    max-width: map-get($breakpoints, "mobile-max");
+    margin-top: 10px;
 }
 
 .header-logo-container {
@@ -11,3 +13,11 @@
     align-items: center;
 }
 
+.header-end-line{
+    margin-top: 10px;
+}
+
+.logo-end-line{
+    width: auto;
+    margin: 8px;
+}

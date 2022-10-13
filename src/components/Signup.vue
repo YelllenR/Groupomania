@@ -1,5 +1,5 @@
 <template>
-  <ButtonSignup
+  <ButtonSignup class="SignupButton"
     @show-form="$emit('toggle-show-signup')"
     :text="showSignupForm ? 'Création du compte' : 'Créez-en un!'"
   >

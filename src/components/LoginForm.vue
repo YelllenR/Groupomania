@@ -3,23 +3,13 @@
     <div class="form-control-login">
       <div class="email-input">
         <label for="email">Email</label>
-        <input
-          type="email"
-          v-model="email"
-          name="email"
-          placeholder="Renseigner votre adresse email"
-          required="true"
-        />
+        <input type="email" v-model="email" name="email" placeholder="Renseigner votre adresse email" required="true"
+         />
       </div>
-      <div class="password-input">
+      <div class=" password-input">
         <label for="password">Mot de passe</label>
-        <input
-          type="password"
-          v-model="password"
-          name="password"
-          placeholder="Renseigner votre mot de passe"
-          required="true"
-        />
+        <input type="password" v-model="password" name="password" placeholder="Renseigner votre mot de passe"
+          required="true" />
       </div>
 
       <div :class="errorLogin">{{ errorLogin }}</div>
@@ -30,11 +20,14 @@
 
 
 <script>
+
 export default {
+
   name: "LoginForm",
   props: {
     errorLogin: String,
   },
+
 
   data() {
     return {

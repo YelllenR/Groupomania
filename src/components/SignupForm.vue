@@ -51,7 +51,7 @@
 
       <div class="image-field">
         <label for="image">Photo de profil</label>
-        <input type="file" accept="image/*" name="password" required="true" />
+        <input class="image-file" type="file" accept="image/*" name="image" required="true" />
       </div>
 
       <div :class="errorSignup">{{ errorLogin }}</div>

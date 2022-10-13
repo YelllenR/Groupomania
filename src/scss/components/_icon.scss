@@ -1,0 +1,10 @@
+.social-icons{
+    @include flex-footer-and-headerPost;
+    width: 85%;
+    margin: 24px 0 24px 0;
+}
+
+.fas, .fab{
+    color: $dark-icons-footer;
+    cursor: pointer;
+}

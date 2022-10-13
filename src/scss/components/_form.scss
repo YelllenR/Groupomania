@@ -1,3 +1,17 @@
+.showForm {
+    @include flex-connexion-creation-box;
+    width: 90vw;
+    border: none;
+}
+
+.create-Account-form {
+    height: 250px;
+    border: map-get($borders, "border-light");
+    border-radius: map-get($radius, "home-fields-radius");
+    overflow-y: scroll;
+}
+
+
 .form-control-login {
     @include flex-connexion-creation-box;
     width: 310px;
@@ -27,7 +41,7 @@ input,
 input {
     background-color: $homepage-inputs-fields-color-dark;
     width: 92%;
-    height: 30px;
+    height: 28px;
     border-radius: map-get($radius, "home-fields-radius");
     padding: 8px;
     box-shadow: map-get($shadows, "login-signup-shadow");
@@ -36,7 +50,8 @@ input {
 .form-control-signup {
     @include flex-connexion-creation-box;
     background-color: $box-login-signup;
-    width: 310px
+    width: 310px;
+    height: auto;
 }
 
 .lastname-field,
@@ -47,4 +62,8 @@ input {
     @include flex-connexion-fields;
     background-color: transparent;
     width: 90%;
+}
+
+.image-file {
+    padding: 5px;
 }

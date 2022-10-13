@@ -7,21 +7,24 @@
     font-family: $font;
 }
 
+#app, body, html{
+    min-width: map-get($breakpoints, "mobile-min"); 
+    max-width: map-get($breakpoints, "mobile-max");
+}
 
 #main-container{
     @include flex-connexion-creation-box;
-    height: 60%;
-    width: 100%;
+    min-width: map-get($breakpoints, "mobile-min"); 
+    max-width: map-get($breakpoints, "mobile-max");
     background-color: $box-login-signup;
-    position: absolute;
-    left: 0;
-    top: 150px;
     box-shadow: map-get($shadows, "login-signup-shadow");
+    height: 20em;
+    margin: 0;
 }
 
 .create-account{
     background-color: transparent;
     color: #F2E0E0;
-    padding-top: 20px;
+    padding: 20px 0 8px 0;
     font-size: 14px;
 }

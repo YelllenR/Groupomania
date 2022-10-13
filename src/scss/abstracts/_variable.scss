@@ -101,16 +101,27 @@ $icon-size-mobile: (
 
 $font: 'Lato', sans-serif;
 
-
-
 $font-sizes: (
     "title-mobile-home": 18px,
     "fields-input-mobile": 14px,
-    "text-button-mobile": 15px,
+    "text-button-mobile": 14px,
     "username-mobile": 10px,
     "text-post-mobile": 10px,
     "publication-button-mobile": 10px
 );
 
 $paddings-form-homepage: (
+);
+
+
+
+// --------------------------- Breakpoints ----------------------------//
+
+$breakpoints:(
+    "mobile-min": 320px, 
+    "mobile-max": 420px, 
+    "tablet-min": 421px,
+    "tablet-max": 768px,
+    "desktop-min": 769px,
+    "desktop-mas": 1200px,
 );

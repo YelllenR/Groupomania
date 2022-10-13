@@ -1,32 +1,43 @@
 <template>
-  <div id="container">
+  <header id="container">
     <HeaderComponent>{{}}</HeaderComponent>
-  </div>
+  </header>
 
   <main id="main-container">
-    <Login
-      @toggle-show-login="toggleLogForm"
-      title="Connexion"
-      :showLoginForm="showLoginForm"
-    ></Login>
+    <div v-if="!showSignupForm" class="showForm">
+      <Login
+        @toggle-show-login="toggleLogForm"
+        title="Connexion"
+        :showLoginForm="showLoginForm"
+      >
+      </Login>
 
-    <div v-if="showLoginForm">
-      <LoginForm/>
+      <div v-if="showLoginForm">
+        <LoginForm />
+      </div>
     </div>
 
-    <p class="create-account">Pas encore de compte ?</p>
+    <div v-if="!showLoginForm" class="showForm">
+      <p v-if="!showSignupForm" class="create-account">
+        Pas encore de compte ?
+      </p>
 
-    <Signup
-      @toggle-show-signup="toggleSignupForm"
-      title="Créez-en un!"
-      :showSignupForm="showSignupForm"
-    >
-    </Signup>
+      <Signup
+        @toggle-show-signup="toggleSignupForm"
+        title="Créez-en un!"
+        :showSignupForm="showSignupForm"
+      >
+      </Signup>
 
-    <div v-if="showSignupForm">
-      <SignupForm></SignupForm>
+      <div v-if="showSignupForm">
+        <SignupForm />
+      </div>
     </div>
   </main>
+
+  <footer>
+    <FooterIcons>{{}}</FooterIcons>
+  </footer>
 </template>
 
 <script>
@@ -35,6 +46,7 @@ import Login from "../components/Login.vue";
 import Signup from "../components/Signup.vue";
 import LoginForm from "../components/LoginForm.vue";
 import SignupForm from "../components/SignupForm.vue";
+import FooterIcons from "../components/Footer.vue";
 
 export default {
   name: "Home",
@@ -45,6 +57,7 @@ export default {
     Signup,
     LoginForm,
     SignupForm,
+    FooterIcons,
   },
 
   data() {

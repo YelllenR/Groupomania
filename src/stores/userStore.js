@@ -5,7 +5,10 @@ import { defineStore } from "pinia";
 export const useUserStore = defineStore("user", {
     state: () => {
         return {
-            user: []
+            user: [
+                email = "a.rose12@outlook.com", 
+                password = "1234"
+            ]
         }
     },
     actions: {
