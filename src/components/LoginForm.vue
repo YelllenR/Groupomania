@@ -1,10 +1,10 @@
 <template>
   <form @submit="onSubmit" class="login-form">
     <div class="form-control-login">
+     
       <div class="email-input">
         <label for="email">Email</label>
-        <input type="email" v-model="email" name="email" placeholder="Renseigner votre adresse email" required="true"
-         />
+        <input type="email" v-model="email" name="email" placeholder="Renseigner votre adresse email" required="true" />
       </div>
       <div class=" password-input">
         <label for="password">Mot de passe</label>
@@ -20,21 +20,28 @@
 
 
 <script>
+import { useFormValidations } from '../stores/formsValidationStore';
 
 export default {
+  setup() {
+    const formValidation = useFormValidations();
 
+    return {
+      formValidation
+    }
+  },
   name: "LoginForm",
   props: {
     errorLogin: String,
   },
 
 
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
+  // data() {
+  //   return {
+  //     email: "",
+  //     password: "",
+  //   };
+  // },
 
   methods: {
     onSubmit(e) {
