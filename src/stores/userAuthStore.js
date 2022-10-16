@@ -1,14 +1,26 @@
+
 import { defineStore } from "pinia";
 
-export const useAuthStore = defineStore('checkAuthUser', {
+import { useConnexionApi } from "./connexionAPI";
+
+export const useUserAuth = defineStore('checkAuthUser', {
+
     state: () => ({
-        Users: []
+        user: {
+            email: this.email,
+            password: this.password
+        }
     }),
 
     actions: {
-        CheckUser(user){
-            if(user.email && user.password != request.body){
-                return error; 
+        LogUser() {
+            const connexionApi = useConnexionApi();
+
+            if (this.user.email && this.user.password) {
+                console.log("ok", user);
+                
+            } else {
+                console.log("nope")
             }
         }
     }

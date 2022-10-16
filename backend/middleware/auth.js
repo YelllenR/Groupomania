@@ -6,8 +6,8 @@ const authUser = (request, response, next) => {
     const token = request.headers.authorization.split(' ')[1];
     const tokenToDecode = jsonWebToken.verify(token, config.someToken);
 
-    const userId = User.userId; 
-    const userToken = tokenToDecode.userId
+    const userId = tokenToDecode.userId
+
 
     try {
         if ((request.body.userId !== userToken) && request.body.userToken) {

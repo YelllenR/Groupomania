@@ -1,7 +1,7 @@
 <template>
   <form @submit="onSubmit" class="login-form">
     <div class="form-control-login">
-     
+
       <div class="email-input">
         <label for="email">Email</label>
         <input type="email" v-model="email" name="email" placeholder="Renseigner votre adresse email" required="true" />
@@ -19,51 +19,48 @@
 </template>
 
 
-<script>
+<script setup>
 import { useFormValidations } from '../stores/formsValidationStore';
+import { useUserAuth } from '../stores/userAuthStore';
+import { ref, computed } from "vue";
 
-export default {
-  setup() {
-    const formValidation = useFormValidations();
 
-    return {
-      formValidation
-    }
-  },
-  name: "LoginForm",
+const formValidation = useFormValidations();
+const userAuth = useUserAuth();
+
+
+const defineProps = {
   props: {
     errorLogin: String,
-  },
+  }
+}
+
+const name = "LoginForm";
 
 
-  // data() {
-  //   return {
-  //     email: "",
-  //     password: "",
-  //   };
-  // },
 
-  methods: {
-    onSubmit(e) {
-      e.preventDefault();
+function onSubmit(e) {
+  e.preventDefault();
 
-      if (!this.email && !this.password) {
-        return (errorLogin =
-          "Veuillez renseigner les informations nécessaires pour la connexion");
-      }
+  if (!this.email && !this.password) {
+    return (errorLogin =
+      "Veuillez renseigner les informations nécessaires pour la connexion");
+  }
 
-      const userLogin = {
-        id: Number,
-        email: this.email,
-        password: this.password,
-      };
+  const userLogin = ref(
+    {
+      email: userAuth.email,
+      password: userAuth.password
+    }
+  )
 
-      this.$emit("show-form", userLogin);
 
-      this.email = "";
-      this.password = "";
-    },
-  },
-};
+  this.$emit("show-form", userLogin);
+
+  this.email = "";
+  this.password = "";
+}
+
+
 </script>
 

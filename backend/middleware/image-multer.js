@@ -3,7 +3,7 @@ const multer = require('multer');
 
 const profilPicture = multer.diskStorage({
     destination: (request, file, callback) => {
-        return callback(null, 'images')
+        return callback(null, 'image')
     },
     filename: (request, file, callback) => {
         const name = file.originalname;
@@ -11,6 +11,7 @@ const profilPicture = multer.diskStorage({
         return callback(null, name)
     }
 });
+profilPicture;
 
 function CheckFileType(file, callback) {
     const fileTypes = /jpeg|jpg|png|webp|gif/;
@@ -30,5 +31,5 @@ const uploadImage = multer({
     }
 });
 
-module.exports = uploadImage().single('images');
+module.exports = uploadImage().single('image');
 

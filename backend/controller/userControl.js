@@ -1,6 +1,7 @@
 const User = require('../models/user');
 
 const jsonWebToken = require('jsonwebtoken');
+const uuid = require('uuid'); 
 
 const secretToken = uuid.v4();
 
@@ -16,7 +17,7 @@ const userLogIn = (request, response, next) => {
                     .then(userExist => {
                         if (userExist) {
                             response.status(200).json({
-                                // user: user.userId,
+                                user: user.userId,
                                 token: jsonWebToken.sign(
                                     { user: user.userId },
                                     secretToken,
@@ -24,7 +25,7 @@ const userLogIn = (request, response, next) => {
                                 )
                             })
                         } else {
-                            return response.json({message: "Une erreur est survenue"})
+                            return response.status(400).json({ message: "Une erreur est survenue" })
                         }
 
                     })
@@ -62,6 +63,6 @@ const createAccount = (request, response, next) => {
 
 
 module.exports = {
-    userLogIn, 
+    userLogIn,
     createAccount
 };
