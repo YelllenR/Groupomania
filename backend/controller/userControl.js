@@ -49,8 +49,8 @@ const createAccount = (request, response, next) => {
                 userId: uuid.v4(),
                 email: request.body.email,
                 password: passwordCrypt,
-                firstName: request.body.firstName,
-                lastName: request.body.lastName,
+                firstname: request.body.firstName,
+                lastname: request.body.lastName,
                 profilImage: `${request.protocol}://${request.get("host")}/images/${request.file}`,
             });
             try {
@@ -69,7 +69,16 @@ const createAccount = (request, response, next) => {
 };
 
 
+const userInfos = (request, response, next) => {
+    User.find(request.body.user)
+    .then((user) => response.status(200).send(user))
+    .catch((userError) => response.status(401).json({message: userError}))
+}
+
+
+
 module.exports = {
     userLogIn,
-    createAccount
+    createAccount, 
+    userInfos
 };

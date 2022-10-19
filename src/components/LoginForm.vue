@@ -20,46 +20,46 @@
 
 
 <script setup>
-import { useFormValidations } from '../stores/formsValidationStore';
-import { useUserAuth } from '../stores/userAuthStore';
+// import { useFormValidations } from '../stores/formsValidationStore';
+
 import { ref, computed } from "vue";
 
 
-const formValidation = useFormValidations();
-const userAuth = useUserAuth();
+// const formValidation = useFormValidations();
+// const userAuth = useUserAuth();
 
 
-const defineProps = {
-  props: {
-    errorLogin: String,
-  }
-}
+// const defineProps = {
+//   props: {
+//     errorLogin: String,
+//   }
+// }
 
-const name = "LoginForm";
-
-
-
-function onSubmit(e) {
-  e.preventDefault();
-
-  if (!this.email && !this.password) {
-    return (errorLogin =
-      "Veuillez renseigner les informations nécessaires pour la connexion");
-  }
-
-  const userLogin = ref(
-    {
-      email: userAuth.email,
-      password: userAuth.password
-    }
-  )
+// const name = "LoginForm";
 
 
-  this.$emit("show-form", userLogin);
 
-  this.email = "";
-  this.password = "";
-}
+// function onSubmit(e) {
+//   e.preventDefault();
+
+//   if (!this.email && !this.password) {
+//     return (errorLogin =
+//       "Veuillez renseigner les informations nécessaires pour la connexion");
+//   }
+
+//   const userLogin = ref(
+//     {
+//       email: userAuth.email,
+//       password: userAuth.password
+//     }
+//   )
+
+
+//   this.$emit("show-form", userLogin);
+
+//   this.email = "";
+//   this.password = "";
+// }
 
 
 </script>
