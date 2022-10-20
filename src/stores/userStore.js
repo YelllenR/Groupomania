@@ -1,32 +1,48 @@
 
+
 import { defineStore } from "pinia";
+import { v4 as uuid } from 'uuid'
 
 
-const FormatHeader = () => {
-    const formHeader = new Headers();
-    formHeader.append("Content-type", "application/json")
 
-    const request = new Request('http://localhost:3000/Groupomania/login', {
-        headers: formHeader,
-        method: "POST",
-        body: JSON.stringify(lastname, firstname, email, password, image)
-    })
-
-    return request;
-};
 
 export const useUserStore = defineStore("userStore", {
-
     state: () => ({
         user: []
     }),
     actions: {
-        create(user){
+        Create(user) {
             this.user.push({
-                userId: uuid(), 
+                userId: uuid(),
                 ...user,
             })
-        }
+
+            const fd = new FormData();
+            fd.append('user', this.user)
+            
+            console.log(fd)
+
+
+        },
+        //    async SendData() {
+        //         const response = await fetch('http://localhost:3000/Groupomania/create-account', {
+        //             method: "POST",
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify(Create(user))
+        //         })
+        //         return  response.json()
+        //     }
+        // upload(user) {
+        //     const fd = new FormData();
+
+
+        //     // fetch('http://localhost:3000/Groupomania/create-account', {
+        //     //     method: "POST",
+        //     //     headers: { 'Content-Type': 'application/json' },
+        //     //     body: JSON.stringify(fd)
+        //     // })
+        //     // .then((response) => console.log(response))
+        // }
     }
 
 
