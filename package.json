@@ -21,6 +21,7 @@
     "pinia": "^2.0.22",
     "uuid": "^9.0.0",
     "vue": "^3.2.40",
+    "vue-moment": "^4.1.0",
     "vue-router": "^4.1.5"
   },
   "devDependencies": {

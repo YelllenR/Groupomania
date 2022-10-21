@@ -17,9 +17,9 @@ const userLogIn = (request, response, next) => {
                 bcrypt.compare(request.body.password, user.password)
 
                     .then(userExist => {
-                        if (!userExist) {
+                        if (userExist) {
                             response.status(200).json({
-                                // user: user.userId,
+                                user: user.userId,
                                 token: jsonWebToken.sign(
                                     { user: user.userId },
                                     secretToken,
@@ -71,14 +71,14 @@ const createAccount = (request, response, next) => {
 
 const userInfos = (request, response, next) => {
     User.find(request.body.user)
-    .then((user) => response.status(200).send(user))
-    .catch((userError) => response.status(401).json({message: userError}))
+        .then((user) => response.status(200).send(user))
+        .catch((userError) => response.status(401).json({ message: userError }))
 }
 
 
 
 module.exports = {
     userLogIn,
-    createAccount, 
+    createAccount,
     userInfos
 };

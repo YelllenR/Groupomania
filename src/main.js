@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-
+// import 'vue-moment'
 import './scss/style.css'
 import App from './App.vue'
 
@@ -15,6 +15,7 @@ const pinia = createPinia();
 createApp(App)
     .use(router)
     .use(pinia)
+    // .use(('vue-moment'))
     .mount('#app')
 
 

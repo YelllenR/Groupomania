@@ -1,31 +1,17 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Inspect from 'vite-plugin-inspect'
+import { env } from 'process'
 
-// import { fileURLToPath } from 'url'
-// import { createServer } from 'vite'
-
-// const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
-// ;(async () => {
-//   const server = await createServer({
-//     // any valid user config options, plus `mode` and `configFile`
-//     configFile: false,
-//     root: __dirname,
-//     server: {
-//       port: 1337
-//     }
-//   })
-//   await server.listen()
-
-//   server.printUrls()
-// })()
 
 // https://vitejs.dev/config/
 export default defineConfig({
+
+  loadEnv: env,
+
   plugins: [
     vue(),
-    Inspect(), 
+    Inspect(),
   ],
   build: {
     manifest: true,

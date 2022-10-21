@@ -40,10 +40,10 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-import { useUserStore } from '../stores/userStore';
+import { useUserCreationStore } from '../stores/userCreateAccountStore';
 
 
-const userStore = useUserStore();
+const userStore = useUserCreationStore();
 
 const userInput = ref({
   firstname: "",
@@ -75,27 +75,10 @@ const valueFirstname = firstnameRegex.test(userInput.value.firstname.trim(""))
 
 
 
-// const IsError = () => {
-//   if (userInput.value.firstname === "") {
-//     error = true;
-//     console.log(errorMessage)
-//   }
-// }
-
-// const CheckFirstname = (userInput) => {
-
-//   return firstnameRegex.test(userInput.firstname.value.trim(""));
-// }
-
-
-
 const createAccount = () => {
-  userStore.Create(userInput.value)
+  userStore.Create(userInput.value);
 }
 
-// const formdata = new FormData(); 
-// formdata.append('image', userInput.value)
-// console.log(formdata)
 
 
 </script>
