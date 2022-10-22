@@ -5,3 +5,94 @@
     background-color: $background-color-dark;
     font-family: $font;
 }
+
+#mainPost-container {
+    @include flex-connexion-creation-box;
+    min-width: map-get($breakpoints, "mobile-min");
+    max-width: map-get($breakpoints, "mobile-max");
+    height: 500px;
+    overflow: hidden;
+}
+
+.box-userAccount {
+    height: 15vh;
+    width: 90vw;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.userAccount{
+    @include flex-profil-mainUser;
+}
+
+#userPost{
+    width: 75%; 
+    height: auto;
+ 
+    overflow: scroll;
+    box-shadow: map-get($shadows, "home-fields-shadow"); 
+    border-style: none;
+    background-color: $post-field-dark;
+    resize: none;
+    padding: 3px;
+    color: $tertiary-color;
+    border-radius: map-get($radius, "post-box");
+}
+
+#userPost:focus{
+    outline: none;
+}
+
+
+#post-container {
+    @include flex-list-post-container;
+    margin: 12px;
+    height: 55vh;
+    width: 90vw;
+    background-color: $box-posts-dark;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    border-radius: 2%;
+}
+
+.onePost {
+    height: auto;
+    margin: 5px;
+    background-color: transparent;
+}
+
+.username {
+    background-color: transparent;
+    color: $username-dark;
+    padding-left: 12px;
+    font-weight: 600;
+}
+
+.userPost {
+    height: auto;
+    margin: 0 5px 5px 5px;
+}
+
+.box-date-post {
+    display: flex;
+    flex-direction: column;
+    background-color: $box-posts-dark;
+}
+
+.dateTime {
+    align-self: flex-end;
+    background-color: transparent;
+    color: $username-dark;
+    font-size: 12px;
+    padding-bottom: 3px;
+}
+
+.post {
+    background-color: $post-field-dark;
+    color: $text-post-dark;
+    font-size: 16px;
+    border-radius: map-get($radius, "post-box");
+    padding: 5px;
+    border: map-get($borders, "border-dark");
+}

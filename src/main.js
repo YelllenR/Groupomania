@@ -1,5 +1,4 @@
-import { createApp } from 'vue'
-// import 'vue-moment'
+import { createApp, markRaw } from 'vue'
 import './scss/style.css'
 import App from './App.vue'
 
@@ -10,12 +9,14 @@ import { createPinia } from 'pinia'
 
 const pinia = createPinia();
 
+pinia.use(({ store }) => {
+    store.$router = markRaw(router)
+});
 
 // Creating the App imported, using router to navigate and mount
 createApp(App)
     .use(router)
     .use(pinia)
-    // .use(('vue-moment'))
     .mount('#app')
 
 

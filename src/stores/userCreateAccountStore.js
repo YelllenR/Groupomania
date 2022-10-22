@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { v4 as uuid } from 'uuid'
+
 // import { moment } from 'vue-moment'
 
 export const useUserCreationStore = defineStore("userStore", {
@@ -7,12 +8,14 @@ export const useUserCreationStore = defineStore("userStore", {
         newUser: []
     }),
     actions: {
+
         Create(newUser) {
             this.newUser.push({
                 userId: uuid(),
                 // creattionDate: moment('01-02-2022', 'DD-MM-YYYY', 'fr', true),
                 ...newUser,
             })
+
             const formData = new FormData();
             formData.append('newUser', this.newUser);
 
@@ -21,8 +24,14 @@ export const useUserCreationStore = defineStore("userStore", {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newUser)
             })
-                .then((response) => console.log(response.json()))
+                .then((response) => {
+                    console.log(response.json())
+                    if (response.status(201)) {
+                        console.log(this.$router.push({ name: 'Posts' }))
+                    }
+                })
                 .catch((error) => console.log("Oh no error", error))
+
         }
     },
 });

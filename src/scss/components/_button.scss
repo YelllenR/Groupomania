@@ -26,3 +26,16 @@
 .SignupButton{
     padding-bottom: 16px;
 }
+
+.post-button{
+    align-self: center;
+    background-color: $button-color-dark;
+    color: $text-button;
+    border-radius: map-get($radius, "buttons-radius");
+    padding: 4px;
+    cursor: pointer;
+    border-style: none;
+    align-self: end;
+    margin-top: 8px;
+    font-weight: 600;
+}

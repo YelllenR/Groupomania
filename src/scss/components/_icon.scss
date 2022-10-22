@@ -1,10 +1,29 @@
-.social-icons{
+.social-icons {
     @include flex-footer-and-headerPost;
     width: 85%;
     margin: 24px 0 24px 0;
 }
 
-.fas, .fab{
+.fas,
+.fab {
     color: $dark-icons-footer;
     cursor: pointer;
+}
+
+.userInfos {
+    font-size: 18px;
+    color: $nav-icon-color-dark;
+}
+
+.reaction-icons-post{
+    @include flex-post-reactions;
+    background-color: $box-posts-dark;
+}
+
+.reaction{
+    padding: 5px;
+    color: $reaction-icons;
+    cursor: pointer;
+    background-color: transparent;
+    font-size: map-get($icon-size-mobile, "reaction-icons");
 }

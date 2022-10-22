@@ -26,6 +26,19 @@
   padding-bottom: 16px;
 }
 
+.post-button {
+  align-self: center;
+  background-color: rgba(255, 215, 215, 0.88);
+  color: #4E5166;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  border-style: none;
+  align-self: end;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
 .social-icons {
   display: flex;
   justify-content: space-between;
@@ -34,9 +47,30 @@
   margin: 24px 0 24px 0;
 }
 
-.fas, .fab {
+.fas,
+.fab {
   color: #F2EFEF;
   cursor: pointer;
+}
+
+.userInfos {
+  font-size: 18px;
+  color: #FFD7D7;
+}
+
+.reaction-icons-post {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgba(217, 217, 217, 0.42);
+}
+
+.reaction {
+  padding: 5px;
+  color: #FFD7D7;
+  cursor: pointer;
+  background-color: transparent;
+  font-size: 14px;
 }
 
 .logo-sphere {
@@ -64,6 +98,19 @@
   width: 15px;
 }
 
+.usersPic {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+}
+
+.profil-picture, .userPicture {
+  border-radius: 25px;
+  height: 50px;
+  width: 50px;
+  background-color: transparent;
+}
+
 .showForm {
   display: flex;
   flex-direction: column;
@@ -75,7 +122,7 @@
 
 .create-Account-form {
   height: 250px;
-  border: 1px solid #FFD7D7;
+  border: 1.5px solid #FFD7D7;
   border-radius: 3px;
   overflow-y: scroll;
 }
@@ -185,6 +232,22 @@ input {
   margin: 8px;
 }
 
+#postHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 12px;
+}
+
+.logo-post {
+  height: 30px;
+  padding-top: 5px;
+}
+
+.logo-theme-color {
+  height: 25px;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -225,3 +288,98 @@ input {
   background-color: #4E5166;
   font-family: "Lato", sans-serif;
 }
+
+#mainPost-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 320px;
+  max-width: 420px;
+  height: 500px;
+  overflow: hidden;
+}
+
+.box-userAccount {
+  height: 15vh;
+  width: 90vw;
+  margin: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.userAccount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#userPost {
+  width: 75%;
+  height: auto;
+  overflow: scroll;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  border-style: none;
+  background-color: #F2E0E0;
+  resize: none;
+  padding: 3px;
+  color: #4E5166;
+  border-radius: 4px;
+}
+
+#userPost:focus {
+  outline: none;
+}
+
+#post-container {
+  display: flex;
+  flex-direction: column;
+  margin: 12px;
+  height: 55vh;
+  width: 90vw;
+  background-color: rgba(217, 217, 217, 0.42);
+  scroll-behavior: smooth;
+  overflow-y: scroll;
+  border-radius: 2%;
+}
+
+.onePost {
+  height: auto;
+  margin: 5px;
+  background-color: transparent;
+}
+
+.username {
+  background-color: transparent;
+  color: #F2E0E0;
+  padding-left: 12px;
+  font-weight: 600;
+}
+
+.userPost {
+  height: auto;
+  margin: 0 5px 5px 5px;
+}
+
+.box-date-post {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(217, 217, 217, 0.42);
+}
+
+.dateTime {
+  align-self: flex-end;
+  background-color: transparent;
+  color: #F2E0E0;
+  font-size: 12px;
+  padding-bottom: 3px;
+}
+
+.post {
+  background-color: #F2E0E0;
+  color: #4E5166;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 5px;
+  border: 1.5px solid #4E5166;
+}/*# sourceMappingURL=style.css.map */

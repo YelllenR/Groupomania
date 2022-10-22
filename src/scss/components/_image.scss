@@ -20,3 +20,16 @@
     height: 17px;
     width: 15px;
 }
+
+.usersPic{
+    @include flex-usersInfo;
+    background-color: transparent;
+}
+
+
+.profil-picture, .userPicture {
+    border-radius: map-get($radius, "profil-radius-mobile");
+    height: map-get($profil-picture-mobile, "height-image");
+    width: map-get($profil-picture-mobile, "width-image");
+    background-color: transparent;
+}
