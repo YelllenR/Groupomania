@@ -1,69 +1,42 @@
 <template>
-  <form @submit="onSubmit" class="login-form">
+  <form @submit.prevent="onSubmit" class="login-form">
     <div class="form-control-login">
+
       <div class="email-input">
         <label for="email">Email</label>
-        <input
-          type="email"
-          v-model="email"
-          name="email"
-          placeholder="Renseigner votre adresse email"
-          required="true"
-        />
+        <input type="email" v-model="UserLogInput.email" name="email" placeholder="Renseigner votre adresse email" required="true" />
       </div>
-      <div class="password-input">
+      <div class=" password-input">
         <label for="password">Mot de passe</label>
-        <input
-          type="password"
-          v-model="password"
-          name="password"
-          placeholder="Renseigner votre mot de passe"
-          required="true"
-        />
+        <input type="password" v-model="UserLogInput.password" name="password" placeholder="Renseigner votre mot de passe"
+          required="true" />
       </div>
 
-      <div :class="errorLogin">{{ errorLogin }}</div>
+      <!-- <div :class="errorLogin">{{ errorLogin }}</div> -->
       <input type="submit" value="Connexion" class="button button-login" />
     </div>
   </form>
 </template>
 
 
-<script>
-export default {
-  name: "LoginForm",
-  props: {
-    errorLogin: String,
-  },
+<script setup>
+import { ref, computed } from "vue";
+import { useUserLogin } from '../stores/userLogin'
 
-  data() {
-    return {
-      email: "",
-      password: "",
-    };
-  },
+const UserLogInput = ref({
+  email: "",
+  password: ""
+});
 
-  methods: {
-    onSubmit(e) {
-      e.preventDefault();
 
-      if (!this.email && !this.password) {
-        return (errorLogin =
-          "Veuillez renseigner les informations nécessaires pour la connexion");
-      }
+const loginUser = useUserLogin();
 
-      const userLogin = {
-        id: Number,
-        email: this.email,
-        password: this.password,
-      };
+const onSubmit = () => {
+  loginUser.Login(UserLogInput.value)
+}
 
-      this.$emit("show-form", userLogin);
 
-      this.email = "";
-      this.password = "";
-    },
-  },
-};
+
+
 </script>
 

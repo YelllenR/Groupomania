@@ -65,7 +65,8 @@ $homepage-inputs-fields-color-light: rgba(78, 81, 102, 0.35);
 $radius: (
     "buttons-radius": 6px,
     "home-fields-radius": 3px,
-    "profil-radius-mobile": 17px
+    "profil-radius-mobile": 25px,
+    "post-box": 4px
 );
 
 $shadows: (
@@ -76,20 +77,17 @@ $shadows: (
 );
 
 $borders: (
-    "border-dark": 1px solid $tertiary-color,
-    "border-light": 1px solid $secondary-color
+    "border-dark": 1.5px solid $tertiary-color,
+    "border-light": 1.5px solid $secondary-color
 );
 
 $profil-picture-mobile: (
-    "height-image": 34px,
-    "width-image": 32px
+    "height-image": 50px,
+    "width-image": 50px
 );
 
 $icon-size-mobile: (
-    "reply-width": 15px,
-    "reply-height": 14px,
-    "like-dislike-width": 11px,
-    "like-dislike-height": 11px,
+    "reaction-icons": 14px,
     "facebook": 14px,
     "linkedin": 14px,
     "tweeter": 14px,
@@ -101,16 +99,27 @@ $icon-size-mobile: (
 
 $font: 'Lato', sans-serif;
 
-
-
 $font-sizes: (
     "title-mobile-home": 18px,
     "fields-input-mobile": 14px,
-    "text-button-mobile": 15px,
+    "text-button-mobile": 14px,
     "username-mobile": 10px,
     "text-post-mobile": 10px,
     "publication-button-mobile": 10px
 );
 
 $paddings-form-homepage: (
+);
+
+
+
+// --------------------------- Breakpoints ----------------------------//
+
+$breakpoints:(
+    "mobile-min": 320px, 
+    "mobile-max": 420px, 
+    "tablet-min": 421px,
+    "tablet-max": 768px,
+    "desktop-min": 769px,
+    "desktop-mas": 1200px,
 );

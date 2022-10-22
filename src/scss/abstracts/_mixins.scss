@@ -1,5 +1,5 @@
 // flexbox 
-@mixin flex-header-homepage {
+@mixin flex-header-homepage-footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,29 +64,21 @@
     flex-direction: column;
 }
 
-@mixin flex-usersInfo{
+@mixin flex-usersInfo {
     display: flex;
+    align-items: center;
 }
 
-@mixin flex-post-reactions{
+@mixin flex-post-reactions {
     display: flex;
-    flex-direction: column;
     justify-content: flex-end;
     align-items: center;
 }
 
-@mixin flex-post-mainUserOnly-reaction-modification{
+@mixin flex-post-mainUserOnly-reaction-modification {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
 // ----------------------Media queries----------------------//
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 <template>
-  <header id="header-container">
+  <div id="header-container">
 
     <div class="header-logo-container">
       <img
@@ -23,7 +23,7 @@
         alt="mini-logo"
       />
     </div>
-  </header>
+  </div>
 </template>
 
 

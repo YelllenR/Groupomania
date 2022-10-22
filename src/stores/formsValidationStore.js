@@ -1,15 +1,18 @@
 import { defineStore } from "pinia";
 
-export const useFormValidations = defineStore("formValidationsStore", {
-    state: () => {
-        return {
-            
-        }
-    },
-    actions: {
+import { v4 as uuid } from 'uuid'
 
-    }, 
-    getters: {
-        
+
+export const useFormValidations = defineStore("validationsStore", {
+    state: () => ({
+        formInputs: []
+    }),
+    actions: {
+        CheckEmptyFields(formInputs) {
+            this.formInputs = formInputs;
+            if (formInputs.value === "" ) {
+                alert = "Les champs ne doivent pas être vide";
+            }
+        }
     }
-})
+});

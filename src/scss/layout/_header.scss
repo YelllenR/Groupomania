@@ -1,7 +1,9 @@
 // Header in homepage
 #header-container {
-    @include flex-header-homepage;
-    margin: 8px;
+    @include flex-header-homepage-footer;
+    min-width: map-get($breakpoints, "mobile-min");
+    max-width: map-get($breakpoints, "mobile-max");
+    margin-top: 10px;
 }
 
 .header-logo-container {
@@ -9,5 +11,30 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.header-end-line {
+    margin-top: 10px;
+}
+
+.logo-end-line {
+    width: auto;
+    margin: 8px;
+}
+
+// ---------------------------- Post Page ----------------------------- //
+
+#postHeader {
+    @include flex-footer-and-headerPost;
+    margin: 12px;
+}
+
+.logo-post {
+    height: 30px;
+    padding-top: 5px;
+}
+
+.logo-theme-color {
+    height: 25px;
 }
 
