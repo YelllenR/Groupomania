@@ -25,11 +25,14 @@ function CheckFileType(file, callback) {
 };
 
 const uploadImage = multer({
-    profilPicture: Storage,
-    fileFilter: function (request, file, callback) {
-        CheckFileType(file, callback)
+    storage: profilPicture
+},
+    {
+        fileFilter: function (request, file, callback) {
+            CheckFileType(file, callback)
+        }
     }
-});
+);
 
-module.exports = uploadImage().single('image');
+module.exports = uploadImage.single('image');
 

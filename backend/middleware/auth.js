@@ -1,29 +1,28 @@
 const jsonWebToken = require('jsonwebtoken');
 const config = require('../config.json');
-const User = require('../models/user');
-
-const authUser = (request, response, next) => {
-    const token = request.headers.authorization.split(' ')[1];
-    const tokenToDecode = jsonWebToken.verify(token, config.someToken);
-
-    const userId = tokenToDecode.userId
 
 
+module.exports = (request, response, next) => {
     try {
-        if ((request.body.userId !== userToken) && request.body.userToken) {
-            response.json({ message: error });
+        const token = request.header.authorization.split(' ')[1];
+        const tokenToDecode = jsonWebToken.verify(token, config.someToken);
+
+        const userToken = tokenToDecode.idOfUser;
+
+        if (request.body.idOfUser && (request.body.idOfUser !== userToken)) {
+            response.json({ message: "at try part", error });
+
         } else {
             next();
-        }; 
+        };
 
         request.auth = {
-            userId: userId
-        }; 
+            idOfUser: userToken,
+        };
     }
     catch (error) {
-        response.status(401).json({ message: "Requête invalide" })
+        response.status(401).json({ message: "Requête invalide", error })
     }
 
-}; 
+};
 
-module.exports = authUser;

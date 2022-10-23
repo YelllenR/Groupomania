@@ -8,6 +8,8 @@ const userRoute = require('./routes/routes-user');
 const connexion = config.connexion;
 const path = require('path');
 const users = require('./controller/userInfos');
+const postRoute = require('./routes/routes-posts');
+
 
 mongoose.connect(connexion, {
     useNewUrlParser: true,
@@ -23,9 +25,10 @@ mongoose.connect(connexion, {
 
 
 application.use(express.json());
-application.use('/Groupomania', cors(), userRoute);
-application.use('/Groupomania/auth', cors());
-application.use('/images', cors(), express.static(path.join(__dirname, 'images')));
+application.use('/Groupomania/auth', cors(), userRoute);
+application.use('/Groupomania', cors(), postRoute);
+application.use('/image', cors(), express.static(path.join(__dirname, 'imageFile')));
+
 application.use(express.urlencoded({ extended: false }));
 
 

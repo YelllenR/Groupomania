@@ -29,7 +29,7 @@
 
       <div class="image-field">
         <label for="image">Photo de profil</label>
-        <input class="image-file" type="file" accept="image/*" name="image" ref="image" @change="imageSelected" 
+        <input class="image-file" type="file" accept="image/*" name="imageFile" ref="image" @change="imageSelected" 
         required="true"/>
       </div>
 
@@ -65,7 +65,7 @@ const message = ref({
   errorFirstname: "",
   errorLastname: "",
   errorEmail: "",
-
+  image: ""
 });
 
 const imageSelected = (event) => {
@@ -109,6 +109,7 @@ function validateLastname() {
 
 const createAccount = () => {
   userStore.Create(userInput.value);
+
 }
 
 

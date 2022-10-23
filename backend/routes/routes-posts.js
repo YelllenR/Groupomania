@@ -4,9 +4,13 @@ const routerPost = express.Router(express);
 
 const postsControl = require('../controller/postsControl');
 
-routerPost.get('/Posts', postsControl.GetPosts)
-routerPost.post('/Post', postsControl)
-routerPost.put('/:id', postsControl)
-routerPost.delete('/:id/suppression', postsControl)
+const auth = require('../middleware/auth');
+
+const imageMulter = require('../middleware/image-multer')
+
+routerPost.get('/Posts', auth, imageMulter, postsControl.GetPosts)
+routerPost.post('/Post', auth, imageMulter, postsControl.PostOnePost)
+routerPost.put('/:id/Post', auth, imageMulter, postsControl.ModifyAPost)
+routerPost.delete('/:id/delete', auth, imageMulter, postsControl.DeleteAPost)
 
 module.exports = routerPost;
