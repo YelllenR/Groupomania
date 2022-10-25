@@ -1,31 +1,30 @@
-import { defineStore } from "pinia";
+import { defineStore, storeToRefs } from "pinia";
+import { useUserRefsStore } from './userRefsStore'
 
 export const useUserLogin = defineStore("userLogin", {
-    state: () => ({
-        user: []
-    }),
+
+    state: () => {
+        const userInputs = useUserRefsStore();
+        const { user } = storeToRefs(userInputs);
+
+        return {
+            user
+        }
+    },
 
     actions: {
         Login(user) {
-            if (this.user.values === "") {
-                console.log("no")
-            } else {
-                const logData = new FormData();
-                logData.append('user', this.user);
+            const logData = new FormData();
+            logData.append('user', this.user);
 
-                fetch('http://localhost:3000/Groupomania/login', {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(user)
-                })
-                    .then((response) => {
-                        console.log(response.json())
-                    })
-                    .then((data) => console.log(data))
-                    .catch((error) => console.log("Oh no error", error))
-
-
-            }
+            fetch('http://localhost:3000/Groupomania/auth/login', {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(user)
+            })
+                .then((response) => response.json())
+                .then(data => console.log(data))
+                .catch((error) => console.log("Oh no error", error))
 
         }
     }

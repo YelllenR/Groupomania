@@ -4,7 +4,6 @@ const jsonWebToken = require('jsonwebtoken');
 const uuid = require('uuid');
 
 const secretToken = uuid.v4();
-const auth = require('../middleware/auth');
 
 const bcrypt = require('bcrypt');
 
@@ -18,8 +17,8 @@ const userLogIn = (request, response, next) => {
             } else {
                 bcrypt.compare(request.body.password, user.password)
 
-                    .then(userExist => {
-                        if (!userExist) {
+                    .then(valid => {
+                        if (!valid) {
                             response.status(400).json({ message: "Une erreur est survenue" })
 
                         } else {
@@ -32,16 +31,16 @@ const userLogIn = (request, response, next) => {
                                     },
                                     secretToken,
                                     {
-                                        expiresIn: "2hr"
-                                    }
+                                        expiresIn: "24h"
+                                    },
                                 )
                             })
                         }
-
                     })
                     .catch(logError => {
                         response.status(401).json({ logError })
-                    });
+
+                    })
             }
         })
         .catch(error => {
@@ -51,7 +50,7 @@ const userLogIn = (request, response, next) => {
 
 
 const createAccount = (request, response, next) => {
-    bcrypt.hash(request.body.password, 15)
+    bcrypt.hash(request.body.password, 10)
         .then(passwordCrypt => {
             const user = new User({
                 idOfUser: uuid.v4(),
@@ -59,16 +58,13 @@ const createAccount = (request, response, next) => {
                 password: passwordCrypt,
                 firstname: request.body.firstname,
                 lastname: request.body.lastname,
-                profilImage: `${request.protocol}://${request.get("host")}/image/${request.file}`,
+                imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`
             });
-            try {
-                user.save()
-                    .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
-                    .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
-            }
-            catch (error) {
-                console.log("pas possible de créer", error)
-            }
+
+            console.log(user)
+            user.save()
+                .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
+                .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
 
         })
 
@@ -78,22 +74,19 @@ const createAccount = (request, response, next) => {
 
 
 const userInfos = (request, response, next) => {
-    User.findOne({ idOfUser: request.params.idOfUser })
-        .then(user => {
-            if (user.idOfUser !== request.auth.idOfUser) {
-                response.status(401).json({ message: "pas bon"})
+    User.find({ user: request.body.idOfUser })
+        .then(idOfUser => {
+            if (idOfUser.idOfUser !== request.body.idOfUser) {
+                response.status(401).json({ message: "Requête non authorisée" })
             } else {
-                response.status(200).json({ message: "Voici vos information", user })
+                response.status(200).json({ message: `Voici vos informations : ${idOfUser}` })
             }
         })
 
         .catch((error) => response.status(500).json({ error }))
-
-       
-}
+};
 
 
-// response.status(200).send(user))
 module.exports = {
     userLogIn,
     createAccount,

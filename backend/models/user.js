@@ -8,7 +8,7 @@ const userModel = mongoose.Schema({
     password: { type: String, require: true },
     firstname: { type: String, require: true },
     lastname: { type: String, require: true },
-    profilImage: { type: String, require: true },
+    imageProfil: { type: String, require: true },
 });
 
 userModel.plugin(mongooseUniqueValidator);

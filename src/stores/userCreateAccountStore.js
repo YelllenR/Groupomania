@@ -1,31 +1,42 @@
-import { defineStore } from "pinia";
+
+import { defineStore, storeToRefs } from "pinia";
+import { useUserRefsStore } from './userRefsStore'
+
 
 export const useUserCreationStore = defineStore("userStore", {
-    state: () => ({
-        newUser: []
-    }),
-    actions: {
+    state: () => {
+        const userInputs = useUserRefsStore();
+        const { user } = storeToRefs(userInputs);
 
-        Create(newUser) {
-            this.newUser.push({
-                ...newUser,
-            })
-
-            const formData = new FormData();
-            formData.append('newUser', this.newUser);
-
-            fetch('http://localhost:3000/Groupomania/auth/create-account', {
-                method: "POST",
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(newUser)
-            })
-                .then((response) => {
-                    console.log(response.json())
-
-                })
-                .catch((error) => console.log("Oh no error", error))
-
+        return {
+            user
         }
     },
+
+    actions: {
+        Create(user) {
+
+            const formData = new FormData();
+
+            formData.append('firstname', this.user.firstname)
+            formData.append('lastname', this.user.lastname)
+            formData.append('email', this.user.email)
+            formData.append('password', this.user.password)
+            formData.append('image', this.user.image)
+
+
+
+            fetch('http://localhost:3000/Groupomania/auth/create-account', {
+                method: 'POST',
+                body: formData,
+                redirect: 'follow'
+            })
+
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.log("Oh no error", error))
+        },
+    },
+
 });
 

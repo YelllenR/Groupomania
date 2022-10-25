@@ -4,12 +4,12 @@ const config = require('../config.json');
 
 module.exports = (request, response, next) => {
     try {
-        const token = request.header.authorization.split(' ')[1];
+        const token = request.headers.authorization.split(' ')[1];
         const tokenToDecode = jsonWebToken.verify(token, config.someToken);
 
-        const userToken = tokenToDecode.idOfUser;
+        const idOfUser = tokenToDecode.userId;
 
-        if (request.body.idOfUser && (request.body.idOfUser !== userToken)) {
+        if (request.body.idOfUser && (request.body.idOfUser !== userId)) {
             response.json({ message: "at try part", error });
 
         } else {
@@ -17,8 +17,10 @@ module.exports = (request, response, next) => {
         };
 
         request.auth = {
-            idOfUser: userToken,
+            idOfUser: idOfUser,
         };
+
+        console.log(request.auth)
     }
     catch (error) {
         response.status(401).json({ message: "Requête invalide", error })

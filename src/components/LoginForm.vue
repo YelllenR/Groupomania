@@ -4,11 +4,15 @@
 
       <div class="email-input">
         <label for="email">Email</label>
-        <input type="email" v-model="UserLogInput.email" name="email" placeholder="Renseigner votre adresse email" required="true" />
+        <input type="email" v-model="user.email" name="email" placeholder="Renseigner votre adresse email"
+          required="true" />
+        <span v-if="message.errorEmail">{{ message.errorEmail }}</span>
       </div>
+
+
       <div class=" password-input">
         <label for="password">Mot de passe</label>
-        <input type="password" v-model="UserLogInput.password" name="password" placeholder="Renseigner votre mot de passe"
+        <input type="password" v-model="user.password" name="password" placeholder="Renseigner votre mot de passe"
           required="true" />
       </div>
 
@@ -20,23 +24,25 @@
 
 
 <script setup>
-import { ref, computed } from "vue";
+import { watchEffect } from 'vue'
+import { storeToRefs } from 'pinia';
 import { useUserLogin } from '../stores/userLogin'
+import { useFormValidations } from '../stores/formsValidationStore'
 
-const UserLogInput = ref({
-  email: "",
-  password: ""
-});
 
+const formValidation = useFormValidations();
+
+const { user, message } = storeToRefs(formValidation)
 
 const loginUser = useUserLogin();
 
+watchEffect(() => {
+  formValidation.validateEmail(user.value.email);
+});
+
 const onSubmit = () => {
-  loginUser.Login(UserLogInput.value)
-}
-
-
-
+  loginUser.Login(user.value)
+};
 
 </script>
 
