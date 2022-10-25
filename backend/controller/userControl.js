@@ -7,6 +7,7 @@ const secretToken = uuid.v4();
 
 const bcrypt = require('bcrypt');
 
+
 const userLogIn = (request, response, next) => {
     User.findOne({ email: request.body.email })
 
@@ -16,24 +17,30 @@ const userLogIn = (request, response, next) => {
             } else {
                 bcrypt.compare(request.body.password, user.password)
 
-                    .then(userExist => {
-                        if (userExist) {
+                    .then(valid => {
+                        if (!valid) {
+                            response.status(400).json({ message: "Une erreur est survenue" })
+
+                        } else {
                             response.status(200).json({
-                                user: user.userId,
+                                idOfUser: user.idOfUser,
+
                                 token: jsonWebToken.sign(
-                                    { user: user.userId },
+                                    {
+                                        idOfUser: user.idOfUser
+                                    },
                                     secretToken,
-                                    { expiresIn: "24h" }
+                                    {
+                                        expiresIn: "24h"
+                                    },
                                 )
                             })
-                        } else {
-                            return response.status(400).json({ message: "Une erreur est survenue" })
                         }
-
                     })
                     .catch(logError => {
                         response.status(401).json({ logError })
-                    });
+
+                    })
             }
         })
         .catch(error => {
@@ -43,24 +50,21 @@ const userLogIn = (request, response, next) => {
 
 
 const createAccount = (request, response, next) => {
-    bcrypt.hash(request.body.password, 15)
+    bcrypt.hash(request.body.password, 10)
         .then(passwordCrypt => {
             const user = new User({
-                userId: uuid.v4(),
+                idOfUser: uuid.v4(),
                 email: request.body.email,
                 password: passwordCrypt,
-                firstname: request.body.firstName,
-                lastname: request.body.lastName,
-                profilImage: `${request.protocol}://${request.get("host")}/images/${request.file}`,
+                firstname: request.body.firstname,
+                lastname: request.body.lastname,
+                imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`
             });
-            try {
-                user.save()
-                    .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
-                    .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
-            }
-            catch (error) {
-                console.log("pas possible de créé", error)
-            }
+
+            console.log(user)
+            user.save()
+                .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
+                .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
 
         })
 
@@ -70,15 +74,21 @@ const createAccount = (request, response, next) => {
 
 
 const userInfos = (request, response, next) => {
-    User.find(request.body.user)
-        .then((user) => response.status(200).send(user))
-        .catch((userError) => response.status(401).json({ message: userError }))
-}
+    User.find({ user: request.body.idOfUser })
+        .then(idOfUser => {
+            if (idOfUser.idOfUser !== request.body.idOfUser) {
+                response.status(401).json({ message: "Requête non authorisée" })
+            } else {
+                response.status(200).json({ message: `Voici vos informations : ${idOfUser}` })
+            }
+        })
 
+        .catch((error) => response.status(500).json({ error }))
+};
 
 
 module.exports = {
     userLogIn,
     createAccount,
-    userInfos
+    userInfos,
 };

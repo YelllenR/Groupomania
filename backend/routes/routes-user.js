@@ -1,13 +1,14 @@
 const express = require('express');
 
 const routerUser = express.Router(express);
-
 const userControl = require('../controller/userControl');
-const users = require('../controller/userInfos'); 
+const imageMulter = require('../middleware/image-multer')
+const auth = require ('../middleware/auth')
 
-routerUser.post('/create-account', userControl.createAccount);
-routerUser.post('/login', userControl.userLogIn);
-routerUser.get('/:id', userControl.userInfos);
+routerUser.post('/create-account', imageMulter, userControl.createAccount);
+routerUser.post('/login', imageMulter, userControl.userLogIn);
+routerUser.get('/userId', auth, imageMulter, userControl.userInfos);
 
 
 module.exports = routerUser;
+
