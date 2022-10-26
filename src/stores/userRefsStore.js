@@ -8,7 +8,8 @@ export const useUserRefsStore = defineStore("userInputs", () => {
         lastname: "",
         email: "",
         password: "",
-        image: ""
+        image: "", 
+        user: window.user
     });
 
     const message = ref({
@@ -19,6 +20,7 @@ export const useUserRefsStore = defineStore("userInputs", () => {
       
     return {
         user, 
-        message
+        message, 
+        
     }
 });

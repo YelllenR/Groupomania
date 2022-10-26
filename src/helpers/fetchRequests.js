@@ -2,7 +2,6 @@ const request = (method) => {
     return (url, body) => {
         const optionRequests = {
             method,
-            headers: { 'Content-Type': 'application/json' }
         }
     }
 }

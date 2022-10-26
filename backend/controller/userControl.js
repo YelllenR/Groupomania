@@ -3,7 +3,8 @@ const User = require('../models/user');
 const jsonWebToken = require('jsonwebtoken');
 const uuid = require('uuid');
 
-const secretToken = uuid.v4();
+const config = require('../config.json');
+const secretToken = config.someToken;
 
 const bcrypt = require('bcrypt');
 
@@ -50,10 +51,11 @@ const userLogIn = (request, response, next) => {
 
 
 const createAccount = (request, response, next) => {
+
     bcrypt.hash(request.body.password, 10)
         .then(passwordCrypt => {
             const user = new User({
-                idOfUser: uuid.v4(),
+                idOfUser: new uuid.v4(),
                 email: request.body.email,
                 password: passwordCrypt,
                 firstname: request.body.firstname,
@@ -74,16 +76,16 @@ const createAccount = (request, response, next) => {
 
 
 const userInfos = (request, response, next) => {
-    User.find({ user: request.body.idOfUser })
+    User.findOne({ user: request.body.idOfUser })
         .then(idOfUser => {
-            if (idOfUser.idOfUser !== request.body.idOfUser) {
+            if (idOfUser.user !== request.body.idOfUser) {
                 response.status(401).json({ message: "Requête non authorisée" })
             } else {
                 response.status(200).json({ message: `Voici vos informations : ${idOfUser}` })
             }
         })
 
-        .catch((error) => response.status(500).json({ error }))
+        .catch((error) => response.status(500).json({ message: "error userControl", error }))
 };
 
 

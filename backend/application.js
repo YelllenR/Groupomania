@@ -24,7 +24,7 @@ mongoose.connect(connexion, {
 
 application.use(express.json());
 application.use(express.urlencoded({ extended: false }));
-application.use('//Groupomania', cors())
+application.use('/Groupomania', cors())
 
 application.use('/Groupomania/auth', cors(), userRoute);
 application.use('/Groupomania', cors(), postRoute);

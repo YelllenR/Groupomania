@@ -17,7 +17,8 @@
       </div>
 
       <!-- <div :class="errorLogin">{{ errorLogin }}</div> -->
-      <input type="submit" value="Connexion" class="button button-login" />
+      <input type="submit" value="Connexion" class="button button-login" href="../pages/Posts.vue"/>
+      <!-- <router-link to="/posts"></router-link> -->
     </div>
   </form>
 </template>
@@ -41,7 +42,7 @@ watchEffect(() => {
 });
 
 const onSubmit = () => {
-  loginUser.Login(user.value)
+  loginUser.Login(user.value);
 };
 
 </script>

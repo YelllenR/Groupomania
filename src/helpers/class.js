@@ -1,7 +1,5 @@
-const uuid = require('uuid');
 
 class User {
-    userId = new uuid.v4();
     constructor(userId, email, password, firstName, lastName, profilImage) {
         this.userId = userId;
         this.email = email;

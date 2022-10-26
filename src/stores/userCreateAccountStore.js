@@ -36,6 +36,7 @@ export const useUserCreationStore = defineStore("userStore", {
                 .then((data) => console.log(data))
                 .catch((error) => console.log("Oh no error", error))
         },
+
     },
 
 });

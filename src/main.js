@@ -1,17 +1,34 @@
-import { createApp, markRaw } from 'vue'
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
 import './scss/style.css'
 import App from './App.vue'
-
-// importing router from the router file
-import router from './router'
-
 import { createPinia } from 'pinia'
 
-const pinia = createPinia();
+// importing router from the router file
+import Home from './pages/Home.vue'
+import Posts from './pages/Posts.vue'
 
-pinia.use(({ store }) => {
-    store.$router = markRaw(router)
-});
+
+const router = createRouter({
+    history: createWebHistory(),
+    routes: [
+        {
+            name: 'Home',
+            path: '/',
+            component: Home
+        },
+        {
+            name: 'Posts',
+            path: '/posts',
+            component: Posts
+        }
+    ]
+})
+
+
+
+const pinia = createPinia();
 
 // Creating the App imported, using router to navigate and mount
 createApp(App)

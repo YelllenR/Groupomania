@@ -7,7 +7,7 @@
     <router-view />
   </div>
 
- 
+
 </template>
 
 

@@ -5,7 +5,7 @@
             <div class="usersPic">
                 <img src="../assets/mulet.jpg" alt="Profil picture" class="profil-picture">
                 <!-- User picture -->
-                <span class="username">{{username}}blakvjdk</span>
+                <span class="username">{{fullname}}blakvjdk</span>
             </div>
 
             <div class="userPost">

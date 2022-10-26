@@ -7,6 +7,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Importing the Home file to use for the routes
 import Home from '../pages/Home.vue'
+import Posts from '../pages/Posts.vue'
+
 
 const router = createRouter({
     history: createWebHistory(),
@@ -19,9 +21,12 @@ const router = createRouter({
         {
             name: 'Posts',
             path: '/posts',
-            component: () => import('../pages/Posts.vue')
+            component: Posts
         }
     ]
 })
 
+// router.beforeEach((to, from, next) => {
+
+// })
 export default router;
