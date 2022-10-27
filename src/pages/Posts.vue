@@ -6,10 +6,15 @@
     <main id="mainPost-container">
         <section class="box-userAccount">
             <div class="userAccount">
-                <img class="userPicture" :src="userProfilPicture" alt="Photo de profil">
-                <textarea name="userPost" id="userPost" v-model="userPostArea">{{}}</textarea>
+                <img class="userPicture" :src="userData.imageProfil" alt="Photo de profil">
+                <form action="" method="post" enctype="multipart/form-data">
+
+                    <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
+                    <input class="image-post" type="file" accept="image/*" name="imagePost"
+                        :ref="postPageUser.imagePost" @change="imagePost" />
+                </form>
             </div>
-            <button class="post-button" @click="newsPost">Publiez</button>
+            <button class="post-button" @click.prevent="newsPost">Publiez</button>
         </section>
 
         <section>
@@ -18,7 +23,7 @@
     </main>
 
     <footer>
-        <FooterIcons>{{ }}</FooterIcons>
+        <FooterIcons></FooterIcons>
     </footer>
 </template>
 
@@ -28,7 +33,9 @@ import { defineComponent } from 'vue';
 import HeaderPosts from '../components/HeaderPosts.vue';
 import PostsBox from '../components/PostsBox.vue';
 import FooterIcons from "../components/Footer.vue";
-import { deferredComputed } from '@vue/reactivity';
+import { useUserInfosStore } from '../stores/userInfosStore';
+import { storeToRefs } from 'pinia';
+
 
 
 const components = defineComponent({
@@ -37,8 +44,22 @@ const components = defineComponent({
     FooterIcons
 });
 
-const computed = deferredComputed({
 
-})
+const userInfos = useUserInfosStore();
 
+const { userData, postPageUser } = storeToRefs(userInfos)
+
+userInfos.FetchGetData();
+
+const imagePost = (event) => {
+    event.target.files[0];
+};
+
+
+function newsPost() {
+    userInfos.PublishFromAccountOwner()
+}
+
+
+// Reste à faire => bloquer le bouton si pas d'input du user prini
 </script>

@@ -55,7 +55,7 @@ const createAccount = (request, response, next) => {
     bcrypt.hash(request.body.password, 10)
         .then(passwordCrypt => {
             const user = new User({
-                idOfUser: new uuid.v4(),
+                idOfUser: uuid.v4(),
                 email: request.body.email,
                 password: passwordCrypt,
                 firstname: request.body.firstname,
@@ -63,7 +63,6 @@ const createAccount = (request, response, next) => {
                 imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`
             });
 
-            console.log(user)
             user.save()
                 .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
                 .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
@@ -81,7 +80,7 @@ const userInfos = (request, response, next) => {
             if (idOfUser.user !== request.body.idOfUser) {
                 response.status(401).json({ message: "Requête non authorisée" })
             } else {
-                response.status(200).json({ message: `Voici vos informations : ${idOfUser}` })
+                response.status(200).json(idOfUser)
             }
         })
 

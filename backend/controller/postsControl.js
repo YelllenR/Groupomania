@@ -1,4 +1,5 @@
 const Posts = require('../models/posts');
+const User = require('../models/user');
 
 const uuid = require('uuid');
 
@@ -6,6 +7,11 @@ const fileSystemExtra = require('fs-extra');
 
 
 const GetPosts = (request, response, next) => {
+
+
+
+
+
     Posts.find(request.body.posts)
 
         .then((posts) => response.status(200).json(posts))
@@ -29,13 +35,28 @@ const minutes = date.getMinutes();
 const currentDateTime = `${day}-${month}-${year} à ${hour}h${minutes}`;
 
 const PostOnePost = (request, response, next) => {
-    const dataFromPost = JSON.parse(request.body.post);
+
+
+    User.findOne({ user: request.body.idOfUser })
+        .then(dataOfUser => {
+            if (dataOfUser.user !== request.body.dataOfUser) {
+
+                dataOfUser.idOfUser,
+                    dataOfUser.imageProfil,
+                    dataOfUser.firstname,
+                    dataOfUser.lastname
+            }
+        })
 
     const postCreation = new Posts({
-        ...dataFromPost,
-        idOfPost: new uuid.v4(),
-        idOfUser: request.auth.idOfUser,
-        dateOfPost: currentDateTime
+        idOfPost: uuid.v4(),
+        idOfUser: request.body.idOfUser, 
+        imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`, 
+
+
+        post: request.body.post,
+        dateOfPost: currentDateTime,
+        //imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
     });
 
     postCreation.save()
@@ -43,11 +64,13 @@ const PostOnePost = (request, response, next) => {
         .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
 }
 
+
+
 const ModifyAPost = (request, response, next) => {
 
     const requestPostToModify = request.file ? {
         ...JSON.parse(request.body.post),
-        imagePost: `${request.protocol}://${request.get('host')}/imageFile/${request.file.filename}`
+        imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
     } : { ...request.body };
 
     if (idOfUser === request.auth.idOfUser) {
@@ -73,8 +96,8 @@ const DeleteAPost = (request, response, next) => {
 
         .then(postToDelete => {
             if (postToDelete.idOfUser === request.auth.idOfUser) {
-                const imageFilename = postToDelete.imagePost.split('/image')[1];
-                fileSystemExtra.unlink(`image/${imageFilename}`, () => {
+                const imageFilename = postToDelete.imagePost.split('/PostImages')[1];
+                fileSystemExtra.unlink(`imagePost/${imageFilename}`, () => {
 
                     Posts.deleteOne({ postId: request.param.idOfPost })
                         .then(() => response.status(200).json({ message: "Post supprimé" }))
@@ -84,9 +107,6 @@ const DeleteAPost = (request, response, next) => {
         })
         .catch(errorOnDelete => response.status(401).json({ message: "Non authorisé", errorOnDelete }))
 };
-
-
-
 
 
 

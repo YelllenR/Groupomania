@@ -8,19 +8,24 @@ export const useUserRefsStore = defineStore("userInputs", () => {
         lastname: "",
         email: "",
         password: "",
-        image: "", 
-        user: window.user
+        image: "",
     });
 
     const message = ref({
         errorFirstname: "",
         errorLastname: "",
         errorEmail: "",
-      });
-      
+    });
+
+    // const postPageUser = ref({
+    //     userPostArea: "",
+    //     userProfilPhoto: ""
+    // });
+
+
     return {
-        user, 
-        message, 
-        
+        user,
+        message,
+        postPageUser
     }
 });

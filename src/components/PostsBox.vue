@@ -1,19 +1,17 @@
 <template>
     <div id="post-container">
-        <div class="onePost">
+        <div class="onePost" v-for="post in posts">
             <!-- v-for="post in posts" -->
             <div class="usersPic">
-                <img src="../assets/mulet.jpg" alt="Profil picture" class="profil-picture">
+                <img :src="posts.imagePost" alt="Profil picture" class="profil-picture">
                 <!-- User picture -->
-                <span class="username">{{fullname}}blakvjdk</span>
+                <span class="username">{{ `${posts.lastname} ${posts.firstname}` }}</span>
             </div>
 
             <div class="userPost">
                 <div class="box-date-post">
-                    <div class="dateTime">{{dateTime}}22/10/22 - 17h</div>
-                    <div class="post">{{post}}
-                        olalalala ceci est un post-container
-                        d'enfervdkljvdkjqv blablakavndjndvq
+                    <div class="dateTime" v-bind="posts.dateTime">{{ posts.dateTime }}</div>
+                    <div class="post" :ref="posts.post">{{ posts.post }}
                     </div>
                 </div>
 
@@ -22,7 +20,7 @@
                     <i class="fas fa-laugh-beam reaction"></i>
                     <i class="fas fa-comment reaction"></i>
                 </div>
-                <span v-if="accountOwner">{{modification}}</span>
+                <!-- <span v-if="accountOwner">{{modification}}</span> -->
             </div>
         </div>
 
@@ -31,7 +29,14 @@
 </template>
 
 <script setup>
+import { storeToRefs } from 'pinia';
+import { usePostsStore } from '../stores/postsStore';
 
+const postsData = usePostsStore();
+
+const { posts } = storeToRefs(postsData);
+
+postsData.FetchPublications()
 
 
 </script>

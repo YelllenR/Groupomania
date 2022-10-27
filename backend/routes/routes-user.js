@@ -7,7 +7,7 @@ const auth = require ('../middleware/auth')
 
 routerUser.post('/create-account', imageMulter, userControl.createAccount);
 routerUser.post('/login', imageMulter, userControl.userLogIn);
-routerUser.get('/userId', auth, imageMulter, userControl.userInfos);
+routerUser.get('/userId', imageMulter, userControl.userInfos);
 
 
 module.exports = routerUser;
