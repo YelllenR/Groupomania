@@ -11,7 +11,7 @@ const imageFromPost = require('../middleware/postImage')
 
 
 routerPost.get('/Posts', imageFromPost, postsControl.GetPosts)
-routerPost.post('/Post',  imageFromPost,postsControl.PostOnePost)
+routerPost.post('/Post', auth, imageFromPost, postsControl.PostOnePost)
 routerPost.put('/:id/Post', auth, imageFromPost, postsControl.ModifyAPost)
 routerPost.delete('/:id/delete', auth, imageFromPost, postsControl.DeleteAPost)
 

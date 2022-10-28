@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const postsModel = mongoose.Schema({
     idOfPost: { type: String, default: uuid.v4() },
-    idOfUser: { type: Schema.Types.ObjectId, ref: 'User' },
+    idOfUser: { type: String, require: true },
     post: { type: String },
     dateOfPost: { type: String, require: true },
     reactions: [

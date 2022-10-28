@@ -35,33 +35,29 @@ const minutes = date.getMinutes();
 const currentDateTime = `${day}-${month}-${year} à ${hour}h${minutes}`;
 
 const PostOnePost = (request, response, next) => {
-
-
-    User.findOne({ user: request.body.idOfUser })
+    
+    User.findOne({ user: request.body.dataOfUser })
         .then(dataOfUser => {
             if (dataOfUser.user !== request.body.dataOfUser) {
-
-                dataOfUser.idOfUser,
-                    dataOfUser.imageProfil,
-                    dataOfUser.firstname,
-                    dataOfUser.lastname
+                response.status(401).json({message: 'error'})
             }
+            return dataOfUser.idOfUser;
+        })
+        .then((dataOfUser) => {
+            const postCreation = new Posts({
+                idOfPost: uuid.v4(),
+                idOfUser: dataOfUser,
+                post: request.body.post,
+                dateOfPost: currentDateTime,
+                imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
+            });
+            
+
+            postCreation.save()
+                .then(() => response.status(201).json({ message: "Post a été créé avec succès" , postCreation}))
+                .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
         })
 
-    const postCreation = new Posts({
-        idOfPost: uuid.v4(),
-        idOfUser: request.body.idOfUser, 
-        imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`, 
-
-
-        post: request.body.post,
-        dateOfPost: currentDateTime,
-        //imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
-    });
-
-    postCreation.save()
-        .then(() => response.status(201).json({ message: "Post a été créé avec succès" }))
-        .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
 }
 
 

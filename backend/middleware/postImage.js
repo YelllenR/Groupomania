@@ -2,7 +2,7 @@ const multer = require('multer');
 
 const imagePostPage = multer.diskStorage({
     destination: (request, file, callback) => {
-        callback(null, './postImage')
+        callback(null, 'postImage')
     },
     filename: (request, file, callback) => {
         const name = file.originalname;

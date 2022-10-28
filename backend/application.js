@@ -8,7 +8,6 @@ const userRoute = require('./routes/routes-user');
 const connexion = config.connexion;
 const path = require('path');
 const postRoute = require('./routes/routes-posts');
-// const imageMulter = require('./middleware/image-multer')
 
 mongoose.connect(connexion, {
     useNewUrlParser: true,

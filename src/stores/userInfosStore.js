@@ -9,10 +9,9 @@ export const useUserInfosStore = defineStore("userInfos", {
     state: () => {
 
         return {
-
             postPageUser: ref({
-                newPostAccountOwner: "", 
-                imagePost:""
+                newPostAccountOwner: "",
+                imagePost: ""
             }),
 
             userData: ref({
@@ -27,12 +26,22 @@ export const useUserInfosStore = defineStore("userInfos", {
     },
 
     actions: {
+        /** Fetch request to get the user data
+         * 
+         * Calls the method GetUserData after the response
+         */
         FetchGetData() {
             fetch(`${baseUrl}auth/userId`)
                 .then(response => response.json())
                 .then(data => this.GetUserData(data))
+                .then(data => this.checkUserId(data))
         },
 
+        /**
+         * 
+         * @param {*} data of user got from the fetch request
+         * @returns data
+         */
         GetUserData(data) {
             this.userData.idOfUser = data.idOfUser;
             this.userData.firstname = data.firstname;
@@ -40,21 +49,69 @@ export const useUserInfosStore = defineStore("userInfos", {
             this.userData.password = data.password
             this.userData.email = data.email;
             this.userData.imageProfil = data.imageProfil;
+
+            return data
         },
 
-
+        /** Formating data before sending the post request
+         * 
+         *  Data : 1. The post to be sent / 2. The image
+         * @return data from API 
+         */
         PublishFromAccountOwner() {
             const inputData = new FormData();
             inputData.append("post", this.postPageUser.newPostAccountOwner)
             inputData.append("imagePost", this.postPageUser.imagePost)
 
             fetch(`${baseUrl}Post`, {
-                method:'POST', 
+                method: 'POST',
                 body: inputData,
             })
-            .then(response => response.json())
-            .then(data => console.log(data))
+                .then(response => response.json())
+                .then(data => { return data })
+        },
+
+
+        /**
+         * @param {*} data got from the method FetchGetData()
+         * 
+         * @return {*} Boolean
+         */
+        checkUserId(data) {
+            if (this.userData.idOfUser === data.idOfUser) {
+                return [
+                    this.userData.idOfUser,
+                    this.userData.imageProfil,
+                    this.userData.lastname,
+                    this.userData.firstname
+                ]
+            }
+
+        },
+
+        /**
+         * 
+         */
+        ModifyUserAccount() {
+
+        },
+
+
+        /**
+         * 
+         */
+        ModifyOwnPost() {
+
+        },
+
+
+        /**
+         * 
+         */
+        DeleteOwnPost() {
+
         }
+
 
     },
 
