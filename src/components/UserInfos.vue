@@ -5,7 +5,7 @@
 
         </div>
 
-        <button class="logOutButton" @click.prevent="logOut">
+        <button class="logOutButton" @click.prevent="logOut()">
             <router-link :to="{ path: '/' }">Deconnexion</router-link>
         </button>
 
@@ -13,21 +13,27 @@
 
 </template>
 <script>
-export default{
+export default {
     name: "UserInfos"
 }
 
 </script>
 
 <script setup>
-import {useUserInfosStore }from '../stores/userInfosStore';
+import { useUserInfosStore } from '../stores/userInfosStore';
 import { storeToRefs } from 'pinia';
 
+import { useUserLogin } from '../stores/userLogin';
+
+const userLogin = useUserLogin();
 
 const userInfos = useUserInfosStore();
 const { userData } = storeToRefs(userInfos);
 
-
+function logOut() {
+    userLogin.LogsOfUser;
+    localStorage.clear()
+}
 
 </script>
 

@@ -17,15 +17,10 @@ export const useUserRefsStore = defineStore("userInputs", () => {
         errorEmail: "",
     });
 
-    // const postPageUser = ref({
-    //     userPostArea: "",
-    //     userProfilPhoto: ""
-    // });
-
 
     return {
         user,
         message,
-
+  
     }
 });

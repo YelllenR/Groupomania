@@ -68,7 +68,7 @@ export const useUserInfosStore = defineStore("userInfos", {
                 body: inputData,
             })
                 .then(response => response.json())
-                .then(data => { return data })
+                .then(data => checkUserId(data))
         },
 
 
