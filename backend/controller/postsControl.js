@@ -52,7 +52,6 @@ const PostOnePost = (request, response, next) => {
                 imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
             });
             
-
             postCreation.save()
                 .then(() => response.status(201).json({ message: "Post a été créé avec succès" , postCreation}))
                 .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))

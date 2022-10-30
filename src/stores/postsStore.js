@@ -74,7 +74,7 @@ export const usePostsStore = defineStore("posts", {
             this.posts.imageProfil = userData.value.imageProfil
 
 
-            console.log(data, this.posts.imageProfil)
+            console.log(data, this.posts.firstname)
         },
 
     },

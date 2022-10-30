@@ -27,6 +27,7 @@
 #postHeader {
     @include flex-footer-and-headerPost;
     margin: 12px;
+    z-index: -5;
 }
 
 .logo-post {
@@ -38,3 +39,23 @@
     height: 25px;
 }
 
+
+
+#userDetails{
+    position: fixed;
+    background-color: $nav-background;
+    z-index: 99;
+    width: 15em;
+    height: 15em;
+    margin-top: 8px;
+    border-radius: 10%;
+}
+
+.userOwnData{
+    background-color: $nav-background;
+    margin: 16px 0 16px 16px;
+}
+
+.account-infos{
+    background-color: transparent;
+}

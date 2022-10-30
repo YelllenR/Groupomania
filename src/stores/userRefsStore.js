@@ -26,6 +26,6 @@ export const useUserRefsStore = defineStore("userInputs", () => {
     return {
         user,
         message,
-        postPageUser
+
     }
 });

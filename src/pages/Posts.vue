@@ -7,11 +7,15 @@
         <section class="box-userAccount">
             <div class="userAccount">
                 <img class="userPicture" :src="userData.imageProfil" alt="Photo de profil">
-                <form action="" method="post" enctype="multipart/form-data">
 
+                <form action="" method="post" enctype="multipart/form-data">
                     <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
-                    <input class="image-post" type="file" accept="image/*" name="imagePost"
-                        :ref="postPageUser.imagePost" @change="imagePost" />
+
+                    <label class="upload-file" for="image-post">
+                        <input id="image-post" type="file" accept="image/*" name="imagePost"
+                            :ref="postPageUser.imagePost" @change="imagePost" />
+                        <i class="fas fa-camera photo"></i>
+                    </label>
                 </form>
             </div>
             <button class="post-button" @click.prevent="newsPost">Publiez</button>

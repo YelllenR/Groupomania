@@ -4,8 +4,9 @@
             <div class="onePost" v-for="post in posts" :key="post.idOfPost">
 
                 <div class="usersPic">
-                    <img :src="post.imagePost" alt="Profil picture" class="profil-picture" name="imagePost">
+                    <img :src="post.imageProfil" alt="Profil picture" class="profil-picture" name="image">
                     <span class="username" :ref="post.firstname">{{ post.firstname }}</span>
+                    <span class="username" :ref="post.lastname">{{ post.lastname }}</span>
                 </div>
 
                 <div class="userPost">
@@ -34,7 +35,6 @@
 
 import { storeToRefs } from 'pinia';
 import { usePostsStore } from '../stores/postsStore';
-
 
 const postsData = usePostsStore();
 

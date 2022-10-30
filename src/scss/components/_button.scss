@@ -1,5 +1,5 @@
-
-.button, .showForm{
+.button,
+.showForm {
     border-style: none;
     cursor: pointer;
     width: auto;
@@ -7,12 +7,13 @@
     background-color: transparent;
 }
 
-.formButton{
+.formButton {
     font-size: map-get($font-sizes, "title-mobile-home");
     color: #F2E0E0
 }
 
-.button-login, .button-signup{
+.button-login,
+.button-signup {
     background-color: $button-color-dark;
     color: $text-button;
     margin: 8px 0 8px 0;
@@ -23,11 +24,11 @@
     padding: 5px;
 }
 
-.SignupButton{
+.SignupButton {
     padding-bottom: 16px;
 }
 
-.post-button{
+.post-button {
     align-self: center;
     background-color: $button-color-dark;
     color: $text-button;
@@ -38,4 +39,18 @@
     align-self: end;
     margin-top: 8px;
     font-weight: 600;
+}
+
+
+.logOutButton {
+    border-radius: map-get($radius, "buttons-radius");
+    background-color: $tertiary-color;
+    border-style: none;
+    margin: 16px 0 8px 16px;
+    padding: 8px;
+}
+
+a{
+    color: $secondary-color;
+    text-decoration: none;
 }

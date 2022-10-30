@@ -27,9 +27,8 @@
 }
 
 #userPost{
-    width: 75%; 
+    width: 15em; 
     height: auto;
- 
     overflow: scroll;
     box-shadow: map-get($shadows, "home-fields-shadow"); 
     border-style: none;
@@ -44,6 +43,13 @@
     outline: none;
 }
 
+.upload-file{
+    cursor: pointer;
+}
+
+#image-post{
+    display: none;
+}
 
 #post-container {
     @include flex-list-post-container;
@@ -55,6 +61,8 @@
     overflow-y: scroll;
     border-radius: 2%;
 }
+
+
 
 .onePost {
     height: auto;

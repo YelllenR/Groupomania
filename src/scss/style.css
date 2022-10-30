@@ -1,4 +1,5 @@
-.button, .showForm {
+.button,
+.showForm {
   border-style: none;
   cursor: pointer;
   width: auto;
@@ -11,7 +12,8 @@
   color: #F2E0E0;
 }
 
-.button-login, .button-signup {
+.button-login,
+.button-signup {
   background-color: rgba(255, 215, 215, 0.88);
   color: #4E5166;
   margin: 8px 0 8px 0;
@@ -37,6 +39,19 @@
   align-self: end;
   margin-top: 8px;
   font-weight: 600;
+}
+
+.logOutButton {
+  border-radius: 6px;
+  background-color: #4E5166;
+  border-style: none;
+  margin: 16px 0 8px 16px;
+  padding: 8px;
+}
+
+a {
+  color: #FFD7D7;
+  text-decoration: none;
 }
 
 .social-icons {
@@ -71,6 +86,10 @@
   cursor: pointer;
   background-color: transparent;
   font-size: 14px;
+}
+
+.photo {
+  color: #FFD7D7;
 }
 
 .logo-sphere {
@@ -237,6 +256,7 @@ input {
   justify-content: space-between;
   align-items: center;
   margin: 12px;
+  z-index: -5;
 }
 
 .logo-post {
@@ -246,6 +266,25 @@ input {
 
 .logo-theme-color {
   height: 25px;
+}
+
+#userDetails {
+  position: fixed;
+  background-color: rgba(255, 215, 215, 0.9);
+  z-index: 99;
+  width: 15em;
+  height: 15em;
+  margin-top: 8px;
+  border-radius: 10%;
+}
+
+.userOwnData {
+  background-color: rgba(255, 215, 215, 0.9);
+  margin: 16px 0 16px 16px;
+}
+
+.account-infos {
+  background-color: transparent;
 }
 
 * {
@@ -315,7 +354,7 @@ input {
 }
 
 #userPost {
-  width: 75%;
+  width: 15em;
   height: auto;
   overflow: scroll;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
@@ -329,6 +368,14 @@ input {
 
 #userPost:focus {
   outline: none;
+}
+
+.upload-file {
+  cursor: pointer;
+}
+
+#image-post {
+  display: none;
 }
 
 #post-container {
@@ -382,4 +429,4 @@ input {
   border-radius: 4px;
   padding: 5px;
   border: 1.5px solid #4E5166;
-}
+}/*# sourceMappingURL=style.css.map */
