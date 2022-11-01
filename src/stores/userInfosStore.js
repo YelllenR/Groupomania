@@ -1,9 +1,17 @@
 import { defineStore } from "pinia";
-
 import fetchUrl from '../helpers/url.json';
 import { ref } from "vue";
+import axios from "axios";
+import { useUsersDataStore } from '../stores/usersDataStore';
 
+
+const auth = localStorage.getItem("token");
 const baseUrl = fetchUrl.baseUrl;
+axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
+axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
+
+
+
 
 export const useUserInfosStore = defineStore("userInfos", {
     state: () => {
@@ -26,15 +34,16 @@ export const useUserInfosStore = defineStore("userInfos", {
     },
 
     actions: {
+
         /** Fetch request to get the user data
          * 
          * Calls the method GetUserData after the response
          */
-        FetchGetData() {
-            fetch(`${baseUrl}auth/userId`)
-                .then(response => response.json())
-                .then(data => this.GetUserData(data))
-                .then(data => this.checkUserId(data))
+        async GetOneUser() {
+                const response = await axios.get(`${baseUrl}auth/userId`)
+
+                .then((response.data) => this.GetUserData(data))
+                .catch((error) => console.log(error))
         },
 
         /**
@@ -58,17 +67,15 @@ export const useUserInfosStore = defineStore("userInfos", {
          *  Data : 1. The post to be sent / 2. The image
          * @return data from API 
          */
-        PublishFromAccountOwner() {
+        async PublishFromAccountOwner() {
             const inputData = new FormData();
-            inputData.append("post", this.postPageUser.newPostAccountOwner)
             inputData.append("imagePost", this.postPageUser.imagePost)
+            inputData.append("post", this.postPageUser.newPostAccountOwner)
 
-            fetch(`${baseUrl}Post`, {
-                method: 'POST',
-                body: inputData,
-            })
-                .then(response => response.json())
-                .then(data => checkUserId(data))
+
+            await axios.postForm(`${baseUrl}Post`, inputData)
+                .then(response => console.log(response))
+
         },
 
 
@@ -78,13 +85,13 @@ export const useUserInfosStore = defineStore("userInfos", {
          * @return {*} Boolean
          */
         checkUserId(data) {
-            if (this.userData.idOfUser === data.idOfUser) {
-                return [
-                    this.userData.idOfUser,
-                    this.userData.imageProfil,
-                    this.userData.lastname,
-                    this.userData.firstname
-                ]
+            const AllUsers = useUsersDataStore();
+            const { users } = storeToRefs(AllUsers);
+
+            if (this.userData.idOfUser === this.users.idOfUser) {
+                console.log(this.userData.idOfUser)
+            }else{
+                console.log(this.users.idOfUser)
             }
 
         },

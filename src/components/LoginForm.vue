@@ -43,15 +43,12 @@ watchEffect(() => {
   formValidation.validateEmail(user.value.email);
 });
 
-let hasToken = false;
 
 const onSubmit = () => {
   loginUser.Login(user.value);
 
-  if (stateLogs.value.hasToken === true) {
-    router.push({ name: "Posts" })
-  } else {
-    alert("Merci de vérifier vos identifiants de connexion");
+if (stateLogs.value.hasToken === true) {
+    return router.push({ name: "Posts" })
   }
 };
 

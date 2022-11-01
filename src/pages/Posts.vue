@@ -11,9 +11,9 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
 
-                    <label class="upload-file" for="image-post">
-                        <input id="image-post" type="file" accept="image/*" name="imagePost"
-                            :ref="postPageUser.imagePost" @change="imagePost" />
+                    <label class="upload-file" for="imagePost">
+                        <input id="imagePost" type="file" accept="image/*" name="imagePost"
+                            :ref="postPageUser.imagePost" @change="imageUserPost" />
                         <i class="fas fa-camera photo"></i>
                     </label>
                 </form>
@@ -42,6 +42,7 @@ import { storeToRefs } from 'pinia';
 
 
 
+
 const components = defineComponent({
     HeaderPosts,
     PostsBox,
@@ -53,11 +54,16 @@ const userInfos = useUserInfosStore();
 
 const { userData, postPageUser } = storeToRefs(userInfos)
 
-userInfos.FetchGetData();
+userInfos.GetOneUser();
 
-const imagePost = (event) => {
-    event.target.files[0];
+const imageUserPost = (event) => {
+    postPageUser.value.imagePost = event.target.files[0];
 };
+
+
+
+
+
 
 
 function newsPost() {
@@ -65,5 +71,5 @@ function newsPost() {
 }
 
 
-// Reste à faire => bloquer le bouton si pas d'input du user prini
+
 </script>

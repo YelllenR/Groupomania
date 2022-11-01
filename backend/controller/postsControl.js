@@ -8,20 +8,11 @@ const fileSystemExtra = require('fs-extra');
 
 const GetPosts = (request, response, next) => {
 
-
-
-
-
     Posts.find(request.body.posts)
 
         .then((posts) => response.status(200).json(posts))
-        .catch((noPostsYet) => {
-            if (request.body.posts === "" || request.body.posts === null) {
-                return response.status(204).json({ message: "Soyez le premier a créer un post!!!", noPostsYet })
-            };
-        })
-        .catch(error => response.status(401).json({ message: "Erreur, impossible de lister les posts", error }))
-}
+        .catch(error => response.status(204).json({ message: "Vide", error }))
+};
 
 
 const date = new Date();
@@ -35,29 +26,21 @@ const minutes = date.getMinutes();
 const currentDateTime = `${day}-${month}-${year} à ${hour}h${minutes}`;
 
 const PostOnePost = (request, response, next) => {
-    
-    User.findOne({ user: request.body.dataOfUser })
-        .then(dataOfUser => {
-            if (dataOfUser.user !== request.body.dataOfUser) {
-                response.status(401).json({message: 'error'})
-            }
-            return dataOfUser.idOfUser;
-        })
-        .then((dataOfUser) => {
-            const postCreation = new Posts({
-                idOfPost: uuid.v4(),
-                idOfUser: dataOfUser,
-                post: request.body.post,
-                dateOfPost: currentDateTime,
-                imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
-            });
-            
-            postCreation.save()
-                .then(() => response.status(201).json({ message: "Post a été créé avec succès" , postCreation}))
-                .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
-        })
+
+    const postCreation = new Posts({
+        idOfPost: uuid.v4(),
+        idOfUser: request.auth.idOfUser,
+        post: request.body.post,
+        dateOfPost: currentDateTime,
+        imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
+    });
+
+    postCreation.save()
+        .then(() => response.status(201).json({ message: "Post a été créé avec succès", postCreation}))
+        .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
 
 }
+
 
 
 

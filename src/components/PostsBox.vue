@@ -36,13 +36,17 @@
 import { storeToRefs } from 'pinia';
 import { usePostsStore } from '../stores/postsStore';
 
+
 const postsData = usePostsStore();
 
 const { posts } = storeToRefs(postsData);
 
-postsData.FetchPublications()
 
 
-// let accountOwner =
+
+postsData.FetchPublications();
+
+
+
 
 </script>

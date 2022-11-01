@@ -76,9 +76,9 @@ const createAccount = (request, response, next) => {
 
 const userInfos = (request, response, next) => {
     User.findOne({ user: request.body.idOfUser })
-        .then(idOfUser => {
+        .then((idOfUser) => {
             if (idOfUser.user !== request.body.idOfUser) {
-                response.status(401).json({ message: "Requête non authorisée" })
+                response.status(401).json({ message: "Requête non authorisée", idOfUser })
             } else {
                 response.status(200).json(idOfUser)
             }
@@ -87,9 +87,15 @@ const userInfos = (request, response, next) => {
         .catch((error) => response.status(500).json({ message: "error userControl", error }))
 };
 
+const allUsers = (request, response, next) => {
+    User.find()
+        .then((allUsers) => response.status(200).json({ allUsers }))
+        .catch((error) => response.status(401).json({ message: error }))
+};
 
 module.exports = {
     userLogIn,
     createAccount,
     userInfos,
+    allUsers
 };

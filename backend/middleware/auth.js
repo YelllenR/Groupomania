@@ -8,7 +8,6 @@ module.exports = (request, response, next) => {
         const token = request.headers.authorization.split(' ')[1];
         const tokenToDecode = jsonWebToken.verify(token, config.someToken);
 
-
         const userToken = tokenToDecode.idOfUser;
 
         if (request.body.idOfUser && (request.body.idOfUser !== userToken)) {
@@ -23,9 +22,8 @@ module.exports = (request, response, next) => {
         };
 
     }
-    catch (error) {
-
-        response.status(401).json({ message: "Requête invalide", error })
+    catch(error) {
+        response.status(401).json({ message: "Requête invalide", error})
     }
 };
 

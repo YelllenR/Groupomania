@@ -1,11 +1,14 @@
 import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
-
+import axios from "axios";
 import fetchUrl from '../helpers/url.json';
 
-import { useUserInfosStore } from './userInfosStore'
 
 const baseUrl = fetchUrl.baseUrl;
+const auth = localStorage.getItem("token");
+
+axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
+axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
 export const usePostsStore = defineStore("posts", {
     state: () => {
@@ -19,6 +22,7 @@ export const usePostsStore = defineStore("posts", {
                 firstname: "",
                 lastname: ""
             }),
+
         }
     },
 
@@ -26,11 +30,16 @@ export const usePostsStore = defineStore("posts", {
         /**
          * Fetch API for post page - get data of posts
          */
-        FetchPublications() {
-            fetch(`${baseUrl}Posts`)
-                .then(response => response.json())
-                .then(data => this.IsPostEmpty(data))
-                .then(data => this.FormatDataToRender(data))
+        async FetchPublications() {
+            try {
+                const data = await axios.get(`${baseUrl}Posts`)
+                this.posts = data.data;
+                this.IsPostEmpty(data);
+                console.log(this.posts)
+            }
+            catch (error) {
+                console.log(error)
+            }
         },
 
 
@@ -43,39 +52,16 @@ export const usePostsStore = defineStore("posts", {
 
             if (data.length < 0) {
                 hasPosts = false;
+                alert("Pas encore de post, soyez le premier")
             } else {
                 hasPosts = true;
+                console.log(hasPosts)
             }
 
-            return hasPosts, data
+            return hasPosts
         },
 
-        /**
-         * @param {*} data from Fetch request
-         * 
-         * Set the state of posts with the according refs
-         */
-        FormatDataToRender(data) {
-            this.posts = data;
-            this.posts.idOfPost = data.idOfPost;
 
-            const userInfos = useUserInfosStore()
-            const { userData } = storeToRefs(userInfos)
-
-            if (userInfos.checkUserId(data)) {
-                return userData.value
-            }
-
-            this.posts.imagePost = data.imagePost;
-            this.posts.dateOfPost = data.dateOfPost;
-            this.posts.post = data.post;
-            this.posts.firstname = userData.value.firstname;
-            this.posts.lastname = userData.value.lastname;
-            this.posts.imageProfil = userData.value.imageProfil
-
-
-            console.log(data, this.posts.firstname)
-        },
 
     },
 
