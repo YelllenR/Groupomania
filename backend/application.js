@@ -25,7 +25,7 @@ application.use(express.json());
 application.use(express.urlencoded({ extended: false }));
 application.use('/Groupomania', cors())
 
-application.use('/Groupomania/auth', cors(), userRoute);
+application.use('/Groupomania', cors(), userRoute);
 application.use('/Groupomania', cors(), postRoute);
 
 application.use('/images', express.static(path.join(__dirname, 'images')));

@@ -61,14 +61,8 @@ const imageUserPost = (event) => {
 };
 
 
+userInfos.PublishFromAccountOwner()
 
-
-
-
-
-function newsPost() {
-    userInfos.PublishFromAccountOwner()
-}
 
 
 

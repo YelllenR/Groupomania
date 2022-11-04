@@ -4,9 +4,11 @@
             <div class="onePost" v-for="post in posts" :key="post.idOfPost">
 
                 <div class="usersPic">
-                    <img :src="post.imageProfil" alt="Profil picture" class="profil-picture" name="image">
-                    <span class="username" :ref="post.firstname">{{ post.firstname }}</span>
-                    <span class="username" :ref="post.lastname">{{ post.lastname }}</span>
+                    <img :src="post.imageProfil" alt="Profil picture" class="profil-picture" name="image" >
+                    <p class="username" :ref="post.firstname">{{ post.firstname }}
+                    </p>
+                    <p class="username" :ref="post.firstname">{{ post.lastname }}
+                    </p>
                 </div>
 
                 <div class="userPost">
@@ -23,6 +25,7 @@
                     </div>
                     <!-- <span v-if="accountOwner">{{ modification }}</span> -->
                 </div>
+
             </div>
         </div>
 
@@ -34,18 +37,15 @@
 
 
 import { storeToRefs } from 'pinia';
-import { usePostsStore } from '../stores/postsStore';
 
+import { usePostsStore } from '../stores/postsStore';
 
 const postsData = usePostsStore();
 
 const { posts } = storeToRefs(postsData);
 
 
-
-
 postsData.FetchPublications();
-
 
 
 

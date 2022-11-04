@@ -2,10 +2,11 @@ import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
-
+// import { useUsersDataStore } from '../stores/usersDataStore';
 
 const baseUrl = fetchUrl.baseUrl;
 const auth = localStorage.getItem("token");
+
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
@@ -18,10 +19,11 @@ export const usePostsStore = defineStore("posts", {
                 dateOfPost: "",
                 post: "",
                 idOfPost: "",
+                idOfUser: "",
+                lastname: "",
                 imageProfil: "",
                 firstname: "",
-                lastname: ""
-            }),
+            })
 
         }
     },
@@ -31,15 +33,12 @@ export const usePostsStore = defineStore("posts", {
          * Fetch API for post page - get data of posts
          */
         async FetchPublications() {
-            try {
-                const data = await axios.get(`${baseUrl}Posts`)
-                this.posts = data.data;
-                this.IsPostEmpty(data);
-                console.log(this.posts)
-            }
-            catch (error) {
-                console.log(error)
-            }
+
+            const data = await axios.get(`${baseUrl}Posts`)
+            this.posts = data.data
+
+            this.IsPostEmpty(data)
+
         },
 
 
@@ -55,7 +54,6 @@ export const usePostsStore = defineStore("posts", {
                 alert("Pas encore de post, soyez le premier")
             } else {
                 hasPosts = true;
-                console.log(hasPosts)
             }
 
             return hasPosts

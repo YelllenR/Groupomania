@@ -23,6 +23,7 @@ const userLogIn = (request, response, next) => {
                             response.status(400).json({ message: "Une erreur est survenue" })
 
                         } else {
+
                             response.status(200).json({
                                 idOfUser: user.idOfUser,
 
@@ -74,28 +75,30 @@ const createAccount = (request, response, next) => {
 };
 
 
-const userInfos = (request, response, next) => {
-    User.findOne({ user: request.body.idOfUser })
-        .then((idOfUser) => {
-            if (idOfUser.user !== request.body.idOfUser) {
-                response.status(401).json({ message: "Requête non authorisée", idOfUser })
+const userInfos = async (request, response, next) => {
+
+    User.findOne({ idOfUser: request.auth.idOfUser })
+        .then(user => {
+            if (!request.auth) {
+                response.status(401).json({ message: "Non authorisé" })
             } else {
-                response.status(200).json(idOfUser)
+                response.status(200).json(user)
             }
         })
+        .catch((error) => {
+            response.status(400).json(error)
+        })
+}
 
-        .catch((error) => response.status(500).json({ message: "error userControl", error }))
-};
-
-const allUsers = (request, response, next) => {
-    User.find()
-        .then((allUsers) => response.status(200).json({ allUsers }))
-        .catch((error) => response.status(401).json({ message: error }))
-};
+// const allUsers = (request, response, next) => {
+//     User.find()
+//         .then((users) => response.status(200).json(users))
+//         .catch((error) => response.status(401).json({ message: error }))
+// };
 
 module.exports = {
     userLogIn,
     createAccount,
     userInfos,
-    allUsers
+    // allUsers
 };

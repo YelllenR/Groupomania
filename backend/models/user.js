@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
-
 const mongooseUniqueValidator = require('mongoose-unique-validator');
 
+
 const userModel = mongoose.Schema({
-    idOfUser: { type: String, require: true, unique: true },
+    // userPost:{type: mongoose.Schema.Types.String},
+    idOfUser: { type: String, require: true },
     email: { type: String, require: true, unique: true },
     password: { type: String, require: true },
     firstname: { type: String, require: true },

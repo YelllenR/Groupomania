@@ -1,10 +1,13 @@
 const mongoose = require('mongoose');
 const uuid = require('uuid');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
-const postsModel = mongoose.Schema({
+const postsModel = new mongoose.Schema({
     idOfPost: { type: String, default: uuid.v4() },
-    idOfUser: { type: String, require: true },
+    idOfUser: {type: mongoose.SchemaTypes.String, ref: 'User'},
+    firstname: { type: mongoose.SchemaTypes.String, ref: 'User' },
+    lastname: { type: mongoose.SchemaTypes.String, ref: 'User' },
+    imageProfil: { type: mongoose.SchemaTypes.String, ref: 'User'},
     post: { type: String },
     dateOfPost: { type: String, require: true },
     reactions: [
@@ -12,8 +15,8 @@ const postsModel = mongoose.Schema({
         sad = { type: Schema.Types.ObjectId, ref: 'User' },
     ],
     modificationDatePost: { type: Date },
-    imagePost: { type: String, require: false}
+    imagePost: { type: String }
 
 });
 
-module.exports = mongoose.model('Posts', postsModel);
+module.exports = mongoose.model('Post', postsModel);

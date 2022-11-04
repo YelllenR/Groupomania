@@ -14,16 +14,15 @@ module.exports = (request, response, next) => {
             response.json({ message: "at try part", error });
 
         } else {
+            request.auth = {
+                idOfUser: userToken
+            }
             next();
         }
 
-        request.auth = {
-            idOfUser: userToken
-        };
-
     }
-    catch(error) {
-        response.status(401).json({ message: "Requête invalide", error})
+    catch (error) {
+        response.status(401).json({ message: "Requête invalide", error })
     }
 };
 

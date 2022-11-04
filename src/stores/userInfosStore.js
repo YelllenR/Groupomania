@@ -2,7 +2,6 @@ import { defineStore } from "pinia";
 import fetchUrl from '../helpers/url.json';
 import { ref } from "vue";
 import axios from "axios";
-import { useUsersDataStore } from '../stores/usersDataStore';
 
 
 const auth = localStorage.getItem("token");
@@ -15,7 +14,6 @@ axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
 export const useUserInfosStore = defineStore("userInfos", {
     state: () => {
-
         return {
             postPageUser: ref({
                 newPostAccountOwner: "",
@@ -40,10 +38,17 @@ export const useUserInfosStore = defineStore("userInfos", {
          * Calls the method GetUserData after the response
          */
         async GetOneUser() {
+            try {
                 const response = await axios.get(`${baseUrl}auth/userId`)
+                const data = response.data
+                this.GetUserData(data);
 
-                .then((response.data) => this.GetUserData(data))
-                .catch((error) => console.log(error))
+            }
+            catch (error) {
+                console.log(error)
+            }
+
+
         },
 
         /**
@@ -59,7 +64,6 @@ export const useUserInfosStore = defineStore("userInfos", {
             this.userData.email = data.email;
             this.userData.imageProfil = data.imageProfil;
 
-            return data
         },
 
         /** Formating data before sending the post request
@@ -84,17 +88,17 @@ export const useUserInfosStore = defineStore("userInfos", {
          * 
          * @return {*} Boolean
          */
-        checkUserId(data) {
-            const AllUsers = useUsersDataStore();
-            const { users } = storeToRefs(AllUsers);
+        // checkUserId(data) {
+        //     const AllUsers = useUsersDataStore();
+        //     const { users } = storeToRefs(AllUsers);
 
-            if (this.userData.idOfUser === this.users.idOfUser) {
-                console.log(this.userData.idOfUser)
-            }else{
-                console.log(this.users.idOfUser)
-            }
+        //     if (this.userData.idOfUser === this.users.idOfUser) {
+        //         console.log(this.userData.idOfUser)
+        //     } else {
+        //         console.log(this.users.idOfUser)
+        //     }
 
-        },
+        // },
 
         /**
          * 
