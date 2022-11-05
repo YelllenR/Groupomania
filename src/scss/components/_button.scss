@@ -50,7 +50,13 @@
     padding: 8px;
 }
 
-a{
+a {
     color: $secondary-color;
     text-decoration: none;
+}
+
+.modify {
+    border-style: none;
+    background-color: transparent;
+    
 }

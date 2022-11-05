@@ -15,4 +15,6 @@ const imageFromPost = multer({
     storage: imagePostPage
 });
 
-module.exports = imageFromPost.single('imagePost');
+const withoutImage = imageFromPost.any()
+
+module.exports = imageFromPost.single('imagePost'), withoutImage;

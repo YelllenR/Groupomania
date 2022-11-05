@@ -22,15 +22,15 @@
     flex-direction: column;
 }
 
-.userAccount{
+.userAccount {
     @include flex-profil-mainUser;
 }
 
-#userPost{
-    width: 15em; 
+#userPost {
+    width: 15em;
     height: auto;
     overflow: scroll;
-    box-shadow: map-get($shadows, "home-fields-shadow"); 
+    box-shadow: map-get($shadows, "home-fields-shadow");
     border-style: none;
     background-color: $post-field-dark;
     resize: none;
@@ -39,15 +39,15 @@
     border-radius: map-get($radius, "post-box");
 }
 
-#userPost:focus{
+#userPost:focus {
     outline: none;
 }
 
-.upload-file{
+.upload-file {
     cursor: pointer;
 }
 
-#imagePost{
+#imagePost {
     display: none;
 }
 
@@ -103,4 +103,39 @@
     border-radius: map-get($radius, "post-box");
     padding: 5px;
     border: map-get($borders, "border-dark");
+}
+
+
+.modify-post {
+    cursor: pointer;
+    background-color: transparent;
+
+    &:active{
+        border: map-get($borders, "border-light");
+    }
+}
+
+.check {
+    @include flex-list-post-container;
+    background-color: $box-posts-dark;
+    font-size: 16px;
+    color: $username-dark;
+    
+    // &::before {
+    //     display: none;
+    // }
+
+    // &::after {
+    //     display: none;
+    // }
+
+
+}
+
+
+.deletePost, .changes{
+    cursor: pointer;
+    background-color: $box-posts-dark;
+    padding: 5px 0 8px 0;
+    color: $username-dark;
 }

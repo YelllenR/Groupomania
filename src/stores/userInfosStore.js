@@ -10,8 +10,6 @@ axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
 
-
-
 export const useUserInfosStore = defineStore("userInfos", {
     state: () => {
         return {
@@ -27,10 +25,17 @@ export const useUserInfosStore = defineStore("userInfos", {
                 firstname: "",
                 lastname: "",
                 imageProfil: "",
+                modifyPost:""
             })
         }
     },
-
+    getters: {
+        checkState(state) {
+            if (state.postPageUser.imagePost.length > 0) {
+                console.log(state.postPageUser.imagePost)
+            }
+        }
+    },
     actions: {
 
         /** Fetch request to get the user data
@@ -39,7 +44,7 @@ export const useUserInfosStore = defineStore("userInfos", {
          */
         async GetOneUser() {
             try {
-                const response = await axios.get(`${baseUrl}auth/userId`)
+                const response = await axios.get(`${baseUrl}/userId`)
                 const data = response.data
                 this.GetUserData(data);
 
@@ -72,13 +77,18 @@ export const useUserInfosStore = defineStore("userInfos", {
          * @return data from API 
          */
         async PublishFromAccountOwner() {
-            const inputData = new FormData();
-            inputData.append("imagePost", this.postPageUser.imagePost)
-            inputData.append("post", this.postPageUser.newPostAccountOwner)
 
+            if (this.postPageUser.imagePost.length === 0) {
+                await axios.post(`${baseUrl}Post`, { "post": this.postPageUser.newPostAccountOwner })
 
-            await axios.postForm(`${baseUrl}Post`, inputData)
-                .then(response => console.log(response))
+            } else {
+                const inputData = new FormData();
+                inputData.append("imagePost", this.postPageUser.imagePost)
+                inputData.append("post", this.postPageUser.newPostAccountOwner)
+
+                await axios.postForm(`${baseUrl}Post`, inputData)
+                    .then(response => console.log(response))
+            }
 
         },
 
@@ -112,7 +122,12 @@ export const useUserInfosStore = defineStore("userInfos", {
          * 
          */
         ModifyOwnPost() {
-
+            if(this.userData.idOfUser){
+                this.userData.modifyPost = "Modification"
+                console.log("ok this is the owner")
+               return true
+                // axios.put()
+            }
         },
 
 

@@ -36,16 +36,23 @@ const PostOnePost = (request, response, next) => {
                             imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
                         })
 
+
                         postCreation.save()
                             .then(() => response.status(201).json(postCreation))
-
-
                     })
-                    .catch((error) => response.status(401).json({ message: "Un problème a été rencontré", error }))
             }
 
         })
-}
+        .catch((error) => response.status(401).json({ message: "Un problème a été rencontré", error }));
+
+
+
+
+};
+
+
+
+
 
 const ModifyAPost = (request, response, next) => {
 
@@ -54,9 +61,10 @@ const ModifyAPost = (request, response, next) => {
         imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
     } : { ...request.body };
 
-    if (idOfUser === request.auth.idOfUser) {
-        Post.findOne({ idOfPost: request.param.idOfPost })
-            .then(() => response.status(200).json({ message: "found post" }))
+
+    if (request.auth) {
+        Post.findOne({ idOfPost: request.param.idOfPost }, { post: request.body.post })
+            .then((post) => response.status(200).json({ message: "found post" }))
             .catch(error => response.status(204).json({ message: "Impossible de trouver ce post", error }))
     } else {
         return response.json(401).json({ message: "Ce post ne vous appartient pas" })
@@ -69,8 +77,8 @@ const ModifyAPost = (request, response, next) => {
             })
             .catch(modifyError => response.status(500).json({ message: "Réessayer ultérieurement", modifyError }));
     }
-
 };
+
 
 const DeleteAPost = (request, response, next) => {
     Post.findOne({ idOfPost: request.param.postId })

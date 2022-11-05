@@ -2,6 +2,7 @@ import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
+import { getCurrentScope } from "vue";
 // import { useUsersDataStore } from '../stores/usersDataStore';
 
 const baseUrl = fetchUrl.baseUrl;
@@ -11,7 +12,7 @@ const auth = localStorage.getItem("token");
 axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
-export const usePostsStore = defineStore("posts", {
+export const usePostsStore = defineStore("postStore", {
     state: () => {
         return {
             posts: ref({
@@ -23,7 +24,9 @@ export const usePostsStore = defineStore("posts", {
                 lastname: "",
                 imageProfil: "",
                 firstname: "",
-            })
+
+            }),
+
 
         }
     },
@@ -59,7 +62,22 @@ export const usePostsStore = defineStore("posts", {
             return hasPosts
         },
 
+        // incrementLikes() {
+        //     getCurrentScope()
+        //     this.reactions.like++;
+        //     console.log(this.reactions.like)
 
+
+
+        // },
+
+        // incrementDislikes() {
+
+        // },
+
+        // SendCommentOnPost() {
+
+        // }
 
     },
 

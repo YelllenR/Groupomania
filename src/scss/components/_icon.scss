@@ -15,12 +15,12 @@
     color: $nav-icon-color-dark;
 }
 
-.reaction-icons-post{
+.reaction-icons-post {
     @include flex-post-reactions;
     background-color: $box-posts-dark;
 }
 
-.reaction{
+.reaction {
     padding: 5px;
     color: $reaction-icons;
     cursor: pointer;
@@ -28,6 +28,12 @@
     font-size: map-get($icon-size-mobile, "reaction-icons");
 }
 
-.photo{
+.photo {
     color: $reaction-icons;
+}
+
+.fa-check-square {
+    color: $secondary-color;
+    font-size: 14px;
+    box-shadow: map-get($shadows, "login-signup-shadow");
 }

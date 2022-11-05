@@ -8,7 +8,7 @@
             <div class="userAccount">
                 <img class="userPicture" :src="userData.imageProfil" alt="Photo de profil">
 
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="" method="post" >
                     <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
 
                     <label class="upload-file" for="imagePost">
@@ -18,7 +18,7 @@
                     </label>
                 </form>
             </div>
-            <button class="post-button" @click.prevent="newsPost">Publiez</button>
+            <button class="post-button" @click.prevent="newsPost()">Publiez</button>
         </section>
 
         <section>
@@ -41,8 +41,6 @@ import { useUserInfosStore } from '../stores/userInfosStore';
 import { storeToRefs } from 'pinia';
 
 
-
-
 const components = defineComponent({
     HeaderPosts,
     PostsBox,
@@ -61,9 +59,11 @@ const imageUserPost = (event) => {
 };
 
 
-userInfos.PublishFromAccountOwner()
 
-
+function newsPost() {
+    userInfos.PublishFromAccountOwner();
+    console.log("envoyer")
+}
 
 
 </script>
