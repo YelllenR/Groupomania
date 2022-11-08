@@ -16,8 +16,8 @@
           required="true" />
       </div>
 
-      <!-- <div :class="errorLogin">{{ errorLogin }}</div> -->
       <input type="submit" value="Connexion" class="button button-login" />
+
     </div>
   </form>
 </template>
@@ -28,21 +28,30 @@ import { watchEffect } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useUserLogin } from '../stores/userLogin'
 import { useFormValidations } from '../stores/formsValidationStore'
-
+import { useRouter, useRoute } from 'vue-router'
 
 const formValidation = useFormValidations();
 
 const { user, message } = storeToRefs(formValidation)
 
 const loginUser = useUserLogin();
+const { stateLogs } = storeToRefs(loginUser);
+
+const router = useRouter();
 
 watchEffect(() => {
   formValidation.validateEmail(user.value.email);
 });
 
+
 const onSubmit = () => {
-  loginUser.Login(user.value)
+  loginUser.Login(user.value);
+
+if (stateLogs.value.hasToken === true) {
+    return router.push({ name: "Posts" })
+  }
 };
+
 
 </script>
 

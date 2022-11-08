@@ -3,7 +3,8 @@ const User = require('../models/user');
 const jsonWebToken = require('jsonwebtoken');
 const uuid = require('uuid');
 
-const secretToken = uuid.v4();
+const config = require('../config.json');
+const secretToken = config.someToken;
 
 const bcrypt = require('bcrypt');
 
@@ -22,6 +23,7 @@ const userLogIn = (request, response, next) => {
                             response.status(400).json({ message: "Une erreur est survenue" })
 
                         } else {
+
                             response.status(200).json({
                                 idOfUser: user.idOfUser,
 
@@ -50,6 +52,7 @@ const userLogIn = (request, response, next) => {
 
 
 const createAccount = (request, response, next) => {
+
     bcrypt.hash(request.body.password, 10)
         .then(passwordCrypt => {
             const user = new User({
@@ -61,7 +64,6 @@ const createAccount = (request, response, next) => {
                 imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`
             });
 
-            console.log(user)
             user.save()
                 .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
                 .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
@@ -73,22 +75,30 @@ const createAccount = (request, response, next) => {
 };
 
 
-const userInfos = (request, response, next) => {
-    User.find({ user: request.body.idOfUser })
-        .then(idOfUser => {
-            if (idOfUser.idOfUser !== request.body.idOfUser) {
-                response.status(401).json({ message: "Requête non authorisée" })
+const userInfos = async (request, response, next) => {
+
+    User.findOne({ idOfUser: request.auth.idOfUser })
+        .then(user => {
+            if (!request.auth) {
+                response.status(401).json({ message: "Non authorisé" })
             } else {
-                response.status(200).json({ message: `Voici vos informations : ${idOfUser}` })
+                response.status(200).json(user)
             }
         })
+        .catch((error) => {
+            response.status(400).json(error)
+        })
+}
 
-        .catch((error) => response.status(500).json({ error }))
-};
-
+// const allUsers = (request, response, next) => {
+//     User.find()
+//         .then((users) => response.status(200).json(users))
+//         .catch((error) => response.status(401).json({ message: error }))
+// };
 
 module.exports = {
     userLogIn,
     createAccount,
     userInfos,
+    // allUsers
 };

@@ -1,6 +1,10 @@
-
+import fetchUrl from '../helpers/url.json';
 import { defineStore, storeToRefs } from "pinia";
 import { useUserRefsStore } from './userRefsStore'
+import axios from 'axios';
+
+const baseUrl = fetchUrl.baseUrl;
+
 
 
 export const useUserCreationStore = defineStore("userStore", {
@@ -14,7 +18,7 @@ export const useUserCreationStore = defineStore("userStore", {
     },
 
     actions: {
-        Create(user) {
+        async Create() {
 
             const formData = new FormData();
 
@@ -26,16 +30,12 @@ export const useUserCreationStore = defineStore("userStore", {
 
 
 
-            fetch('http://localhost:3000/Groupomania/auth/create-account', {
-                method: 'POST',
-                body: formData,
-                redirect: 'follow'
-            })
+            await axios.post(`${baseUrl}auth/create-account`, formData)
+                .then(response => console.log(response))
+                .catch((error) => console.log(error))
 
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.log("Oh no error", error))
         },
+
     },
 
 });

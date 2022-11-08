@@ -8,7 +8,7 @@ const userRoute = require('./routes/routes-user');
 const connexion = config.connexion;
 const path = require('path');
 const postRoute = require('./routes/routes-posts');
-const imageMulter = require('./middleware/image-multer')
+const commentRoute = require('./routes/routes-comments');
 
 mongoose.connect(connexion, {
     useNewUrlParser: true,
@@ -24,12 +24,13 @@ mongoose.connect(connexion, {
 
 application.use(express.json());
 application.use(express.urlencoded({ extended: false }));
-application.use('//Groupomania', cors())
+application.use('/Groupomania', cors())
 
-application.use('/Groupomania/auth', cors(), userRoute);
+application.use('/Groupomania', cors(), userRoute);
 application.use('/Groupomania', cors(), postRoute);
+application.use('/Groupomania', cors(), commentRoute);
 
 application.use('/images', express.static(path.join(__dirname, 'images')));
-
+application.use('/postImage', express.static(path.join(__dirname, 'postImage')));
 
 module.exports = application;

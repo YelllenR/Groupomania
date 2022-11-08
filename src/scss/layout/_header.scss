@@ -4,6 +4,12 @@
     min-width: map-get($breakpoints, "mobile-min");
     max-width: map-get($breakpoints, "mobile-max");
     margin-top: 10px;
+
+
+    @include tablet {
+        min-width: map-get($breakpoints, "tablet-min");
+        max-width: map-get($breakpoints, "tablet-max");
+    }
 }
 
 .header-logo-container {
@@ -15,11 +21,19 @@
 
 .header-end-line {
     margin-top: 10px;
+
+    @include tablet {
+        margin-top: 24px;
+    }
 }
 
 .logo-end-line {
     width: auto;
     margin: 8px;
+
+    @include tablet {
+        margin: 16px;
+    }
 }
 
 // ---------------------------- Post Page ----------------------------- //
@@ -27,14 +41,43 @@
 #postHeader {
     @include flex-footer-and-headerPost;
     margin: 12px;
+    z-index: -5;
+
 }
 
 .logo-post {
     height: 30px;
     padding-top: 5px;
+
+    @include tablet {
+        height: 4.5vh;
+    }
 }
 
 .logo-theme-color {
     height: 25px;
+    
+    @include tablet {
+        height: 3.5vh;
+    }
 }
 
+
+#userDetails {
+    position: fixed;
+    background-color: $nav-background;
+    z-index: 99;
+    width: 15em;
+    height: 15em;
+    margin-top: 8px;
+    border-radius: 10%;
+}
+
+.userOwnData {
+    background-color: $nav-background;
+    margin: 16px 0 16px 16px;
+}
+
+.account-infos {
+    background-color: transparent;
+}

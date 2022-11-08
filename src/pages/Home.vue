@@ -5,11 +5,7 @@
 
   <main id="main-container">
     <div v-if="!showSignupForm" class="showForm">
-      <Login
-        @toggle-show-login="toggleLogForm"
-        title="Connexion"
-        :showLoginForm="showLoginForm"
-      >
+      <Login @toggle-show-login="toggleLogForm" title="Connexion" :showLoginForm="showLoginForm">
       </Login>
 
       <div v-if="showLoginForm">
@@ -22,11 +18,7 @@
         Pas encore de compte ?
       </p>
 
-      <Signup
-        @toggle-show-signup="toggleSignupForm"
-        title="Créez-en un!"
-        :showSignupForm="showSignupForm"
-      >
+      <Signup @toggle-show-signup="toggleSignupForm" title="Créez-en un!" :showSignupForm="showSignupForm">
       </Signup>
 
       <div v-if="showSignupForm">
@@ -36,8 +28,10 @@
   </main>
 
   <footer>
-    <FooterIcons>{{}}</FooterIcons>
+    <FooterIcons>{{ }}</FooterIcons>
   </footer>
+
+
 </template>
 
 <script>

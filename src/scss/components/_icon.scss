@@ -13,17 +13,32 @@
 .userInfos {
     font-size: 18px;
     color: $nav-icon-color-dark;
+
+    @include tablet {
+        height: 3vh;
+    }
 }
 
-.reaction-icons-post{
+.reaction-icons-post {
     @include flex-post-reactions;
     background-color: $box-posts-dark;
 }
 
-.reaction{
+.reaction {
     padding: 5px;
     color: $reaction-icons;
     cursor: pointer;
     background-color: transparent;
     font-size: map-get($icon-size-mobile, "reaction-icons");
+}
+
+.photo {
+    color: $reaction-icons;
+}
+
+.fa-window-close {
+    cursor: pointer;
+    color: $secondary-color;
+    margin: 16px 16px 0 16px;
+    align-self: flex-end;
 }

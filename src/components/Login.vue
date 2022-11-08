@@ -1,21 +1,21 @@
 <template>
-  <ButtonLogin @show-form="$emit('toggle-show-login')"
-  :text="showLoginForm ? 'Connexion' : 'Connectez-vous'"
->
+  <ButtonLogin @show-form="$emit('toggle-show-login')" :text="showLoginForm ? 'Connexion' : 'Connectez-vous'">
   </ButtonLogin>
 </template>
 
 
-<script>
+<script setup>
 import ButtonLogin from "./Button.vue";
+import { defineComponent } from 'vue';
 
-export default {
-  name: "Login",
-  props: {
-    showLoginForm: Boolean,
-  },
-  components: {
-    ButtonLogin,
-  },
-};
+defineProps({
+  showLoginForm: Boolean
+});
+
+defineComponent({
+  ButtonLogin,
+
+});
+
+
 </script>

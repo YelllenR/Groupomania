@@ -1,82 +1,106 @@
-const Posts = require('../models/posts');
+const Post = require('../models/posts');
 
 const uuid = require('uuid');
 
-const fileSystemExtra = require('fs-extra');
+const fileSystem = require('fs');
+const User = require('../models/user');
 
-
+/**
+ * 
+ * @param {*} request - find all posts and then sort in order to get the newest post on top
+ * @param {*} response - response with the list of posts or the error
+ */
 const GetPosts = (request, response, next) => {
-    Posts.find(request.body.posts)
 
-        .then((posts) => response.status(200).json(posts))
-        .catch((noPostsYet) => {
-            if (request.body.posts === "" || request.body.posts === null) {
-                return response.status(204).json({ message: "Soyez le premier a créer un post!!!", noPostsYet })
-            };
+    Post.find(request.body.posts).sort({ createdAt: -1 })
+        .then(posts => {
+            response.status(200).json(posts)
         })
-        .catch(error => response.status(401).json({ message: "Erreur, impossible de lister les posts", error }))
-}
+        .catch(error => response.status(204).json({ message: "Vide", error }))
+
+};
 
 
-const date = new Date();
-const day = date.getDate();
-const month = date.getMonth() + 1;
-const year = date.getFullYear();
-const hour = date.getHours();
-const minutes = date.getMinutes();
-
-
-const currentDateTime = `${day}-${month}-${year} à ${hour}h${minutes}`;
+/**
+ * 
+ * @param {*} request finds one user, checks the auth and populate to pass the needed data in order to create a new post
+ * @param {*} response - response from findOne and save
+ */
 
 const PostOnePost = (request, response, next) => {
-    const dataFromPost = JSON.parse(request.body.post);
 
-    const postCreation = new Posts({
-        ...dataFromPost,
-        idOfPost: new uuid.v4(),
-        idOfUser: request.auth.idOfUser,
-        dateOfPost: currentDateTime
-    });
+    User.findOne({ idOfUser: request.auth.idOfUser })
+        .then(user => {
+            if (request.auth) {
+                user.populate()
+                    .then(data => {
+                        const postCreation = new Post({
+                            idOfPost: uuid.v4(),
+                            post: request.body.post,
+                            idOfUser: data.idOfUser,
+                            firstname: data.firstname,
+                            lastname: data.lastname,
+                            imageProfil: data.imageProfil,
+                            imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`,
+                        })
 
-    postCreation.save()
-        .then(() => response.status(201).json({ message: "Post a été créé avec succès" }))
-        .catch((error) => response.status(401).json({ message: "Un problème a été rencontré lors de la création", error }))
-}
+                        postCreation.save()
+                            .then(() => response.status(201).json(postCreation))
+                    })
+            }
 
+        })
+        .catch((error) => response.status(401).json({ message: "Un problème a été rencontré", error }));
+
+};
+
+
+/**
+ * 
+ * @param {*} request - requested id of post in findOne and updateOne
+ * @param {*} response - get the status after the request
+ */
 const ModifyAPost = (request, response, next) => {
 
     const requestPostToModify = request.file ? {
         ...JSON.parse(request.body.post),
-        imagePost: `${request.protocol}://${request.get('host')}/imageFile/${request.file.filename}`
     } : { ...request.body };
 
-    if (idOfUser === request.auth.idOfUser) {
-        Posts.findOne({ idOfPost: request.param.idOfPost })
-            .then(() => response.status(200).json({ message: "found post" }))
-            .catch(error => response.status(204).json({ message: "Impossible de trouver ce post", error }))
-    } else {
-        return response.json(401).json({ message: "Ce post ne vous appartient pas" })
-    }
+    Post.findOne({ id: request.body.idOfPost })
+        .then((post) => {
+            if (request.auth.idOfUser === post.idOfUser) {
 
-    if (response.status(200)) {
-        Posts.updateOne({ idOfPost: request.param.idOfPost }, { ...requestPostToModify, idOfPost: request.param.idOfPost, modificationDatePost: currentDateTime })
-            .then((modification) => {
-                response.status(201).json({ message: "Post modifié avec succès", modification })
-            })
-            .catch(modifyError => response.status(500).json({ message: "Réessayer ultérieurement", modifyError }));
-    }
+                Post.updateOne(({ idOfPost: request.body.idOfPost }), { post: request.body.post })
+                    .then(() => response.status(201).json({ message: "Post modifié avec succès" }))
+                    .catch(error => response.status(403).json(error))
 
+
+                console.log(Post.updateOne(({ idOfPost: request.body.idOfPost }), { ...requestPostToModify }), "back")
+            }
+        })
+
+        .catch(error => response.status(401).json({ message: "Non authorisé", error }))
 };
 
+
+/**
+ * 
+ * @param {*} request - Done with the Id of the post
+ * @param {*} response - from the findOne and deleteOne 
+ * 
+ * 
+ */
 const DeleteAPost = (request, response, next) => {
-    Posts.findOne({ idOfPost: request.param.postId })
+    Post.findOne({ idOfPost: request.body.idOfPost })
 
-        .then(postToDelete => {
-            if (postToDelete.idOfUser === request.auth.idOfUser) {
-                const imageFilename = postToDelete.imagePost.split('/image')[1];
-                fileSystemExtra.unlink(`image/${imageFilename}`, () => {
+        .then(post => {
+            if (post.idOfUser === request.auth.idOfUser) {
 
-                    Posts.deleteOne({ postId: request.param.idOfPost })
+                const filename = post.imagePost.split('/postImage')[1];
+
+                fileSystem.unlink(`postImage/${filename}`, () => {
+
+                    Post.deleteOne({ idOfPost: request.body.idOfPost })
                         .then(() => response.status(200).json({ message: "Post supprimé" }))
                         .catch(() => response.status(403).json({ message: "Vous n'êtes pas authorisé à faire cette manipulation" }))
                 });
@@ -87,14 +111,11 @@ const DeleteAPost = (request, response, next) => {
 
 
 
-
-
-
 module.exports = {
     GetPosts,
     PostOnePost,
     ModifyAPost,
-    DeleteAPost
+    DeleteAPost,
 };
 
 

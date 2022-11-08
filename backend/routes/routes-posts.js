@@ -6,11 +6,14 @@ const postsControl = require('../controller/postsControl');
 
 const auth = require('../middleware/auth');
 
-const imageMulter = require('../middleware/image-multer')
+const imageFromPost = require('../middleware/postImage')
 
-routerPost.get('/Posts', auth, imageMulter, postsControl.GetPosts)
-routerPost.post('/Post', auth, imageMulter, postsControl.PostOnePost)
-routerPost.put('/:id/Post', auth, imageMulter, postsControl.ModifyAPost)
-routerPost.delete('/:id/delete', auth, imageMulter, postsControl.DeleteAPost)
+const reactionsControl = require('../controller/reactionsControl')
+
+routerPost.get('/Posts', auth, imageFromPost, postsControl.GetPosts);
+routerPost.post('/Post', auth, imageFromPost, postsControl.PostOnePost);
+routerPost.put('/modify', auth, imageFromPost, postsControl.ModifyAPost);
+routerPost.delete('/delete', auth, imageFromPost, postsControl.DeleteAPost); 
+routerPost.post('/Posts/reactions', auth, reactionsControl)
 
 module.exports = routerPost;

@@ -1,18 +1,27 @@
-
-.button, .showForm{
+.button,
+.showForm {
     border-style: none;
     cursor: pointer;
     width: auto;
     height: auto;
     background-color: transparent;
+
+    @include tablet {
+        font-size: clamp(18px, 20px, 22px);
+    }
 }
 
-.formButton{
+.formButton {
     font-size: map-get($font-sizes, "title-mobile-home");
-    color: #F2E0E0
+    color: #F2E0E0; 
+
+    @include tablet {
+        font-size: clamp(20px, 22px, 24px);
+    }
 }
 
-.button-login, .button-signup{
+.button-login,
+.button-signup {
     background-color: $button-color-dark;
     color: $text-button;
     margin: 8px 0 8px 0;
@@ -21,13 +30,17 @@
     height: auto;
     width: auto;
     padding: 5px;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+    }
 }
 
-.SignupButton{
+.SignupButton {
     padding-bottom: 16px;
 }
 
-.post-button{
+.post-button {
     align-self: center;
     background-color: $button-color-dark;
     color: $text-button;
@@ -38,4 +51,49 @@
     align-self: end;
     margin-top: 8px;
     font-weight: 600;
+}
+
+
+.logOutButton {
+    border-radius: map-get($radius, "buttons-radius");
+    background-color: $tertiary-color;
+    border-style: none;
+    margin: 16px 0 8px 16px;
+    padding: 8px;
+}
+
+a {
+    color: $secondary-color;
+    text-decoration: none;
+}
+
+// .modify {
+//     border-style: none;
+//     background-color: transparent;
+// }
+
+.button-box {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.send,
+.close,
+.confirmChange,
+.deletePost {
+    width: 6em;
+    height: 2.5em;
+    cursor: pointer;
+    color: $secondary-color;
+    border-style: none;
+    border-radius: map-get($radius, "buttons-radius");
+    border: map-get($borders, "border-light");
+
+    &:active {
+        background-color: $secondary-color;
+        color: $tertiary-color;
+    }
 }

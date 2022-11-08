@@ -1,19 +1,22 @@
 const mongoose = require('mongoose');
 const uuid = require('uuid');
-const Schema = mongoose.Schema;
 
-const postsModel = mongoose.Schema({
+
+const postsModel = new mongoose.Schema({
     idOfPost: { type: String, default: uuid.v4() },
-    idOfUser: { type: Schema.Types.ObjectId, ref: 'User' },
+    idOfUser: { type: mongoose.SchemaTypes.String, ref: 'User' },
+    firstname: { type: mongoose.SchemaTypes.String, ref: 'User' },
+    lastname: { type: mongoose.SchemaTypes.String, ref: 'User' },
+    imageProfil: { type: mongoose.SchemaTypes.String, ref: 'User' },
     post: { type: String },
-    dateOfPost: { type: Date, require: true },
-    reactions: [
-        happy = { type: Schema.Types.ObjectId, ref: 'User' },
-        sad = { type: Schema.Types.ObjectId, ref: 'User' },
-    ],
-    modificationDatePost: { type: Date },
-    imagePost: { type: String }
+    happy: { type: Number, default: 0 },
+    sad: { type: Number, default: 0 },
+    happyReactionsOnPost: [],
+    sadReactionsOnPost: [],
+    imagePost: { type: String },
 
-});
+},
+    { timestamps: true }
+);
 
-module.exports = mongoose.model('Posts', postsModel);
+module.exports = mongoose.model('Post', postsModel);

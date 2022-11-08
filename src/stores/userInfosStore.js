@@ -1,19 +1,125 @@
 import { defineStore } from "pinia";
-import { fetchHelper } from '../helpers/fetchRequests'
+import fetchUrl from '../helpers/url.json';
+import { ref } from "vue";
+import axios from "axios";
 
-const baseUrl = `${import.meta.env.VITE_URL_API}/:id`
+
+const auth = localStorage.getItem("token");
+const baseUrl = fetchUrl.baseUrl;
+axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
+axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
+
 
 export const useUserInfosStore = defineStore("userInfos", {
-    state: () => ({
-        userInfos: {}
-    }),
+    state: () => {
+        return {
+            postPageUser: ref({
+                newPostAccountOwner: "",
+                imagePost: ""
+            }),
 
-    actions: {
-        GetUserInfos() {
-            this.userInfos = { userInfos };
-            fetchHelper.get(baseUrl)
-                .then(userInfos => this.userInfos = userInfos)
-                .catch(error => this.userInfos = { error })
+            userData: ref({
+                idOfUser: "",
+                email: "",
+                password: "",
+                firstname: "",
+                lastname: "",
+                imageProfil: "",
+                modifyPost:""
+            })
         }
-    }
+    },
+    getters: {
+        checkState(state) {
+            if (state.postPageUser.imagePost.length > 0) {
+                console.log(state.postPageUser.imagePost)
+            }
+        }
+    },
+    actions: {
+
+        /** Fetch request to get the user data
+         * 
+         * Calls the method GetUserData after the response
+         */
+        async GetOneUser() {
+            try {
+                const response = await axios.get(`${baseUrl}/userId`)
+                const data = response.data
+                this.GetUserData(data);
+
+            }
+            catch (error) {
+                console.log(error)
+            }
+
+
+        },
+
+        /**
+         * 
+         * @param {*} data of user got from the fetch request
+         * @returns data
+         */
+        GetUserData(data) {
+            this.userData.idOfUser = data.idOfUser;
+            this.userData.firstname = data.firstname;
+            this.userData.lastname = data.lastname;
+            this.userData.password = data.password
+            this.userData.email = data.email;
+            this.userData.imageProfil = data.imageProfil;
+
+        },
+
+        /** Formating data before sending the post request
+         * 
+         *  Data : 1. The post to be sent / 2. The image
+         * @return data from API 
+         */
+        async PublishFromAccountOwner() {
+
+            if (this.postPageUser.imagePost.length === 0) {
+                await axios.post(`${baseUrl}Post`, { "post": this.postPageUser.newPostAccountOwner })
+
+            } else {
+                const inputData = new FormData();
+                inputData.append("imagePost", this.postPageUser.imagePost)
+                inputData.append("post", this.postPageUser.newPostAccountOwner)
+
+                await axios.postForm(`${baseUrl}Post`, inputData)
+                    .then(response => console.log(response))
+            }
+
+        },
+
+
+        /**
+         * @param {*} data got from the method FetchGetData()
+         * 
+         * @return {*} Boolean
+         */
+        // checkUserId(data) {
+        //     const AllUsers = useUsersDataStore();
+        //     const { users } = storeToRefs(AllUsers);
+
+        //     if (this.userData.idOfUser === this.users.idOfUser) {
+        //         console.log(this.userData.idOfUser)
+        //     } else {
+        //         console.log(this.users.idOfUser)
+        //     }
+
+        // },
+
+        /**
+         * 
+         */
+        ModifyUserAccount() {
+
+        },
+
+
+
+
+    },
+
 });
