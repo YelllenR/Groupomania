@@ -8,7 +8,7 @@
             <div class="userAccount">
                 <img class="userPicture" :src="userData.imageProfil" alt="Photo de profil">
 
-                <form action="" method="post" >
+                <form action="" method="post">
                     <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
 
                     <label class="upload-file" for="imagePost">
@@ -18,7 +18,7 @@
                     </label>
                 </form>
             </div>
-            <button class="post-button" @click.prevent="newsPost()">Publiez</button>
+            <button class="post-button" @click="newsPost()">Publiez</button>
         </section>
 
         <section>
@@ -39,7 +39,7 @@ import PostsBox from '../components/PostsBox.vue';
 import FooterIcons from "../components/Footer.vue";
 import { useUserInfosStore } from '../stores/userInfosStore';
 import { storeToRefs } from 'pinia';
-
+import { usePostsStore } from '../stores/postsStore';
 
 const components = defineComponent({
     HeaderPosts,
@@ -58,12 +58,13 @@ const imageUserPost = (event) => {
     postPageUser.value.imagePost = event.target.files[0];
 };
 
+const postsData = usePostsStore();
 
-
-function newsPost() {
-    userInfos.PublishFromAccountOwner();
-    console.log("envoyer")
+async function newsPost() {
+    await userInfos.PublishFromAccountOwner();
+    await postsData.FetchPublications()
 }
+
 
 
 </script>

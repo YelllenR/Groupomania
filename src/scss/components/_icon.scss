@@ -13,6 +13,10 @@
 .userInfos {
     font-size: 18px;
     color: $nav-icon-color-dark;
+
+    @include tablet {
+        height: 3vh;
+    }
 }
 
 .reaction-icons-post {
@@ -32,8 +36,9 @@
     color: $reaction-icons;
 }
 
-.fa-check-square {
+.fa-window-close {
+    cursor: pointer;
     color: $secondary-color;
-    font-size: 14px;
-    box-shadow: map-get($shadows, "login-signup-shadow");
+    margin: 16px 16px 0 16px;
+    align-self: flex-end;
 }

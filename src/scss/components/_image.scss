@@ -33,3 +33,19 @@
     width: map-get($profil-picture-mobile, "width-image");
     background-color: transparent;
 }
+
+
+.imageFromPost{
+    height: 6em;
+    width: 6em;
+    align-self: center;
+    border-radius: map-get($radius, "profil-radius-mobile");
+    border: 2px solid $tertiary-color;
+}
+
+.userImage{
+    border-radius: map-get($radius, "profil-radius-mobile");
+    height: map-get($profil-picture-mobile, "height-image");
+    width: map-get($profil-picture-mobile, "width-image");
+    margin: 5px;
+}

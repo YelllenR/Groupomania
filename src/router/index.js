@@ -13,11 +13,13 @@ import SignupForm from '../components/SignupForm.vue'
 
 
 
+
+
 const routes = [
     {
         name: 'Home',
         path: '/',
-        component: Home, 
+        component: Home,
 
     },
     {
@@ -29,13 +31,13 @@ const routes = [
     {
         name: "Login",
         path: '/Login',
-        component: LoginForm, 
+        component: LoginForm,
 
     },
     {
         name: 'SignupForm',
         path: '/Signup',
-        component: SignupForm, 
+        component: SignupForm,
 
     }
 ]

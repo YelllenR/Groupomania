@@ -1,9 +1,14 @@
-#footer-container{
+#footer-container {
     margin: 32px, 8px, 8px, 8px;
     @include flex-header-homepage-footer;
     height: auto;
     min-width: map-get($breakpoints, "mobile-min");
     max-width: map-get($breakpoints, "mobile-max");
     box-shadow: map-get($shadows, "footer-post-shadow");
-}
 
+
+    @include tablet {
+        min-width: map-get($breakpoints, "tablet-min");
+        max-width: map-get($breakpoints, "tablet-max");
+    }
+}

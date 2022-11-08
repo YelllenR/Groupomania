@@ -2,7 +2,7 @@ import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
-import { getCurrentScope } from "vue";
+
 // import { useUsersDataStore } from '../stores/usersDataStore';
 
 const baseUrl = fetchUrl.baseUrl;
@@ -11,6 +11,7 @@ const auth = localStorage.getItem("token");
 
 axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
+
 
 export const usePostsStore = defineStore("postStore", {
     state: () => {
@@ -26,8 +27,6 @@ export const usePostsStore = defineStore("postStore", {
                 firstname: "",
 
             }),
-
-
         }
     },
 
@@ -43,7 +42,6 @@ export const usePostsStore = defineStore("postStore", {
             this.IsPostEmpty(data)
 
         },
-
 
         /**
          * @param {*} data 
@@ -62,22 +60,38 @@ export const usePostsStore = defineStore("postStore", {
             return hasPosts
         },
 
-        // incrementLikes() {
-        //     getCurrentScope()
-        //     this.reactions.like++;
-        //     console.log(this.reactions.like)
+        /**
+         * 
+         */
+        async ModifyOwnPost(post) {
+            const modifications = await axios.put(`${baseUrl}modify`,
+                {
+                    idOfPost: post.idOfPost,
+                    post: post.post
+                }
+            )
+
+            return modifications;
+        },
 
 
+        /**
+         * 
+         */
+        async DeleteOwnPost(post) {
+            if (post.idOfPost) {
 
-        // },
+                const deleteData = await axios.delete(`${baseUrl}delete`, {
+                    headers: { Authorization: `Bearer ${auth}` },
+                    data: {
+                        idOfPost: post.idOfPost
+                    }
+                })
 
-        // incrementDislikes() {
+                return deleteData;
+            }
 
-        // },
-
-        // SendCommentOnPost() {
-
-        // }
+        }
 
     },
 

@@ -5,11 +5,19 @@
     width: auto;
     height: auto;
     background-color: transparent;
+
+    @include tablet {
+        font-size: clamp(18px, 20px, 22px);
+    }
 }
 
 .formButton {
     font-size: map-get($font-sizes, "title-mobile-home");
-    color: #F2E0E0
+    color: #F2E0E0; 
+
+    @include tablet {
+        font-size: clamp(20px, 22px, 24px);
+    }
 }
 
 .button-login,
@@ -22,6 +30,10 @@
     height: auto;
     width: auto;
     padding: 5px;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+    }
 }
 
 .SignupButton {
@@ -55,8 +67,33 @@ a {
     text-decoration: none;
 }
 
-.modify {
+// .modify {
+//     border-style: none;
+//     background-color: transparent;
+// }
+
+.button-box {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.send,
+.close,
+.confirmChange,
+.deletePost {
+    width: 6em;
+    height: 2.5em;
+    cursor: pointer;
+    color: $secondary-color;
     border-style: none;
-    background-color: transparent;
-    
+    border-radius: map-get($radius, "buttons-radius");
+    border: map-get($borders, "border-light");
+
+    &:active {
+        background-color: $secondary-color;
+        color: $tertiary-color;
+    }
 }

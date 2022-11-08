@@ -118,25 +118,6 @@ export const useUserInfosStore = defineStore("userInfos", {
         },
 
 
-        /**
-         * 
-         */
-        ModifyOwnPost() {
-            if(this.userData.idOfUser){
-                this.userData.modifyPost = "Modification"
-                console.log("ok this is the owner")
-               return true
-                // axios.put()
-            }
-        },
-
-
-        /**
-         * 
-         */
-        DeleteOwnPost() {
-
-        }
 
 
     },

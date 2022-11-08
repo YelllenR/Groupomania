@@ -4,12 +4,15 @@ const Schema = mongoose.Schema;
 
 const commentsModel = mongoose.Schema({
     commentId: { type: String, default: uuid.v4() },
-    postId: { type: String, require: true },
-    userId: { type: Schema.Types.ObjectId, ref: 'User' },
-    comments: { type: String },
-    modificationDateComment: { type: Date, require: true },
-    creationDateComment: { type: Date, require: true }
-});
+    idOfPost: { type: String, require: true },
+    imageProfil: { type: String },
+    firstname: { type: String },
+    lastname: { type: String },
+    idOfUser: { type: String, require: true },
+    comment: { type: String },
+},
+    { timestamps: true }
+);
 
 
-module.exports = mongoose.model('Comments', commentsModel);
+module.exports = mongoose.model('Comment', commentsModel);

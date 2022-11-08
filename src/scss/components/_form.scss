@@ -2,6 +2,10 @@
     @include flex-connexion-creation-box;
     width: 90vw;
     border: none;
+
+    @include tablet {
+        width: 90vw;
+    }
 }
 
 .create-Account-form {
@@ -9,6 +13,11 @@
     border: map-get($borders, "border-light");
     border-radius: map-get($radius, "home-fields-radius");
     overflow-y: scroll;
+
+    @include tablet {
+        width: 80vw;
+        height: 40vh;
+    }
 }
 
 
@@ -17,6 +26,12 @@
     width: 310px;
     height: 200px;
     background-color: $box-login-signup;
+
+    @include tablet {
+        width: 70vw;
+        height: auto;
+        padding-top: 24px;
+    }
 }
 
 label {
@@ -24,7 +39,13 @@ label {
     padding: 8px;
     background-color: transparent;
     align-self: flex-start;
-    font-size: map-get($font-sizes, "fields-input-mobile")
+    font-size: map-get($font-sizes, "fields-input-mobile"); 
+
+    @include tablet {
+        width: 60vw;
+        font-size: clamp(16px, 18px, 20px);
+        padding: 8px 8px 8px 0;
+    }
 }
 
 
@@ -36,6 +57,12 @@ input,
     background-color: transparent;
     border-style: none;
     margin-bottom: 5px;
+
+    @include tablet {
+        width: 60vw;
+        font-size: clamp(16px, 18px, 20px);
+        padding: 8px 8px 8px 0;
+    }
 }
 
 input {
@@ -45,6 +72,12 @@ input {
     border-radius: map-get($radius, "home-fields-radius");
     padding: 8px;
     box-shadow: map-get($shadows, "login-signup-shadow");
+
+    @include tablet {
+        width: 60vw;
+        height: 4.5vh;
+        font-size: clamp(14px, 16px, 18px);
+    }
 }
 
 .form-control-signup {
@@ -52,6 +85,11 @@ input {
     background-color: $box-login-signup;
     width: 310px;
     height: auto;
+
+    @include tablet {
+        width: 80vw;
+        height: auto;
+    }
 }
 
 .lastname-field,
@@ -62,6 +100,12 @@ input {
     @include flex-connexion-fields;
     background-color: transparent;
     width: 90%;
+
+    @include tablet {
+        width: 60vw;
+        height: auto;
+        font-size: clamp(14px, 16px, 18px);
+    }
 }
 
 .image-file {
