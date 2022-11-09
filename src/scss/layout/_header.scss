@@ -1,15 +1,28 @@
 // Header in homepage
 #header-container {
     @include flex-header-homepage-footer;
-    min-width: map-get($breakpoints, "mobile-min");
-    max-width: map-get($breakpoints, "mobile-max");
-    margin-top: 10px;
-
+    margin: 16px; 
+    
+    @include mobile {
+        min-width: map-get($breakpoints, "mobile-min");
+        max-width: map-get($breakpoints, "mobile-max");
+        margin: 10px 0 0 0;
+    }
 
     @include tablet {
         min-width: map-get($breakpoints, "tablet-min");
         max-width: map-get($breakpoints, "tablet-max");
     }
+
+    @include desktop {
+        min-width: map-get($breakpoints, "desktop-min");
+        max-width: map-get($breakpoints, "desktop-max");
+    }
+}
+
+#container{
+    width: 95vw;
+    margin-top: 8px;
 }
 
 .header-logo-container {
@@ -25,6 +38,10 @@
     @include tablet {
         margin-top: 24px;
     }
+
+    @include desktop {
+        margin-top: 24px;
+    }
 }
 
 .logo-end-line {
@@ -34,6 +51,10 @@
     @include tablet {
         margin: 16px;
     }
+
+    @include desktop {
+        margin-top: 16px;
+    }
 }
 
 // ---------------------------- Post Page ----------------------------- //
@@ -42,7 +63,6 @@
     @include flex-footer-and-headerPost;
     margin: 12px;
     z-index: -5;
-
 }
 
 .logo-post {
@@ -52,12 +72,20 @@
     @include tablet {
         height: 4.5vh;
     }
+
+    @include desktop {
+        height: 5vh;
+    }
 }
 
 .logo-theme-color {
     height: 25px;
-    
+
     @include tablet {
+        height: 3.5vh;
+    }
+
+    @include desktop {
         height: 3.5vh;
     }
 }

@@ -8,6 +8,14 @@
 .fab {
     color: $dark-icons-footer;
     cursor: pointer;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+     }
+
+     @include desktop {
+        font-size: clamp(15px, 18px, 20px);
+    }
 }
 
 .userInfos {
@@ -15,13 +23,19 @@
     color: $nav-icon-color-dark;
 
     @include tablet {
-        height: 3vh;
+        height: 3.5vh;
+    }
+
+    @include desktop {
+        height: 3.5vh;
     }
 }
 
 .reaction-icons-post {
     @include flex-post-reactions;
     background-color: $box-posts-dark;
+
+
 }
 
 .reaction {
@@ -30,10 +44,22 @@
     cursor: pointer;
     background-color: transparent;
     font-size: map-get($icon-size-mobile, "reaction-icons");
+
+    @include tablet {
+        font-size: clamp(14px, 16px, 18px);
+     }
+
+     @include desktop {
+        font-size: clamp(14px, 16px, 18px);
+    }
 }
 
 .photo {
     color: $reaction-icons;
+
+    @include tablet {
+        font-size: clamp(15px, 17px, 18px);
+     }
 }
 
 .fa-window-close {
@@ -41,4 +67,12 @@
     color: $secondary-color;
     margin: 16px 16px 0 16px;
     align-self: flex-end;
+
+    @include tablet {
+        font-size: clamp(16px, 17px, 18px);
+     }
+
+     @include tablet {
+        font-size: clamp(15px, 17px, 18px);
+     }
 }

@@ -8,51 +8,74 @@
 
 #mainPost-container {
     @include flex-connexion-creation-box;
-    min-width: map-get($breakpoints, "mobile-min");
-    max-width: map-get($breakpoints, "mobile-max");
-    height: 90vh;
+
+    height: 100vh;
     overflow: hidden;
+
+    @include mobile {
+        min-width: map-get($breakpoints, "mobile-min");
+        max-width: map-get($breakpoints, "mobile-max");
+    }
 
     @include tablet {
         min-width: map-get($breakpoints, "tablet-min");
         max-width: map-get($breakpoints, "tablet-max");
         height: 75vh;
     }
+
 }
 
 .box-userAccount {
-    height: 15vh;
-    width: 90vw;
-    margin: 12px;
+    width: 70vw;
+    height: 10vh;
     display: flex;
     flex-direction: column;
 
-    @include tablet {
-        height: 10vh;
+    @include mobile {
+        height: 15vh;
+        width: 90vw;
+        margin: 12px;
     }
+
+    @include tablet {
+        height: 15vh;
+        width: 80vw;
+    }
+
 }
 
 .userAccount {
     @include flex-profil-mainUser;
+
 }
 
 #userPost {
-    width: 15em;
-    height: auto;
+    width: 50vw;
+    height: 6vh;
+    padding: 8px;
+    margin-right: 32px;
     overflow: scroll;
     box-shadow: map-get($shadows, "home-fields-shadow");
     border-style: none;
     background-color: $post-field-dark;
     resize: none;
-    padding: 3px;
+
     color: $tertiary-color;
     border-radius: map-get($radius, "post-box");
 
-    @include tablet {
+    @include mobile {
         width: 60vw;
-        height: 8vh;
-        padding: 8px;
+        height: auto;
+        padding: 3px;
     }
+
+    @include tablet {
+        width: 50vw;
+        height: 6vh;
+        padding: 8px;
+        margin-right: 32px;
+    }
+
 }
 
 #userPost:focus {
@@ -61,6 +84,15 @@
 
 .upload-file {
     cursor: pointer;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 22px);
+        margin-right: 8px;
+    }
+
+    @include desktop {
+        font-size: clamp(16px, 18px, 22px);
+    }
 }
 
 #imagePost {
@@ -77,6 +109,10 @@
     overflow-y: scroll;
     border-radius: 2%;
 
+    @include desktop {
+        width: 75vw;
+        margin: 12px;
+    }
 }
 
 
@@ -89,6 +125,10 @@
     @include tablet {
         margin: 8px;
     }
+
+    @include desktop {
+        margin: 12px;
+    }
 }
 
 .username {
@@ -99,6 +139,11 @@
 
     @include tablet {
         font-size: clamp(16px, 18px, 20px);
+        padding-left: 18px;
+    }
+
+    @include desktop {
+        font-size: clamp(18px, 20px, 22px);
         padding-left: 18px;
     }
 }
@@ -127,6 +172,11 @@
         padding-left: 18px;
         padding-bottom: 8px;
     }
+
+    @include desktop {
+        font-size: clamp(13px, 15px, 18px);
+        padding-left: 18px;
+    }
 }
 
 .post {
@@ -140,6 +190,10 @@
     flex-direction: column;
 
     @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+    }
+
+    @include desktop {
         font-size: clamp(16px, 18px, 20px);
     }
 }
@@ -158,6 +212,10 @@
 
     @include tablet {
         font-size: clamp(14px, 16px, 18px);
+    }
+
+    @include desktop {
+        font-size: clamp(16px, 18px, 20px);
     }
 }
 
@@ -196,6 +254,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+
+    @include tablet {
+        height: 70vh;
+        width: 60vw;
+    }
+
+    @include desktop {
+        height: 70vh;
+        width: 60vw;
+    }
 }
 
 .inputChange {
@@ -211,6 +280,18 @@
 
     &:focus {
         border-style: none;
+    }
+
+    @include tablet {
+        height: 30vh;
+        width: 50vw;
+        margin-bottom: 32px;
+    }
+
+    @include desktop {
+        height: 35vh;
+        width: 50vw;
+        margin-bottom: 32px;
     }
 }
 
@@ -251,44 +332,74 @@
     border: map-get($borders, "border-light");
 }
 
-;
+
 
 .userInformations {
     display: flex;
 }
 
-;
+
 
 .infosComment {
     display: flex;
     flex-direction: column;
     background-color: transparent;
     font-size: 12px;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+    }
+
+    @include desktop {
+        font-size: clamp(18px, 20px, 22px);
+    }
 }
 
-;
+
 
 .commentOfUser {
     padding: 8px;
     font-size: 15px;
     color: $username-dark;
+
+    @include tablet {
+        font-size: clamp(16px, 18px, 20px);
+    }
+
+    @include desktop {
+        font-size: clamp(18px, 19px, 20px);
+    }
 }
 
-;
+
 
 .dateOfComment {
     padding: 8px;
     font-size: 12px;
     color: $username-dark;
     align-self: flex-end;
+
+    @include tablet {
+        font-size: clamp(12px, 14px, 18px);
+    }
+
+    @include desktop {
+        font-size: clamp(12px, 14px, 18px);
+    }
 }
 
-;
+
 
 .userNameComment {
     color: $username-dark;
     padding: 5px;
     margin-top: 5px;
-}
 
-;
+    @include tablet {
+        font-size: clamp(18px, 20px, 22px);
+    }
+
+    @include desktop {
+        font-size: clamp(18px, 20px, 22px);
+    }
+}

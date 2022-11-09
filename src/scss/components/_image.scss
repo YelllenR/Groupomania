@@ -2,6 +2,11 @@
     color: $logo-sphere;
     height: 64px;
     width: 66px;
+
+    @include tablet {
+        height: 10vh;
+        width: 10vw;
+    }
 }
 
 .header-end-line {
@@ -19,33 +24,56 @@
     fill: $secondary-color;
     height: 17px;
     width: 15px;
+
+    @include tablet {
+        height: 3vh;
+        width: 5vw;
+    }
 }
 
-.usersPic{
+.usersPic {
     @include flex-usersInfo;
     background-color: transparent;
 }
 
 
-.profil-picture, .userPicture {
+.profil-picture,
+.userPicture {
     border-radius: map-get($radius, "profil-radius-mobile");
     height: map-get($profil-picture-mobile, "height-image");
     width: map-get($profil-picture-mobile, "width-image");
     background-color: transparent;
+
+    
+    @include tablet {
+        height: 7vh;
+        width: 7vw;
+    }
 }
 
 
-.imageFromPost{
+.imageFromPost {
     height: 6em;
     width: 6em;
     align-self: center;
     border-radius: map-get($radius, "profil-radius-mobile");
     border: 2px solid $tertiary-color;
+
+    @include tablet {
+        height: 10vh;
+        width: 10vw;
+
+    }
 }
 
-.userImage{
+.userImage {
     border-radius: map-get($radius, "profil-radius-mobile");
     height: map-get($profil-picture-mobile, "height-image");
     width: map-get($profil-picture-mobile, "width-image");
     margin: 5px;
+
+    @include tablet {
+        height: 7vh;
+        width: 7vw;
+    }
 }

@@ -83,6 +83,16 @@
 
 // ----------------------Media queries----------------------//
 
+
+@mixin mobile {
+    @media screen and (min-width: map-get($breakpoints, "mobile-min")) and (max-width: map-get($breakpoints, "mobile-max")) {
+        & {
+            @content;
+        }
+    }
+
+}
+
 @mixin tablet {
     @media screen and (min-width: map-get($breakpoints, "tablet-min")) and (max-width: map-get($breakpoints, "tablet-max")) {
         & {
