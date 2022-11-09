@@ -18,10 +18,11 @@ export const useReactionPost = defineStore("usersReactions", {
         return {
             reactions: ref({
                 postId: "",
-                like: 0,
-                dislike: 0,
                 userId: "",
             }),
+
+            like: 0,
+            dislike: 0,
 
             usersComments: ref({
                 idOfPost: "",
@@ -48,21 +49,16 @@ export const useReactionPost = defineStore("usersReactions", {
 
             if (data.idOfPost) {
                 this.reactions.postId = data.idOfPost;
-
-                console.log(this.reactions.postId = data.idOfPost)
+                this.like++
             }
 
-            if (this.reactions.like === 0 && this.reactions.postId) {
-                return this.reactions.like++;
-            }
+            
 
-
-            const sendLike = await axios.post(`${baseUrl}Posts/reactions`, {
+            axios.post(`${baseUrl}Posts/reactions`, {
                 idOfPost: data.idOfPost,
-                happy: this.reactions.like,
-            });
+                happy: this.like
+            })
 
-            return sendLike
         },
 
         /**
@@ -75,20 +71,15 @@ export const useReactionPost = defineStore("usersReactions", {
 
             if (data.idOfPost) {
                 this.reactions.postId = data.idOfPost;
+                this.dislike++;
             }
 
-            if (this.reactions.dislike === 0 && this.reactions.postId) {
-                this.reactions.dislike++;
 
-            }
-
-            const sendDislike = await axios.post(`${baseUrl}Posts/reactions`, {
+            axios.post(`${baseUrl}Posts/reactions`, {
                 idOfPost: data.idOfPost,
-                sad: this.reactions.dislike,
-            });
+                sad: this.dislike,
+            })
 
-
-            return sendDislike
         },
 
         /**

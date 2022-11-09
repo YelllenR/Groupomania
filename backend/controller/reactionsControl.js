@@ -12,63 +12,70 @@ const reactions = {
 
 const reactionsOnPost = (request, response, next) => {
 
-    Post.findOne({ id: request.body.idOfPost })
+    Post.aggregate([
+        { $match: { idOfPost: request.body.idOfPost } }
+    ])
         .then(post => {
 
-            switch (reactions) {
-                case (reactions.happy):
+            switch (request.body) {
+
+                case reactions.happy:
                     if (!post.happyReactionsOnPost.includes(request.auth.idOfUser)) {
 
                         Post.updateOne({ idOfPost: request.body.idOfPost }, {
                             $inc: { happy: reactions.happy },
                             $addToSet: { happyReactionsOnPost: request.auth }
                         })
-                            .then((modif) => response.status(200).json({ message: 'ok', modif }))
+                            .then(() => response.status(200).json({ message: 'ok' }))
                             .catch(error => response.status(401).json({ message: error }))
                     }
                     break;
 
-                case (reactions.happy - 1):
+                case reactions.removeSad:
                     if (post.happyReactionsOnPost.includes(request.auth.idOfUser)) {
 
                         Post.updateOne({ idOfPost: request.body.idOfPost }, {
-                            $inc: { happy: reactions.happy - 1 },
+                            $inc: { happy: reactions.removeHappy },
                             $pull: { happyReactionsOnPost: request.auth }
                         })
-                            .then((modif) => response.status(200).json({ message: 'ok', modif }))
+                            .then(() => response.status(200).json({ message: 'ok', }))
                             .catch(error => response.status(401).json({ message: error }))
                     }
 
                     break;
 
-                case (reactions.sad):
+                case reactions.sad:
                     if (!post.sadReactionsOnPost.includes(request.auth.idOfUser) && reactions.sad) {
 
                         Post.updateOne({ idOfPost: request.body.idOfPost }, {
-                            $inc: { sad: reactions.sad },
+                            $inc: { sad: reactions.sad + 1},
                             $addToSet: { sadReactionsOnPost: request.auth }
                         })
                             .then(() => response.status(200).json({ message: 'ok' }))
                             .catch(error => response.status(401).json(error))
-                    }
+                    };
+
                     break;
 
 
-                case (reactions.sad - 1):
+                case reactions.removeSad:
                     if (post.sadReactionsOnPost.includes(request.auth.idOfUser)) {
 
                         Post.updateOne({ idOfPost: request.body.idOfPost }, {
-                            $inc: { sad: reactions.sad - 1 },
+                            $inc: { sad: reactions.removeSad },
                             $pull: { sadReactionsOnPost: request.auth }
                         })
-                            .then((modif) => response.status(200).json({ message: 'ok', modif }))
+                            .then(() => response.status(200).json({ message: 'ok' }))
                             .catch(error => response.status(401).json({ message: error }))
                     }
                     break;
+
+                   
             }
 
-            response.status(200).json(post)
+            response.status(200).json(request.body.reactions)
         })
+
 
         .catch(error => response.status(500).json(error));
 };

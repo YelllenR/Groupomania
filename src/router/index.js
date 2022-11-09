@@ -4,15 +4,11 @@
  */
 import { createRouter, createWebHistory } from 'vue-router'
 
-
-// importing router from the router file
+const auth = localStorage.getItem("token");
 import Home from '../pages/Home.vue'
 import Posts from '../pages/Posts.vue'
 import LoginForm from '../components/LoginForm.vue'
 import SignupForm from '../components/SignupForm.vue'
-
-
-
 
 
 const routes = [
@@ -40,14 +36,12 @@ const routes = [
         component: SignupForm,
 
     }
-]
+];
+
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
 })
-
-
-
 
 export default router;

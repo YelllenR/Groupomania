@@ -9,6 +9,7 @@ const secretToken = config.someToken;
 const bcrypt = require('bcrypt');
 
 
+
 const userLogIn = (request, response, next) => {
     User.findOne({ email: request.body.email })
 
@@ -61,16 +62,19 @@ const createAccount = (request, response, next) => {
                 password: passwordCrypt,
                 firstname: request.body.firstname,
                 lastname: request.body.lastname,
-                imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`
+                imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`,
+
             });
 
             user.save()
-                .then(() => response.status(201).json({ message: "Le compte a été créé avec succes" }))
+                .then(() => response.status(201).json({
+                    message: "Le compte a été créé avec succes"
+                }))
                 .catch(creationError => response.status(400).json({ message: "Une erreur est survenue lors de la création", creationError }))
 
         })
 
-        .catch(error => response.status(500).json({ message: "error controller back", error }));
+        .catch(error => response.status(500).json({ message: "Une erreur est survenue", error }));
 
 };
 
@@ -90,15 +94,10 @@ const userInfos = async (request, response, next) => {
         })
 }
 
-// const allUsers = (request, response, next) => {
-//     User.find()
-//         .then((users) => response.status(200).json(users))
-//         .catch((error) => response.status(401).json({ message: error }))
-// };
 
 module.exports = {
     userLogIn,
     createAccount,
     userInfos,
-    // allUsers
+
 };

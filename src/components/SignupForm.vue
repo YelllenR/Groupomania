@@ -46,9 +46,10 @@ import { watchEffect } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useUserCreationStore } from '../stores/userCreateAccountStore';
 import { useFormValidations } from '../stores/formsValidationStore'
-
+import { useRouter } from 'vue-router'
 
 const userStore = useUserCreationStore();
+const { stateLogs } = storeToRefs(userStore)
 
 const formValidation = useFormValidations();
 const { user, message } = storeToRefs(formValidation)
@@ -59,6 +60,7 @@ const imageSelected = (event) => {
 };
 
 
+
 watchEffect(() => {
   formValidation.validateEmail(user.value.email);
   formValidation.validateFirstname(user.value.firstname);
@@ -66,8 +68,14 @@ watchEffect(() => {
 });
 
 
-const createAccount = () => {
-  userStore.Create(user.value)
+const router = useRouter();
+
+const createAccount = async () => {
+  await userStore.Create(user.value)
+
+  if (stateLogs.value.hasToken === true) {
+    await router.push({ name: "Posts" })
+  }
 };
 
 </script>

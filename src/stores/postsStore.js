@@ -3,7 +3,6 @@ import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
 
-// import { useUsersDataStore } from '../stores/usersDataStore';
 
 const baseUrl = fetchUrl.baseUrl;
 const auth = localStorage.getItem("token");
@@ -25,7 +24,6 @@ export const usePostsStore = defineStore("postStore", {
                 lastname: "",
                 imageProfil: "",
                 firstname: "",
-
             }),
         }
     },
@@ -91,7 +89,9 @@ export const usePostsStore = defineStore("postStore", {
                 return deleteData;
             }
 
-        }
+        },
+
+
 
     },
 
