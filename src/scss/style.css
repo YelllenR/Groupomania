@@ -12,12 +12,23 @@
     font-size: 20px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .button,
+.showForm {
+    font-size: 22px;
+  }
+}
 
 .formButton {
   font-size: 18px;
   color: #F2E0E0;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
+  .formButton {
+    font-size: 22px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
   .formButton {
     font-size: 22px;
   }
@@ -40,6 +51,12 @@
     font-size: 18px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .button-login,
+.button-signup {
+    font-size: 18px;
+  }
+}
 
 .SignupButton {
   padding-bottom: 16px;
@@ -57,6 +74,16 @@
   margin-top: 8px;
   font-weight: 600;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .post-button {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .post-button {
+    font-size: 18px;
+  }
+}
 
 .logOutButton {
   border-radius: 6px;
@@ -64,6 +91,16 @@
   border-style: none;
   margin: 16px 0 8px 16px;
   padding: 8px;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .logOutButton {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .logOutButton {
+    font-size: 18px;
+  }
 }
 
 a {
@@ -97,6 +134,24 @@ a {
   background-color: #FFD7D7;
   color: #4E5166;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .send,
+.close,
+.confirmChange,
+.deletePost {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .send,
+.close,
+.confirmChange,
+.deletePost {
+    margin-top: 24px;
+    font-size: 16px;
+  }
+}
 
 .social-icons {
   display: flex;
@@ -111,6 +166,18 @@ a {
   color: #F2EFEF;
   cursor: pointer;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .fas,
+.fab {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .fas,
+.fab {
+    font-size: 18px;
+  }
+}
 
 .userInfos {
   font-size: 18px;
@@ -118,7 +185,12 @@ a {
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .userInfos {
-    height: 3vh;
+    height: 3.5vh;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .userInfos {
+    height: 3.5vh;
   }
 }
 
@@ -136,9 +208,24 @@ a {
   background-color: transparent;
   font-size: 14px;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .reaction {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .reaction {
+    font-size: 16px;
+  }
+}
 
 .photo {
   color: #FFD7D7;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .photo {
+    font-size: 17px;
+  }
 }
 
 .fa-window-close {
@@ -147,11 +234,27 @@ a {
   margin: 16px 16px 0 16px;
   align-self: flex-end;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .fa-window-close {
+    font-size: 17px;
+  }
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .fa-window-close {
+    font-size: 17px;
+  }
+}
 
 .logo-sphere {
   color: #FFD7D7;
   height: 64px;
   width: 66px;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .logo-sphere {
+    height: 10vh;
+    width: 10vw;
+  }
 }
 
 .header-end-line {
@@ -172,6 +275,12 @@ a {
   height: 17px;
   width: 15px;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .logo-end-line {
+    height: 3vh;
+    width: 5vw;
+  }
+}
 
 .usersPic {
   display: flex;
@@ -179,11 +288,19 @@ a {
   background-color: transparent;
 }
 
-.profil-picture, .userPicture {
+.profil-picture,
+.userPicture {
   border-radius: 25px;
   height: 50px;
   width: 50px;
   background-color: transparent;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .profil-picture,
+.userPicture {
+    height: 7vh;
+    width: 7vw;
+  }
 }
 
 .imageFromPost {
@@ -193,6 +310,12 @@ a {
   border-radius: 25px;
   border: 2px solid #4E5166;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .imageFromPost {
+    height: 10vh;
+    width: 10vw;
+  }
+}
 
 .userImage {
   border-radius: 25px;
@@ -200,16 +323,31 @@ a {
   width: 50px;
   margin: 5px;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .userImage {
+    height: 7vh;
+    width: 7vw;
+  }
+}
 
 .showForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90vw;
   border: none;
 }
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  .showForm {
+    width: 90vw;
+  }
+}
 @media screen and (min-width: 421px) and (max-width: 768px) {
+  .showForm {
+    width: 90vw;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
   .showForm {
     width: 90vw;
   }
@@ -225,6 +363,12 @@ a {
   .create-Account-form {
     width: 80vw;
     height: 40vh;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .create-Account-form {
+    width: 60vw;
+    height: 45vh;
   }
 }
 
@@ -244,6 +388,13 @@ a {
     padding-top: 24px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .form-control-login {
+    width: 60vw;
+    height: auto;
+    padding-top: 24px;
+  }
+}
 
 label {
   color: #F2E0E0;
@@ -257,6 +408,13 @@ label {
     width: 60vw;
     font-size: 18px;
     padding: 8px 8px 8px 0;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  label {
+    width: 50vw;
+    font-size: 20px;
+    padding: 8px 8px 8px 0px;
   }
 }
 
@@ -281,6 +439,15 @@ input,
     padding: 8px 8px 8px 0;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .email-input,
+input,
+.password-input {
+    width: 50vw;
+    font-size: 18px;
+    padding: 8px 8px 8px 0px;
+  }
+}
 
 input {
   background-color: rgba(242, 224, 224, 0.8);
@@ -297,6 +464,14 @@ input {
     font-size: 16px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  input {
+    width: 50vw;
+    font-size: 17px;
+    height: 4.5vh;
+    padding: 8px 8px 8px 8px;
+  }
+}
 
 .form-control-signup {
   display: flex;
@@ -310,6 +485,12 @@ input {
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .form-control-signup {
     width: 80vw;
+    height: auto;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .form-control-signup {
+    width: 60vw;
     height: auto;
   }
 }
@@ -337,6 +518,17 @@ input {
     font-size: 16px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .lastname-field,
+.firstname-field,
+.email-field,
+.password-field,
+.image-field {
+    width: 50vw;
+    height: auto;
+    font-size: 16px;
+  }
+}
 
 .image-file {
   padding: 5px;
@@ -348,15 +540,25 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto;
-  min-width: 320px;
-  max-width: 420px;
+  height: 15vh;
+  width: 100vw;
   box-shadow: -3px -3px 4px rgba(0, 0, 0, 0.09);
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #footer-container {
+    min-width: 320px;
+    max-width: 420px;
+  }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   #footer-container {
     min-width: 421px;
     max-width: 768px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #footer-container {
+    min-width: 769px;
   }
 }
 
@@ -365,15 +567,31 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  max-width: 420px;
-  margin-top: 10px;
+  margin: 16px;
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #header-container {
+    min-width: 320px;
+    max-width: 420px;
+    margin: 10px 0 0 0;
+  }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   #header-container {
     min-width: 421px;
     max-width: 768px;
   }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #header-container {
+    min-width: 769px;
+    max-width: 1200px;
+  }
+}
+
+#container {
+  width: 95vw;
+  margin-top: 8px;
 }
 
 .header-logo-container {
@@ -391,6 +609,11 @@ input {
     margin-top: 24px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .header-end-line {
+    margin-top: 24px;
+  }
+}
 
 .logo-end-line {
   width: auto;
@@ -399,6 +622,11 @@ input {
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .logo-end-line {
     margin: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .logo-end-line {
+    margin-top: 16px;
   }
 }
 
@@ -419,11 +647,21 @@ input {
     height: 4.5vh;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .logo-post {
+    height: 5vh;
+  }
+}
 
 .logo-theme-color {
   height: 25px;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
+  .logo-theme-color {
+    height: 3.5vh;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
   .logo-theme-color {
     height: 3.5vh;
   }
@@ -459,8 +697,21 @@ input {
 #app,
 body,
 html {
-  min-width: 320px;
-  max-width: 420px;
+  width: 100vw;
+  background-color: #4E5166;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #app,
+body,
+html {
+    min-width: 320px;
+    max-width: 420px;
+  }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   #app,
@@ -471,18 +722,35 @@ html {
     overflow-y: scroll;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #app,
+body,
+html {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow-y: scroll;
+  }
+}
 
 #main-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  max-width: 420px;
   background-color: rgba(217, 217, 217, 0.16);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  height: 20em;
-  margin: 0;
+  margin: 24;
+  height: 30em;
+  width: 90vw;
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #main-container {
+    min-width: 320px;
+    max-width: 420px;
+    height: 20em;
+  }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   #main-container {
@@ -491,12 +759,33 @@ html {
     height: 30em;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #main-container {
+    min-width: 769px;
+    max-width: 1200px;
+  }
+}
 
 .create-account {
   background-color: transparent;
   color: #F2E0E0;
   padding: 20px 0 8px 0;
   font-size: 14px;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .create-account {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .create-account {
+    font-size: 22px;
+  }
+}
+
+span {
+  color: #FD2D01;
+  background-color: transparent;
 }
 
 * {
@@ -512,10 +801,14 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 320px;
-  max-width: 420px;
-  height: 90vh;
+  height: 100vh;
   overflow: hidden;
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #mainPost-container {
+    min-width: 320px;
+    max-width: 420px;
+  }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   #mainPost-container {
@@ -526,15 +819,22 @@ html {
 }
 
 .box-userAccount {
-  height: 15vh;
-  width: 90vw;
-  margin: 12px;
+  width: 70vw;
+  height: 10vh;
   display: flex;
   flex-direction: column;
 }
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  .box-userAccount {
+    height: 15vh;
+    width: 90vw;
+    margin: 12px;
+  }
+}
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .box-userAccount {
-    height: 10vh;
+    height: 15vh;
+    width: 80vw;
   }
 }
 
@@ -545,22 +845,31 @@ html {
 }
 
 #userPost {
-  width: 15em;
-  height: auto;
+  width: 50vw;
+  height: 6vh;
+  padding: 8px;
+  margin-right: 32px;
   overflow: scroll;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
   border-style: none;
   background-color: #F2E0E0;
   resize: none;
-  padding: 3px;
   color: #4E5166;
   border-radius: 4px;
 }
-@media screen and (min-width: 421px) and (max-width: 768px) {
+@media screen and (min-width: 320px) and (max-width: 420px) {
   #userPost {
     width: 60vw;
-    height: 8vh;
+    height: auto;
+    padding: 3px;
+  }
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  #userPost {
+    width: 50vw;
+    height: 6vh;
     padding: 8px;
+    margin-right: 32px;
   }
 }
 
@@ -570,6 +879,17 @@ html {
 
 .upload-file {
   cursor: pointer;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .upload-file {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .upload-file {
+    font-size: 18px;
+  }
 }
 
 #imagePost {
@@ -587,6 +907,12 @@ html {
   overflow-y: scroll;
   border-radius: 2%;
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  #post-container {
+    width: 75vw;
+    margin: 12px;
+  }
+}
 
 .onePost {
   height: auto;
@@ -596,6 +922,11 @@ html {
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .onePost {
     margin: 8px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .onePost {
+    margin: 12px;
   }
 }
 
@@ -608,6 +939,12 @@ html {
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .username {
     font-size: 18px;
+    padding-left: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .username {
+    font-size: 20px;
     padding-left: 18px;
   }
 }
@@ -637,6 +974,12 @@ html {
     padding-bottom: 8px;
   }
 }
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .dateTime {
+    font-size: 15px;
+    padding-left: 18px;
+  }
+}
 
 .post {
   background-color: #F2E0E0;
@@ -649,6 +992,11 @@ html {
   flex-direction: column;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
+  .post {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
   .post {
     font-size: 18px;
   }
@@ -669,6 +1017,11 @@ html {
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .check {
     font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .check {
+    font-size: 18px;
   }
 }
 
@@ -706,6 +1059,20 @@ html {
   flex-direction: column;
   align-items: center;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .container,
+.changes {
+    height: 70vh;
+    width: 60vw;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .container,
+.changes {
+    height: 70vh;
+    width: 60vw;
+  }
+}
 
 .inputChange {
   margin: 16px;
@@ -720,6 +1087,20 @@ html {
 }
 .inputChange:focus {
   border-style: none;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .inputChange {
+    height: 30vh;
+    width: 50vw;
+    margin-bottom: 32px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .inputChange {
+    height: 35vh;
+    width: 50vw;
+    margin-bottom: 32px;
+  }
 }
 
 #container-Comment {
@@ -768,11 +1149,31 @@ html {
   background-color: transparent;
   font-size: 12px;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .infosComment {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .infosComment {
+    font-size: 20px;
+  }
+}
 
 .commentOfUser {
   padding: 8px;
   font-size: 15px;
   color: #F2E0E0;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .commentOfUser {
+    font-size: 18px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .commentOfUser {
+    font-size: 19px;
+  }
 }
 
 .dateOfComment {
@@ -781,9 +1182,29 @@ html {
   color: #F2E0E0;
   align-self: flex-end;
 }
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .dateOfComment {
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .dateOfComment {
+    font-size: 14px;
+  }
+}
 
 .userNameComment {
   color: #F2E0E0;
   padding: 5px;
   margin-top: 5px;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .userNameComment {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .userNameComment {
+    font-size: 20px;
+  }
 }/*# sourceMappingURL=style.css.map */

@@ -9,6 +9,10 @@
     @include tablet {
         font-size: clamp(18px, 20px, 22px);
     }
+
+    @include desktop {
+        font-size: clamp(18px, 22px, 24px);
+    }
 }
 
 .formButton {
@@ -17,6 +21,10 @@
 
     @include tablet {
         font-size: clamp(20px, 22px, 24px);
+    }
+
+    @include desktop {
+        font-size: clamp(18px, 22px, 24px);
     }
 }
 
@@ -33,6 +41,10 @@
 
     @include tablet {
         font-size: clamp(16px, 18px, 20px);
+    }
+
+    @include desktop {
+        font-size: clamp(15px, 18px, 20px);
     }
 }
 
@@ -51,6 +63,14 @@
     align-self: end;
     margin-top: 8px;
     font-weight: 600;
+
+    @include tablet {
+        font-size: clamp(14px, 16px, 18px);
+    }
+
+    @include desktop {
+        font-size: clamp(15px, 18px, 20px);
+    }
 }
 
 
@@ -60,6 +80,14 @@
     border-style: none;
     margin: 16px 0 8px 16px;
     padding: 8px;
+
+    @include tablet {
+        font-size: clamp(14px, 16px, 18px);
+    }
+
+    @include desktop {
+        font-size: clamp(15px, 18px, 20px);
+    }
 }
 
 a {
@@ -67,10 +95,7 @@ a {
     text-decoration: none;
 }
 
-// .modify {
-//     border-style: none;
-//     background-color: transparent;
-// }
+
 
 .button-box {
     width: 80%;
@@ -95,5 +120,16 @@ a {
     &:active {
         background-color: $secondary-color;
         color: $tertiary-color;
+    }
+
+
+    @include tablet {
+        margin-top: 24px;
+        font-size: clamp(14px, 16px, 18px);
+    }
+
+    @include desktop {
+        margin-top: 24px;
+        font-size: clamp(14px, 16px, 18px);
     }
 }
