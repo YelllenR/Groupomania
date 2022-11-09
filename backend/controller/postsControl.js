@@ -70,12 +70,11 @@ const ModifyAPost = (request, response, next) => {
         .then((post) => {
             if (request.auth.idOfUser === post.idOfUser) {
 
-                Post.updateOne(({ idOfPost: request.body.idOfPost }), { post: request.body.post })
+                Post.updateOne(({ idOfPost: request.body.idOfPost }), {...requestPostToModify, post: request.body.post })
                     .then(() => response.status(201).json({ message: "Post modifié avec succès" }))
                     .catch(error => response.status(403).json(error))
 
 
-                console.log(Post.updateOne(({ idOfPost: request.body.idOfPost }), { ...requestPostToModify }), "back")
             }
         })
 

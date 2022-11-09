@@ -14,7 +14,7 @@ const postsModel = new mongoose.Schema({
     happyReactionsOnPost: [],
     sadReactionsOnPost: [],
     imagePost: { type: String },
-
+    role: { type: String }
 },
     { timestamps: true }
 );

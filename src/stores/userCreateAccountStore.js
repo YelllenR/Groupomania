@@ -13,7 +13,7 @@ export const useUserCreationStore = defineStore("userStore", {
         const { user } = storeToRefs(userInputs);
 
         return {
-            user
+            user,
         }
     },
 
@@ -30,12 +30,10 @@ export const useUserCreationStore = defineStore("userStore", {
 
 
 
-            await axios.post(`${baseUrl}auth/create-account`, formData)
-                .then(response => console.log(response))
-                .catch((error) => console.log(error))
+            const result = await axios.post(`${baseUrl}auth/create-account`, formData)
 
+            return result;
         },
-
     },
 
 });

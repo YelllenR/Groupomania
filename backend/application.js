@@ -9,6 +9,8 @@ const connexion = config.connexion;
 const path = require('path');
 const postRoute = require('./routes/routes-posts');
 const commentRoute = require('./routes/routes-comments');
+const helmet = require('helmet');
+
 
 mongoose.connect(connexion, {
     useNewUrlParser: true,

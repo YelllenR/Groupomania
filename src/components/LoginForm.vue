@@ -28,7 +28,7 @@ import { watchEffect } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useUserLogin } from '../stores/userLogin'
 import { useFormValidations } from '../stores/formsValidationStore'
-import { useRouter, useRoute } from 'vue-router'
+import { useRouter } from 'vue-router'
 
 const formValidation = useFormValidations();
 
@@ -44,12 +44,10 @@ watchEffect(() => {
 });
 
 
-const onSubmit = () => {
-  loginUser.Login(user.value);
+const onSubmit =  async() => {
+ await loginUser.Login(user.value);
+ await router.push({ name: "Posts" })
 
-if (stateLogs.value.hasToken === true) {
-    return router.push({ name: "Posts" })
-  }
 };
 
 

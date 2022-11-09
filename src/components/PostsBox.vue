@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="reaction-icons-post">
-                        <i class="fas fa-frown reaction" @click="usersReactions.incrementDislikes(post)"></i>
+                        <i class="fas fa-frown reaction"  @click="sendDislikeOnPost(post)"></i>
                         <i class="fas fa-laugh-beam reaction" @click="sendLikeOnPost(post)"></i>
                         <i class="fas fa-comment reaction" @click="Open(post, reactions), isOpen = true"></i>
 
@@ -100,6 +100,7 @@ const removeIdUlr = async () => {
     await router.replace({ name: 'Posts' })
 }
 
+
 const modifyOwnPost = async (post) => {
     await postsData.ModifyOwnPost(post);
 }
@@ -114,10 +115,16 @@ const sendComment = async (post) => {
     await usersReactions.GetComments();
 }
 
+const sendDislikeOnPost = (post) => {
+    reactions.value.dislike++;
+    usersReactions.incrementDislikes(post);
+}
 
 const sendLikeOnPost = (post) => {
+    reactions.value.like++;
     usersReactions.incrementLikes(post)
 }
+
 
 </script>
 

@@ -3,6 +3,7 @@ import { useUserRefsStore } from './userRefsStore'
 import axios from 'axios'
 import fetchUrl from '../helpers/url.json';
 
+
 const baseUrl = fetchUrl.baseUrl;
 
 
@@ -28,6 +29,7 @@ export const useUserLogin = defineStore("userLogin", {
 
             const data = await axios.post(`${baseUrl}auth/login`, user)
             this.ReturnsToken(data)
+
         },
 
         ReturnsToken(data) {

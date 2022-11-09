@@ -46,7 +46,12 @@
 
     
     @include tablet {
-        height: 7vh;
+        height: 6.5vh;
+        width: 9vw;
+    }
+
+    @include desktop {
+        height: 6.5vh;
         width: 7vw;
     }
 }
@@ -73,7 +78,12 @@
     margin: 5px;
 
     @include tablet {
-        height: 7vh;
+        height: 8vh;
+        width: 8vw;
+    }
+
+    @include desktop {
+        height: 6.5vh;
         width: 7vw;
     }
 }
