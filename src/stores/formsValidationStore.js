@@ -10,6 +10,7 @@ const lastnameRegex = /[a-zA-Z][A-zÀ-ú]+$/;
 export const useFormValidations = defineStore("formValidation", {
 
     state: () => {
+        // imports the userInput store to get access to the different informations
         const userInputs = useUserRefsStore();
         const { user, message } = storeToRefs(userInputs);
 
@@ -20,6 +21,9 @@ export const useFormValidations = defineStore("formValidation", {
     },
     
     actions: {
+        /** Regex
+         * Checks input on email and render error message if any. 
+         */
         validateEmail() {
             if (emailRegex.test(this.user.email.trim(""))) {
                 this.message.errorEmail = ""
@@ -28,6 +32,9 @@ export const useFormValidations = defineStore("formValidation", {
             }
         },
 
+        /** Regex
+         * Checks input on firstname and render error message if any. 
+         */
         validateFirstname() {
             if (firstnameRegex.test(this.user.firstname.trim(""))) {
                 this.message.errorFirstname = ""
@@ -35,6 +42,10 @@ export const useFormValidations = defineStore("formValidation", {
                 this.message.errorFirstname = "Veuillez respecter la saisie"
             }
         },
+
+         /** Regex
+         * Checks input on lastname and render error message if any. 
+         */
         validateLastname() {
             if (lastnameRegex.test(this.user.lastname.trim(""))) {
                 this.message.errorLastname = ""

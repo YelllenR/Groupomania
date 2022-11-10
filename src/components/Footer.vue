@@ -14,6 +14,7 @@
 export default {
   name: "FooterIcons",
 
+  // Data is defined for the social links and is referenced in a tag
   data() {
     return {
       twitter: "https://twitter.com/",

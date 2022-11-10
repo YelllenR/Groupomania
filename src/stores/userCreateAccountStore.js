@@ -3,8 +3,10 @@ import { defineStore, storeToRefs } from "pinia";
 import { useUserRefsStore } from './userRefsStore'
 import axios from 'axios';
 
+/**
+ * BaseUrl for requests
+ */
 const baseUrl = fetchUrl.baseUrl;
-
 
 
 export const useUserCreationStore = defineStore("userStore", {
@@ -20,6 +22,9 @@ export const useUserCreationStore = defineStore("userStore", {
     actions: {
         async Create() {
 
+            /**
+             * create a new form data, then appends the different values for creation
+             */
             const formData = new FormData();
 
             formData.append('firstname', this.user.firstname)
@@ -29,7 +34,9 @@ export const useUserCreationStore = defineStore("userStore", {
             formData.append('image', this.user.image)
 
 
-
+            /**
+             * Post request with url and the form data | multipart
+             */
             const result = await axios.post(`${baseUrl}auth/create-account`, formData)
 
             return result;

@@ -3,11 +3,17 @@ import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
 
-
+/**
+ * Base url to fetch data
+ */
 const baseUrl = fetchUrl.baseUrl;
+
+/**
+ * Gets the token from the localStorage
+ */
 const auth = localStorage.getItem("token");
 
-
+// Defines axios headers on post and get methods
 axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
@@ -15,6 +21,7 @@ axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 export const usePostsStore = defineStore("postStore", {
     state: () => {
         return {
+            // creation a state to reference for post datas
             posts: ref({
                 imagePost: "",
                 dateOfPost: "",
@@ -59,7 +66,8 @@ export const usePostsStore = defineStore("postStore", {
         },
 
         /**
-         * 
+         * @params {post}
+         * Request for modifications of user's post
          */
         async ModifyOwnPost(post) {
             const modifications = await axios.put(`${baseUrl}modify`,
@@ -74,7 +82,8 @@ export const usePostsStore = defineStore("postStore", {
 
 
         /**
-         * 
+         * @params post
+         * gets the id of the post then making a delete request with header and data to API
          */
         async DeleteOwnPost(post) {
             if (post.idOfPost) {
@@ -90,8 +99,6 @@ export const usePostsStore = defineStore("postStore", {
             }
 
         },
-
-
 
     },
 

@@ -22,6 +22,12 @@ export const useUserLogin = defineStore("userLogin", {
     },
 
     actions: {
+
+        /**
+         * 
+         * @param {*} user 
+         * Post the request login and calls the method returnsToken
+         */
         async Login(user) {
             const logData = new FormData();
             logData.append('user', this.user);

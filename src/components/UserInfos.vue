@@ -1,10 +1,5 @@
 <template >
     <div id="userDetails">
-        <div class="userOwnData">
-            <!-- user data in modal here -->
-
-        </div>
-
         <button class="logOutButton" @click.prevent="logOut()">
             <router-link :to="{ path: '/' }">Deconnexion</router-link>
         </button>
@@ -30,6 +25,7 @@ const userLogin = useUserLogin();
 const userInfos = useUserInfosStore();
 const { userData } = storeToRefs(userInfos);
 
+// logout function to clear the localstorage after logging out
 function logOut() {
     userLogin.LogsOfUser;
     localStorage.clear()
