@@ -5,6 +5,7 @@ const uuid = require('uuid');
 const fileSystem = require('fs');
 const User = require('../models/user');
 
+
 /**
  * 
  * @param {*} request - find all posts and then sort in order to get the newest post on top
@@ -37,11 +38,11 @@ const PostOnePost = (request, response, next) => {
                         const postCreation = new Post({
                             idOfPost: uuid.v4(),
                             post: request.body.post,
-                            idOfUser: data.idOfUser,
+                            idOfUser: request.auth.idOfUser,
                             firstname: data.firstname,
                             lastname: data.lastname,
                             imageProfil: data.imageProfil,
-                            imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`,
+                            imagePost: `${request.protocol}://${request.get('host')}/postImage/${request.file.filename}`
                         })
 
                         postCreation.save()
@@ -51,7 +52,6 @@ const PostOnePost = (request, response, next) => {
 
         })
         .catch((error) => response.status(401).json({ message: "Un problème a été rencontré", error }));
-
 };
 
 
@@ -66,21 +66,39 @@ const ModifyAPost = (request, response, next) => {
         ...JSON.parse(request.body.post),
     } : { ...request.body };
 
-    Post.findOne({ id: request.body.idOfPost })
-        .then((post) => {
-            if (request.auth.idOfUser === post.idOfUser) {
+    Post.findOne({ idOfPost: request.body.idOfPost })
+        .then((user) => {
 
-                Post.updateOne(({ idOfPost: request.body.idOfPost }), {...requestPostToModify, post: request.body.post })
-                    .then(() => response.status(201).json({ message: "Post modifié avec succès" }))
+            if (request.auth.idOfUser) {
+                Post.updateOne(({ idOfPost: request.body.idOfPost }), { ...requestPostToModify, idOfPost: request.body.idOfPost })
+                    .then((post) => response.status(201).json({ message: "Post modifié avec succès", post }))
                     .catch(error => response.status(403).json(error))
-
-
             }
         })
 
         .catch(error => response.status(401).json({ message: "Non authorisé", error }))
 };
 
+const AdminModifications = (request, response, next) => {
+
+    const requestPostToModify = request.file ? {
+        ...JSON.parse(request.body.post),
+    } : { ...request.body };
+
+    Post.findOne({ idOfPost: request.body.idOfPost })
+        .then(() => {
+            User.findOne({ role: "superadmin" })
+                .then((user) => {
+                    if (user.role === 'superadmin') {
+
+                        Post.updateOne(({ idOfPost: request.body.idOfPost }), { ...requestPostToModify, idOfPost: request.body.idOfPost })
+                            .then((post) => response.status(201).json({ message: "Post modifié avec succès", post }))
+                            .catch(error => response.status(403).json(error))
+                    }
+                })
+        })
+        .catch(error => response.status(401).json({ message: "Non authorisé", error }))
+};
 
 /**
  * 
@@ -109,12 +127,35 @@ const DeleteAPost = (request, response, next) => {
 };
 
 
+const AdminDeleteAPost = (request, response, next) => {
+    Post.findOne({ idOfPost: request.body.idOfPost })
+        .then((post) => {
+
+            User.findOne({ role: "superadmin" })
+                .then(user => {
+                    if (user.role === 'superadmin') {
+                        console.log(user.role === 'superadmin')
+                        const filename = post.imagePost.split('/postImage')[1];
+
+                        fileSystem.unlink(`postImage/${filename}`, () => {
+
+                            Post.deleteOne({ idOfPost: request.body.idOfPost })
+                                .then(() => response.status(200).json({ message: "Post supprimé" }))
+                                .catch(() => response.status(403).json({ message: "Vous n'êtes pas authorisé à faire cette manipulation" }))
+                        });
+                    }
+                })
+
+        })
+        .catch(errorOnDelete => response.status(401).json({ message: "Non authorisé", errorOnDelete }))
+};
 
 module.exports = {
     GetPosts,
     PostOnePost,
     ModifyAPost,
     DeleteAPost,
+    AdminDeleteAPost,
+    AdminModifications
 };
-
 

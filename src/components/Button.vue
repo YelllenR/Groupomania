@@ -13,6 +13,7 @@ export default {
     text: String,
   },
 
+// Emit is called to emit the form on click
   methods: {
     onClick() {
       this.$emit('show-form')

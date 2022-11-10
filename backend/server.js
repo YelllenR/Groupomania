@@ -1,11 +1,9 @@
-
+require('dotenv').config();
 const http = require('http')
 
 const application = require('./application');
 
-const config = require('./config.json');
-
-const port = process.env.PORT || config.other_port
+const port = process.env.PORT || process.env.other_port; 
 application.set('port', port);
 
 const errorServer = error => {

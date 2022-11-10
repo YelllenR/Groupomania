@@ -48,19 +48,21 @@ import { useUserCreationStore } from '../stores/userCreateAccountStore';
 import { useFormValidations } from '../stores/formsValidationStore'
 import { useRouter } from 'vue-router'
 
+
 const userStore = useUserCreationStore();
-const { stateLogs } = storeToRefs(userStore)
 
 const formValidation = useFormValidations();
 const { user, message } = storeToRefs(formValidation)
 
 
+
+// Gets the targeted image
 const imageSelected = (event) => {
   user.value.image = event.target.files[0];
 };
 
 
-
+// to watch modifications of inputs and render errors, it calls the formValidation store
 watchEffect(() => {
   formValidation.validateEmail(user.value.email);
   formValidation.validateFirstname(user.value.firstname);
@@ -68,14 +70,9 @@ watchEffect(() => {
 });
 
 
-const router = useRouter();
-
+// on click, calls the userStore for post request
 const createAccount = async () => {
   await userStore.Create(user.value)
-
-  if (stateLogs.value.hasToken === true) {
-    await router.push({ name: "Posts" })
-  }
 };
 
 </script>

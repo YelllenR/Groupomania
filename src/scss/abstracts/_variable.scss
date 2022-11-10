@@ -16,50 +16,26 @@ $homepage-inputs-fields-color-light: rgba(78, 81, 102, 0.35);
 
 
 // Dark theme
-    $header-end-line: $secondary-color;
-    $header-logo-line: $secondary-color;
-    $logo-sphere: $secondary-color;
-    $logo-name: $primary-color;
-    $color-mode-logo: $secondary-color;
-    $dark-icons-footer: #F2EFEF;
-    $background-color-dark: $tertiary-color;
-    $box-login-signup-dark: rgba(217, 217, 217, 0.12);
-    $background-color-footer-dark: rgba(217, 217, 217, 0.11);
-    $text-color-dark-mode: #F2E0E0;
-    $button-color-dark: rgba(255, 215, 215, 0.88);
-    $text-button: $tertiary-color;
-    $homepage-inputs-fields-color-dark: rgba(242, 224, 224, 0.8);
-    $text-post-dark: $tertiary-color;
-    $post-field-dark: #F2E0E0;
-    $reaction-icons: $secondary-color;
-    $username-dark: #F2E0E0;
-    $box-posts-dark: rgba(217, 217, 217, 0.42);
-    $nav-icon-color-dark: $secondary-color;
-    $nav-background: rgba(255, 215, 215, 0.90);
-
-
-
-// $light-mode-colors: (
-//     "header-end-line": $tertiary-color,
-//     "header-logo-line": $tertiary-color,
-//     "logo-sphere": $tertiary-color,
-//     "logo-name": $primary-color,
-//     "color-mode-logo": $tertiary-color,
-//     "social-icons": $tertiary-color,
-//     "background-color": $tertiary-color,
-//     "background-color-login-signup": $box-login-signup,
-//     "footer-background-color": $background-color-footer-light,
-//     "text-color": $tertiary-color,
-//     "button-color": $tertiary-color,
-//     "text-button": $secondary-color,
-//     "input-fields-color-home": $background-color-light,
-//     "text-post-light": $text-in-post-light,
-//     "post-field-light": $tertiary-color,
-//     "reaction-icons": $tertiary-color,
-//     "username-color": $tertiary-color,
-//     "box-posts": $box-posts-light,
-//     "nav-icon-color-dark": $tertiary-color
-// );
+$header-end-line: $secondary-color;
+$header-logo-line: $secondary-color;
+$logo-sphere: $secondary-color;
+$logo-name: $primary-color;
+$color-mode-logo: $secondary-color;
+$dark-icons-footer: #F2EFEF;
+$background-color-dark: $tertiary-color;
+$box-login-signup-dark: rgba(217, 217, 217, 0.12);
+$background-color-footer-dark: rgba(217, 217, 217, 0.11);
+$text-color-dark-mode: #F2E0E0;
+$button-color-dark: rgba(255, 215, 215, 0.88);
+$text-button: $tertiary-color;
+$homepage-inputs-fields-color-dark: rgba(242, 224, 224, 0.8);
+$text-post-dark: $tertiary-color;
+$post-field-dark: #F2E0E0;
+$reaction-icons: $secondary-color;
+$username-dark: #F2E0E0;
+$box-posts-dark: rgba(217, 217, 217, 0.42);
+$nav-icon-color-dark: $secondary-color;
+$nav-background: rgba(255, 215, 215, 0.90);
 
 
 $radius: (
@@ -108,16 +84,11 @@ $font-sizes: (
     "publication-button-mobile": 10px
 );
 
-$paddings-form-homepage: (
-);
-
-
-
 // --------------------------- Breakpoints ----------------------------//
 
-$breakpoints:(
-    "mobile-min": 320px, 
-    "mobile-max": 420px, 
+$breakpoints: (
+    "mobile-min": 320px,
+    "mobile-max": 420px,
     "tablet-min": 421px,
     "tablet-max": 768px,
     "desktop-min": 769px,

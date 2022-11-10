@@ -118,28 +118,26 @@ a {
 
 .send,
 .close,
-.confirmChange,
-.deletePost {
-  width: 6em;
-  height: 2.5em;
+.confirmChange {
+  width: 12vw;
+  height: 4vh;
   cursor: pointer;
   color: #FFD7D7;
   border-style: none;
   border-radius: 6px;
   border: 1.5px solid #FFD7D7;
+  background-color: rgba(217, 217, 217, 0.42);
 }
 .send:active,
 .close:active,
-.confirmChange:active,
-.deletePost:active {
+.confirmChange:active {
   background-color: #FFD7D7;
   color: #4E5166;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .send,
 .close,
-.confirmChange,
-.deletePost {
+.confirmChange {
     margin-top: 24px;
     font-size: 16px;
   }
@@ -147,9 +145,38 @@ a {
 @media screen and (min-width: 769px) and (max-width: 1200px) {
   .send,
 .close,
-.confirmChange,
-.deletePost {
+.confirmChange {
     margin-top: 24px;
+    font-size: 16px;
+  }
+}
+
+.deletePost,
+.check {
+  text-align: center;
+  height: 3vh;
+  width: auto;
+  border-radius: 6px;
+  border: 1.5px solid #FFD7D7;
+  padding: 5px;
+  margin: 5px;
+  background-color: rgba(217, 217, 217, 0.42);
+  color: #FFD7D7;
+}
+.deletePost:active,
+.check:active {
+  background-color: #FFD7D7;
+  color: #4E5166;
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  .deletePost,
+.check {
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+  .deletePost,
+.check {
     font-size: 16px;
   }
 }
@@ -281,12 +308,6 @@ a {
     height: 3vh;
     width: 5vw;
   }
-}
-
-.usersPic {
-  display: flex;
-  align-items: center;
-  background-color: transparent;
 }
 
 .profil-picture,
@@ -832,6 +853,13 @@ span {
   }
 }
 
+.newPostForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+}
+
 .box-userAccount {
   width: 70vw;
   height: auto;
@@ -840,9 +868,8 @@ span {
 }
 @media screen and (min-width: 320px) and (max-width: 420px) {
   .box-userAccount {
-    height: 15vh;
+    height: 10vh;
     width: 90vw;
-    margin: 12px;
   }
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
@@ -862,7 +889,6 @@ span {
   width: 50vw;
   height: 6vh;
   padding: 8px;
-  margin-right: 32px;
   overflow: scroll;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
   border-style: none;
@@ -883,7 +909,6 @@ span {
     width: 50vw;
     height: 6vh;
     padding: 8px;
-    margin-right: 32px;
   }
 }
 
@@ -893,6 +918,8 @@ span {
 
 .upload-file {
   cursor: pointer;
+  width: 8%;
+  margin-left: 5px;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .upload-file {
@@ -915,7 +942,7 @@ span {
   flex-direction: column;
   margin: 12px;
   height: 55vh;
-  width: 90vw;
+  width: 70vw;
   background-color: rgba(217, 217, 217, 0.42);
   scroll-behavior: smooth;
   overflow-y: scroll;
@@ -923,7 +950,19 @@ span {
 }
 @media screen and (min-width: 769px) and (max-width: 1200px) {
   #post-container {
-    width: 75vw;
+    width: 70vw;
+    margin: 12px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 420px) {
+  #post-container {
+    width: 90vw;
+    margin: 12px;
+  }
+}
+@media screen and (min-width: 421px) and (max-width: 768px) {
+  #post-container {
+    width: 80vw;
     margin: 12px;
   }
 }
@@ -949,6 +988,7 @@ span {
   color: #F2E0E0;
   padding-left: 12px;
   font-weight: 600;
+  font-size: 16px;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
   .username {
@@ -1016,26 +1056,40 @@ span {
   }
 }
 
-.modify-post {
-  cursor: pointer;
+.usersPic {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: transparent;
 }
 
-.check {
+.boxUser {
+  width: 50%;
   display: flex;
-  flex-direction: column;
-  background-color: rgba(217, 217, 217, 0.42);
-  font-size: 16px;
-  color: #F2E0E0;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: transparent;
+}
+
+.boxModifyDelete {
+  align-self: flex-end;
+  background-color: transparent;
+}
+
+.modify-post {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-color: transparent;
 }
 @media screen and (min-width: 421px) and (max-width: 768px) {
-  .check {
-    font-size: 16px;
+  .modify-post {
+    flex-wrap: wrap;
   }
 }
 @media screen and (min-width: 769px) and (max-width: 1200px) {
-  .check {
-    font-size: 18px;
+  .modify-post {
+    flex-wrap: wrap;
   }
 }
 

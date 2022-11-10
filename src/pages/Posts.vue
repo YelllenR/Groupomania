@@ -8,7 +8,7 @@
             <div class="userAccount">
                 <img class="userPicture" :src="userData.imageProfil" alt="Photo de profil">
 
-                <form action="" method="post">
+                <form action="" method="post" class="newPostForm">
                     <textarea name="post" id="userPost" v-model="postPageUser.newPostAccountOwner"></textarea>
 
                     <label class="upload-file" for="imagePost">

@@ -52,8 +52,7 @@ export const useReactionPost = defineStore("usersReactions", {
                 this.like++
             }
 
-            
-
+        
             axios.post(`${baseUrl}Posts/reactions`, {
                 idOfPost: data.idOfPost,
                 happy: this.like

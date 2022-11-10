@@ -17,7 +17,7 @@
 
 .formButton {
     font-size: map-get($font-sizes, "title-mobile-home");
-    color: #F2E0E0; 
+    color: #F2E0E0;
 
     @include tablet {
         font-size: clamp(20px, 22px, 24px);
@@ -108,20 +108,21 @@ a {
 
 .send,
 .close,
-.confirmChange,
-.deletePost {
-    width: 6em;
-    height: 2.5em;
+.confirmChange {
+    width: 12vw;
+    height: 4vh;
     cursor: pointer;
     color: $secondary-color;
     border-style: none;
     border-radius: map-get($radius, "buttons-radius");
     border: map-get($borders, "border-light");
+    background-color: $box-posts-dark;
 
     &:active {
         background-color: $secondary-color;
         color: $tertiary-color;
     }
+
 
 
     @include tablet {
@@ -131,6 +132,34 @@ a {
 
     @include desktop {
         margin-top: 24px;
+        font-size: clamp(14px, 16px, 18px);
+    }
+}
+
+.deletePost,
+.check {
+    text-align: center;
+    height: 3vh;
+    width: auto;
+    border-radius: map-get($radius, "buttons-radius");
+    border: map-get($borders, "border-light");
+    padding: 5px;
+    margin: 5px;
+    background-color: $box-posts-dark;
+    color: $secondary-color;
+    
+    &:active {
+        background-color: $secondary-color;
+        color: $tertiary-color;
+    }
+
+    @include tablet {
+
+        font-size: clamp(14px, 16px, 18px);
+    }
+
+    @include desktop {
+
         font-size: clamp(14px, 16px, 18px);
     }
 }

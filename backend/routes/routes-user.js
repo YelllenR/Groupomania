@@ -2,8 +2,8 @@ const express = require('express');
 
 const routerUser = express.Router(express);
 const userControl = require('../controller/userControl');
-const imageMulter = require('../middleware/image-multer')
-const auth = require('../middleware/auth')
+const imageMulter = require('../middleware/image-multer');
+const auth = require('../middleware/auth');
 
 routerUser.post('/auth/create-account', imageMulter, userControl.createAccount);
 routerUser.post('/auth/login', imageMulter, userControl.userLogIn);

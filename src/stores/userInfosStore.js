@@ -25,7 +25,8 @@ export const useUserInfosStore = defineStore("userInfos", {
                 firstname: "",
                 lastname: "",
                 imageProfil: "",
-                modifyPost:""
+                modifyPost: "",
+                role: ""
             })
         }
     },
@@ -68,7 +69,7 @@ export const useUserInfosStore = defineStore("userInfos", {
             this.userData.password = data.password
             this.userData.email = data.email;
             this.userData.imageProfil = data.imageProfil;
-
+            this.userData.role = data.role; 
         },
 
         /** Formating data before sending the post request
@@ -91,33 +92,6 @@ export const useUserInfosStore = defineStore("userInfos", {
             }
 
         },
-
-
-        /**
-         * @param {*} data got from the method FetchGetData()
-         * 
-         * @return {*} Boolean
-         */
-        // checkUserId(data) {
-        //     const AllUsers = useUsersDataStore();
-        //     const { users } = storeToRefs(AllUsers);
-
-        //     if (this.userData.idOfUser === this.users.idOfUser) {
-        //         console.log(this.userData.idOfUser)
-        //     } else {
-        //         console.log(this.users.idOfUser)
-        //     }
-
-        // },
-
-        /**
-         * 
-         */
-        ModifyUserAccount() {
-
-        },
-
-
 
 
     },
