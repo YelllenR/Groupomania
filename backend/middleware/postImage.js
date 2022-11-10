@@ -6,8 +6,7 @@ const imagePostPage = multer.diskStorage({
     },
     filename: (request, file, callback) => {
         const name = file.originalname;
-        // name.replace(file.originalname, '.' + mimeTypes)
-        callback(null, name)
+        callback(null, Date.now() + name)
     }
 });
 
@@ -15,6 +14,6 @@ const imageFromPost = multer({
     storage: imagePostPage
 });
 
-const withoutImage = imageFromPost.any()
 
-module.exports = imageFromPost.single('imagePost'), withoutImage;
+
+module.exports = imageFromPost.single('imagePost');

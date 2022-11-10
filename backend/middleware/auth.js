@@ -1,12 +1,11 @@
 const jsonWebToken = require('jsonwebtoken');
-const config = require('../config.json');
-
+const secretToken = process.env.someToken
 
 module.exports = (request, response, next) => {
     try {
 
         const token = request.headers.authorization.split(' ')[1];
-        const tokenToDecode = jsonWebToken.verify(token, config.someToken);
+        const tokenToDecode = jsonWebToken.verify(token, secretToken);
 
         const userToken = tokenToDecode.idOfUser;
 

@@ -49,8 +49,6 @@ export const useUserLogin = defineStore("userLogin", {
                 alert("Vérfiez vos identifiants de connexion")
             }
             return this.stateLogs.hasToken;
-
-
         },
 
         LogsOfUser() {

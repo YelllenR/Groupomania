@@ -3,11 +3,9 @@ const User = require('../models/user');
 const jsonWebToken = require('jsonwebtoken');
 const uuid = require('uuid');
 
-const config = require('../config.json');
-const secretToken = config.someToken;
+const secretToken = process.env.someToken;
 
 const bcrypt = require('bcrypt');
-
 
 
 const userLogIn = (request, response, next) => {
@@ -63,7 +61,6 @@ const createAccount = (request, response, next) => {
                 firstname: request.body.firstname,
                 lastname: request.body.lastname,
                 imageProfil: `${request.protocol}://${request.get('host')}/images/${request.file.filename}`,
-
             });
 
             user.save()

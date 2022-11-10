@@ -25,6 +25,14 @@
 
 }
 
+.newPostForm {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+
+}
+
 .box-userAccount {
     width: 70vw;
     height: auto;
@@ -32,9 +40,9 @@
     flex-direction: column;
 
     @include mobile {
-        height: 15vh;
+        height: 10vh;
         width: 90vw;
-        margin: 12px;
+
     }
 
     @include tablet {
@@ -53,7 +61,7 @@
     width: 50vw;
     height: 6vh;
     padding: 8px;
-    margin-right: 32px;
+
     overflow: scroll;
     box-shadow: map-get($shadows, "home-fields-shadow");
     border-style: none;
@@ -73,7 +81,7 @@
         width: 50vw;
         height: 6vh;
         padding: 8px;
-        margin-right: 32px;
+
     }
 
 }
@@ -84,7 +92,8 @@
 
 .upload-file {
     cursor: pointer;
-
+    width: 8%;
+    margin-left: 5px;
     @include tablet {
         font-size: clamp(16px, 18px, 22px);
         margin-right: 8px;
@@ -100,17 +109,28 @@
 }
 
 #post-container {
+
     @include flex-list-post-container;
     margin: 12px;
     height: 55vh;
-    width: 90vw;
+    width: 70vw;
     background-color: $box-posts-dark;
     scroll-behavior: smooth;
     overflow-y: scroll;
     border-radius: 2%;
 
     @include desktop {
-        width: 75vw;
+        width: 70vw;
+        margin: 12px;
+    }
+
+    @include mobile {
+        width: 90vw;
+        margin: 12px;
+    }
+
+    @include tablet {
+        width: 80vw;
         margin: 12px;
     }
 }
@@ -136,6 +156,7 @@
     color: $username-dark;
     padding-left: 12px;
     font-weight: 600;
+    font-size: clamp(14px, 16px, 18px);
 
     @include tablet {
         font-size: clamp(16px, 18px, 20px);
@@ -199,23 +220,37 @@
 }
 
 
-.modify-post {
-    cursor: pointer;
+.usersPic {
+    @include flex-usersInfo;
+    background-color: transparent;
+
+}
+
+.boxUser {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
     background-color: transparent;
 }
 
-.check {
-    @include flex-list-post-container;
-    background-color: $box-posts-dark;
-    font-size: 16px;
-    color: $username-dark;
+.boxModifyDelete {
+    align-self: flex-end;
+    background-color: transparent;
+}
+
+.modify-post {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    background-color: transparent;
 
     @include tablet {
-        font-size: clamp(14px, 16px, 18px);
+        flex-wrap: wrap;
     }
 
     @include desktop {
-        font-size: clamp(16px, 18px, 20px);
+        flex-wrap: wrap;
     }
 }
 

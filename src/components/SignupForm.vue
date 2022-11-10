@@ -46,13 +46,15 @@ import { watchEffect } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useUserCreationStore } from '../stores/userCreateAccountStore';
 import { useFormValidations } from '../stores/formsValidationStore'
+import { useRouter } from 'vue-router'
 
 
 const userStore = useUserCreationStore();
 
-
 const formValidation = useFormValidations();
 const { user, message } = storeToRefs(formValidation)
+
+
 
 // Gets the targeted image
 const imageSelected = (event) => {
@@ -71,7 +73,6 @@ watchEffect(() => {
 // on click, calls the userStore for post request
 const createAccount = async () => {
   await userStore.Create(user.value)
-
 };
 
 </script>

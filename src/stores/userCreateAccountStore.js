@@ -16,6 +16,11 @@ export const useUserCreationStore = defineStore("userStore", {
 
         return {
             user,
+
+            stateLogs: {
+                IsLoggedIn: Boolean,
+                hasToken: Boolean
+            },
         }
     },
 
@@ -37,10 +42,12 @@ export const useUserCreationStore = defineStore("userStore", {
             /**
              * Post request with url and the form data | multipart
              */
-            const result = await axios.post(`${baseUrl}auth/create-account`, formData)
-
-            return result;
+            const data = await axios.post(`${baseUrl}auth/create-account`, formData)
+            if (data.status === 201) {
+                return confirm('Votre compte a bien été créé, veuillez passer à la page de connexion');
+            }
         },
+
     },
 
 });

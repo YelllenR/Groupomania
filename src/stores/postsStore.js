@@ -2,6 +2,8 @@ import { defineStore, storeToRefs } from "pinia";
 import { ref } from "vue";
 import axios from "axios";
 import fetchUrl from '../helpers/url.json';
+import { useUserInfosStore } from "./userInfosStore";
+
 
 /**
  * Base url to fetch data
@@ -17,10 +19,12 @@ const auth = localStorage.getItem("token");
 axios.defaults.headers.common["Authorization"] = `Bearer ${auth}`;
 axios.defaults.headers.post["Authorization"] = `Bearer ${auth}`;
 
-
 export const usePostsStore = defineStore("postStore", {
     state: () => {
+        const userInfos = useUserInfosStore();
+        const { userData } = storeToRefs(userInfos);
         return {
+
             // creation a state to reference for post datas
             posts: ref({
                 imagePost: "",
@@ -70,32 +74,51 @@ export const usePostsStore = defineStore("postStore", {
          * Request for modifications of user's post
          */
         async ModifyOwnPost(post) {
-            const modifications = await axios.put(`${baseUrl}modify`,
-                {
+            const userInfos = useUserInfosStore();
+            const { userData } = storeToRefs(userInfos);
+
+            if (userData.value.role === 'superadmin') {
+                await axios.put(`${baseUrl}admin/modify`, {
+                    headers: { Authorization: `Bearer ${auth}` },
                     idOfPost: post.idOfPost,
                     post: post.post
-                }
-            )
-
-            return modifications;
+                })
+            } else {
+                await axios.put(`${baseUrl}modify`, {
+                    headers: { Authorization: `Bearer ${auth}` },
+                    idOfPost: post.idOfPost,
+                    post: post.post
+                })
+            }
         },
-
 
         /**
          * @params post
          * gets the id of the post then making a delete request with header and data to API
          */
         async DeleteOwnPost(post) {
+
+            const userInfos = useUserInfosStore();
+            const { userData } = storeToRefs(userInfos);
             if (post.idOfPost) {
+                if (userData.value.role === 'superadmin') {
 
-                const deleteData = await axios.delete(`${baseUrl}delete`, {
-                    headers: { Authorization: `Bearer ${auth}` },
-                    data: {
-                        idOfPost: post.idOfPost
-                    }
-                })
+                    await axios.delete(`${baseUrl}admin/delete`, {
+                        headers: { Authorization: `Bearer ${auth}` },
+                        data: {
+                            idOfPost: post.idOfPost
+                        }
+                    })
 
-                return deleteData;
+                } else {
+                    await axios.delete(`${baseUrl}delete`, {
+                        headers: { Authorization: `Bearer ${auth}` },
+                        data: {
+                            idOfPost: post.idOfPost
+                        }
+                    })
+                }
+
             }
 
         },

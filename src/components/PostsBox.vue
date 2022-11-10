@@ -4,11 +4,31 @@
             <div class="onePost" v-for="post in posts" :key="post.idOfPost">
 
                 <div class="usersPic">
-                    <img :src="post.imageProfil" alt="Profil picture" class="profil-picture" name="image">
-                    <p class="username" :ref="post.firstname">{{ post.firstname }}
-                    </p>
-                    <p class="username" :ref="post.firstname">{{ post.lastname }}
-                    </p>
+                    <div class="boxUser">
+                        <img :src="post.imageProfil" alt="Profil picture" class="profil-picture" name="image">
+                        <p class="username" :ref="post.firstname">{{ post.firstname }}
+                        </p>
+                        <p class="username" :ref="post.firstname">{{ post.lastname }}
+                        </p>
+                    </div>
+
+                    <div class="boxModifyDelete">
+                        <div class="modify-post"
+                            v-if="userData.idOfUser === post.idOfUser || userData.role === 'superadmin'">
+                            <div class="check" @click="isModifyOpen = true">Modification</div>
+                            <div class="modificationsUser" v-if="isModifyOpen">
+                                <div class="changes">
+                                    <i class="fas fa-window-close fa-1.5x" @click="isModifyOpen = false"></i>
+                                    <label for="postChange"></label>
+                                    <input class="inputChange" id="postChange" v-model="post.post" name="comment" />
+                                    <div class="button-box">
+                                        <button class="confirmChange" @click="modifyPost(post)">Confirmez</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="deletePost" @click="deletePost(post)">Suppression</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="userPost">
@@ -21,7 +41,7 @@
                     </div>
 
                     <div class="reaction-icons-post">
-                        <i class="fas fa-frown reaction"  @click="sendDislikeOnPost(post)"></i>
+                        <i class="fas fa-frown reaction" @click="sendDislikeOnPost(post)"></i>
                         <i class="fas fa-laugh-beam reaction" @click="sendLikeOnPost(post)"></i>
                         <i class="fas fa-comment reaction" @click="Open(post, reactions), isOpen = true"></i>
 
@@ -41,20 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="modify-post" v-if="userData.idOfUser === post.idOfUser">
-                        <div class="check" @click="isModifyOpen = true">Modification</div>
-                        <div class="modificationsUser" v-if="isModifyOpen">
-                            <div class="changes">
-                                <i class="fas fa-window-close fa-1.5x" @click="isModifyOpen = false"></i>
-                                <label for="postChange"></label>
-                                <input class="inputChange" id="postChange" v-model="post.post" name="comment" />
-                                <div class="button-box">
-                                    <button class="confirmChange" @click="modifyOwnPost(post)">Confirmez</button>
-                                    <button class="deletePost" @click="deletePost(post)">Suppression</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
 
             </div>
@@ -84,6 +91,7 @@ const usersReactions = useReactionPost();
 const { reactions, usersComments } = storeToRefs(usersReactions);
 
 postsData.FetchPublications();
+userInfos.GetOneUser()
 
 let isOpen = ref(false);
 let isModifyOpen = ref(false);
@@ -93,21 +101,25 @@ const Open = async (post, reactions) => {
     reactions.postId = post.idOfPost;
     await router.replace({ query: { "id": reactions.postId } });
     await usersReactions.GetComments();
-
 };
+
 
 const removeIdUlr = async () => {
     await router.replace({ name: 'Posts' })
 }
 
 
-const modifyOwnPost = async (post) => {
-    await postsData.ModifyOwnPost(post);
-}
 
+const modifyPost = async (post) => {
+    await postsData.ModifyOwnPost(post)
+    postsData.FetchPublications();
+
+    confirm("Post modifié");
+}
 
 const deletePost = async (post) => {
     await postsData.DeleteOwnPost(post)
+    postsData.FetchPublications();
 }
 
 const sendComment = async (post) => {

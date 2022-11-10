@@ -25,7 +25,8 @@ export const useUserInfosStore = defineStore("userInfos", {
                 firstname: "",
                 lastname: "",
                 imageProfil: "",
-                modifyPost:""
+                modifyPost: "",
+                role: ""
             })
         }
     },
@@ -68,7 +69,7 @@ export const useUserInfosStore = defineStore("userInfos", {
             this.userData.password = data.password
             this.userData.email = data.email;
             this.userData.imageProfil = data.imageProfil;
-
+            this.userData.role = data.role; 
         },
 
         /** Formating data before sending the post request
