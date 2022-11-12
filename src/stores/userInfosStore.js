@@ -45,7 +45,7 @@ export const useUserInfosStore = defineStore("userInfos", {
          */
         async GetOneUser() {
             try {
-                const response = await axios.get(`${baseUrl}/userId`)
+                const response = await axios.get(`${baseUrl}userId`)
                 const data = response.data
                 this.GetUserData(data);
 

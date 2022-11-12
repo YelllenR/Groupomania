@@ -77,19 +77,15 @@ export const usePostsStore = defineStore("postStore", {
             const userInfos = useUserInfosStore();
             const { userData } = storeToRefs(userInfos);
 
-            if (userData.value.role === 'superadmin') {
+            if (userData.value.role === 'superadmin' || userData.value.idOfUser) {
                 await axios.put(`${baseUrl}modify`, {
                     headers: { Authorization: `Bearer ${auth}` },
                     idOfPost: post.idOfPost,
                     post: post.post
                 })
-            } else {
-                await axios.put(`${baseUrl}modify`, {
-                    headers: { Authorization: `Bearer ${auth}` },
-                    idOfPost: post.idOfPost,
-                    post: post.post
-                })
+
             }
+
         },
 
         /**
@@ -100,24 +96,14 @@ export const usePostsStore = defineStore("postStore", {
 
             const userInfos = useUserInfosStore();
             const { userData } = storeToRefs(userInfos);
-            if (post.idOfPost) {
-                if (userData.value.role === 'superadmin') {
 
-                    await axios.delete(`${baseUrl}delete`, {
-                        headers: { Authorization: `Bearer ${auth}` },
-                        data: {
-                            idOfPost: post.idOfPost
-                        }
-                    })
-
-                } else {
-                    await axios.delete(`${baseUrl}delete`, {
-                        headers: { Authorization: `Bearer ${auth}` },
-                        data: {
-                            idOfPost: post.idOfPost
-                        }
-                    })
-                }
+            if (post.idOfPost || userData.value.role === 'superadmin') {
+                await axios.delete(`${baseUrl}delete`, {
+                    headers: { Authorization: `Bearer ${auth}` },
+                    data: {
+                        idOfPost: post.idOfPost
+                    }
+                })
 
             }
 
