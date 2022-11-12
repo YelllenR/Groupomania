@@ -78,7 +78,6 @@ export const useReactionPost = defineStore("usersReactions", {
                 idOfPost: data.idOfPost,
                 sad: this.dislike,
             })
-
         },
 
         /**

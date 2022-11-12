@@ -10,7 +10,6 @@ const connexion = process.env.connexion
 const path = require('path');
 const postRoute = require('./routes/routes-posts');
 const commentRoute = require('./routes/routes-comments');
-const adminRoute = require('./routes/routes-superadmin');
 const helmet = require('helmet');
 
 
@@ -33,7 +32,6 @@ application.use('/Groupomania', cors())
 application.use('/Groupomania', cors(), userRoute);
 application.use('/Groupomania', cors(), postRoute);
 application.use('/Groupomania', cors(), commentRoute);
-application.use('/Groupomania', cors(), adminRoute);
 
 
 application.use('/images', express.static(path.join(__dirname, 'images')));

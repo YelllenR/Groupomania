@@ -94,6 +94,7 @@
     cursor: pointer;
     width: 8%;
     margin-left: 5px;
+
     @include tablet {
         font-size: clamp(16px, 18px, 22px);
         margin-right: 8px;
@@ -275,37 +276,17 @@
     z-index: 2;
 }
 
-
-.container,
-.changes {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    height: 23em;
-    width: 20em;
-    border-radius: map-get($radius, "buttons-radius");
+.changePost {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-
-
-    @include tablet {
-        height: 70vh;
-        width: 60vw;
-    }
-
-    @include desktop {
-        height: 70vh;
-        width: 60vw;
-    }
 }
 
 .inputChange {
     margin: 16px;
-    width: 90%;
-    height: 50%;
+    width: 80%;
+    height: 10vh;
     resize: none;
     border-style: none;
     border: map-get($borders, "border-light");
@@ -318,13 +299,13 @@
     }
 
     @include tablet {
-        height: 30vh;
-        width: 50vw;
+        height: 10vh;
+        width: 60vw;
         margin-bottom: 32px;
     }
 
     @include desktop {
-        height: 35vh;
+        height: 10vh;
         width: 50vw;
         margin-bottom: 32px;
     }

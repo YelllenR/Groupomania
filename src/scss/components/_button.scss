@@ -100,15 +100,14 @@ a {
 
 .button-box {
     width: 80%;
+    height: 8vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
 .send,
-.close,
-.confirmChange {
+.close {
     width: 12vw;
     height: 4vh;
     cursor: pointer;
@@ -137,24 +136,30 @@ a {
 }
 
 .deletePost,
-.check {
+.confirmChange {
     text-align: center;
     height: 3vh;
-    width: auto;
+    width: 10vw;
     border-radius: map-get($radius, "buttons-radius");
     border: map-get($borders, "border-light");
     padding: 5px;
     margin: 5px;
     background-color: $box-posts-dark;
     color: $secondary-color;
-    
+
     &:active {
         background-color: $secondary-color;
         color: $tertiary-color;
     }
 
     @include tablet {
-
+        height: 3vh;
+        width: 20vw;
+        font-size: clamp(14px, 16px, 18px);
+    }
+    @include mobile {
+        height: 3vh;
+        width: 20vw;
         font-size: clamp(14px, 16px, 18px);
     }
 
