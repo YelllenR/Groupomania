@@ -48,8 +48,6 @@ defineComponent({
 });
 
 
-
-
 const userInfos = useUserInfosStore();
 
 const { userData, postPageUser } = storeToRefs(userInfos)

@@ -92,7 +92,6 @@ userInfos.GetOneUser()
 let isOpen = ref(false);
 
 
-
 const Open = async (post, reactions) => {
     reactions.postId = post.idOfPost;
     await router.replace({ query: { "id": reactions.postId } });

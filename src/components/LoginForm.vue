@@ -48,9 +48,9 @@ const onSubmit = async () => {
   await loginUser.Login(user.value);
 
   if (stateLogs.value.hasToken === true) {
-    await router.push({ name: "Posts" })
+    await router.push({ name: "Posts" });
+   window.location.reload()
   }
-
 };
 
 
