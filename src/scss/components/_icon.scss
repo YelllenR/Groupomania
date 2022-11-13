@@ -33,9 +33,7 @@
 
 .reaction-icons-post {
     @include flex-post-reactions;
-    background-color: $box-posts-dark;
-
-
+    background-color: transparent;
 }
 
 .reaction {

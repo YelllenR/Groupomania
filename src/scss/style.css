@@ -233,7 +233,7 @@ a {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  background-color: rgba(217, 217, 217, 0.42);
+  background-color: transparent;
 }
 
 .reaction {
