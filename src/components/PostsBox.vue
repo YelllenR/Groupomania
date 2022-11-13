@@ -21,8 +21,9 @@
                         {{ post.post }}
                         <img :src="post.imagePost" class="imageFromPost">
                     </div>
-                    
-                    <div class="changePost">
+
+                    <div class="changePost"
+                        v-if="userData.idOfUser === post.idOfUser || userData.role === 'superadmin'">
                         <label id="postChange"></label>
                         <input class="inputChange" id="postChange" v-model="post.post" name="post" />
 
@@ -69,7 +70,7 @@ import { storeToRefs } from 'pinia';
 import { usePostsStore } from '../stores/postsStore';
 import { useUserInfosStore } from '../stores/userInfosStore';
 import { useReactionPost } from '../stores/reactOnPostStore';
-import { ref, watch, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import Comment from './Comment.vue';
 
@@ -80,7 +81,7 @@ const postsData = usePostsStore();
 const { posts } = storeToRefs(postsData);
 
 const userInfos = useUserInfosStore()
-const { userData } = storeToRefs(userInfos)
+const { userData } = storeToRefs(userInfos);
 
 const usersReactions = useReactionPost();
 const { reactions, usersComments } = storeToRefs(usersReactions);
@@ -89,9 +90,8 @@ postsData.FetchPublications();
 userInfos.GetOneUser()
 
 let isOpen = ref(false);
-// let openModif = ref(false);
 
-// let onePost = ref(posts.value.post)
+
 
 const Open = async (post, reactions) => {
     reactions.postId = post.idOfPost;
@@ -104,19 +104,13 @@ const removeIdUlr = async () => {
     await router.replace({ name: 'Posts' })
 }
 
-// const getId = async (post) => {
-//     await router.replace({ query: { "id": post.idOfPost } });
-
-//     return post.post;
-// }
-
 
 
 const modifyPost = async (post) => {
     await postsData.ModifyOwnPost(post)
     postsData.FetchPublications();
 
-    // confirm("Post modifié");
+    confirm("Post modifié");
 }
 
 
